@@ -1,0 +1,21 @@
+{
+  "name": "astro-abogado-site",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "astro": "^6.4.7",
+    "prettier": "^3.8.4",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "git": "^0.1.5",
+    "pnpm": "^11.7.0"
+  }
+}

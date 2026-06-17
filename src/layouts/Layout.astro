@@ -1,0 +1,112 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Cristian Gutierrez" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content="Sitio web premium para despacho de abogados con estilo luxury navy & gold." />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="header">
+      <nav class="navbar">
+        <div class="nav-container">
+          <!-- Logo -->
+          <div class="logo">
+            <span class="logo-text">Cristian <span class="logo-gold">Gutierrez</span></span>
+          </div>
+
+          <!-- Hamburger Menu Button (Mobile) -->
+          <button class="menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <!-- Navigation Menu -->
+          <ul class="nav-menu">
+            <li><a href="/" class="nav-link">Inicio</a></li>
+            <li><a href="/#servicios" class="nav-link">Servicios</a></li>
+            <li><a href="/sobre-nosotros" class="nav-link">Sobre Nosotros</a></li>
+            <li><a href="/#contacto" class="nav-link btn btn-primary">Contacto</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <slot />
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <!-- Brand -->
+          <div class="footer-section">
+            <h3 class="footer-title">Rosas & Asociados</h3>
+            <p>Asesoría jurídica premium para empresas y clientes de alto patrimonio.</p>
+          </div>
+
+          <!-- Navigation -->
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Navegación</h4>
+            <ul class="footer-menu">
+              <li><a href="/">Inicio</a></li>
+              <li><a href="/#servicios">Servicios</a></li>
+              <li><a href="/sobre-nosotros">Sobre Nosotros</a></li>
+              <li><a href="/#contacto">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Contacto</h4>
+            <ul class="footer-contact">
+              <li><a href="mailto:contacto@bufeterosas.com">contacto@bufeterosas.com</a></li>
+              <li><a href="tel:+5255123456789">+52 55 1234 5678</a></li>
+              <li>Ciudad de México</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+          <p>&copy; 2024 Bufete Rosas & Asociados. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navMenu = document.querySelector(".nav-menu");
+
+      if (menuToggle) {
+        menuToggle.addEventListener("click", () => {
+          navMenu?.classList.toggle("active");
+          menuToggle.classList.toggle("active");
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            navMenu?.classList.remove("active");
+            menuToggle.classList.remove("active");
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
