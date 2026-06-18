@@ -1,35 +1,65 @@
----
+﻿---
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Sobre Nosotros - Bufete Rosas & Asociados">
+<Layout title="Sobre Mí - Cristian Gutierrez" description="Conoce a Cristian Gutierrez, asesor migratorio especializado en Argentina, y descubre cómo brindo asesoría migratoria profesional.">
   <div class="page-shell">
-    <main style="max-width:700px;margin:3rem auto;padding:0 1rem;">
-  <h1>Sobre Nosotros</h1>
-  <p>Bienvenido — aquí puedes contar quiénes son y qué hacen.</p>
+    <section class="section section-split about-page">
+      <div class="about-copy">
+        <span class="eyebrow">Mi trayectoria</span>
+        <h1>Asesor migratorio experto con experiencia en Argentina y trámites internacionales.</h1>
+        <p>En Cristian Gutierrez combino experiencia legal en migración para ofrecer soluciones claras y confiables a trabajadores, familias y empresas que necesitan visas, residencia e inversiones en Argentina.</p>
+        <p>Mi trabajo se centra en comprender cada situación particular, reducir incertidumbre administrativa y guiar el proceso migratorio de principio a fin con transparencia y resultados probados.</p>
+      </div>
+      <div class="about-image">
+        <img src="https://via.placeholder.com/720x540.png?text=Sobre+Nosotros" alt="Sobre nosotros" loading="lazy" width="720" height="540" />
+      </div>
+    </section>
 
-  <h2>Contáctanos</h2>
-  <p>Envía tu mensaje usando el formulario rápido abajo. Sustituye el correo de destino por el tuyo.</p>
+    <section class="section section-light">
+      <div class="section-header">
+        <p class="eyebrow">Mi enfoque</p>
+        <h2>Claridad, confiabilidad y resultados verificables.</h2>
+      </div>
+      <div class="feature-grid feature-grid-2">
+        <div class="feature-card">
+          <h3>Asesoría transparente</h3>
+          <p>Explico cada paso del trámite sin complejidades innecesarias.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Gestión ágil</h3>
+          <p>Coordinamos con organismos oficiales para acelerar procesos y resolver dudas rápidamente.</p>
+        </div>
+      </div>
+    </section>
 
-  <form action="https://formsubmit.co/tu-email@ejemplo.com" method="POST" style="display:flex;flex-direction:column;gap:0.75rem;">
-    <input type="hidden" name="_subject" value="Nuevo mensaje desde el sitio" />
-    <input type="hidden" name="_captcha" value="false" />
+    <section class="section section-dark">
+      <div class="section-header">
+        <p class="eyebrow">Contacto directo</p>
+        <h2>Hablemos de tu caso migratorio.</h2>
+      </div>
+      <form action="https://formsubmit.co/tu-email@ejemplo.com" method="POST" class="contact-form">
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde el sitio" />
+        <input type="hidden" name="_captcha" value="false" />
 
-    <label style="display:flex;flex-direction:column;"><span>Nombre</span>
-      <input name="name" required placeholder="Tu nombre" />
-    </label>
+        <label>
+          <span>Nombre completo</span>
+          <input type="text" name="name" required placeholder="Tu nombre completo" />
+        </label>
 
-    <label style="display:flex;flex-direction:column;"><span>Correo</span>
-      <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
-    </label>
+        <label>
+          <span>Correo electrónico</span>
+          <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
+        </label>
 
-    <label style="display:flex;flex-direction:column;"><span>Mensaje</span>
-      <textarea name="message" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
-    </label>
+        <label>
+          <span>Mensaje</span>
+          <textarea name="message" rows="6" required placeholder="Cuéntanos brevemente tu situación..."></textarea>
+        </label>
 
-    <button type="submit" style="padding:0.6rem 1rem;">Enviar</button>
-  </form>
-
-  <p style="margin-top:1rem;font-size:0.9rem;color:#555;">Notas: reemplaza <strong>tu-email@ejemplo.com</strong> por tu correo real. Con Formsubmit no necesitas backend; en el primer envío confirmarás tu dirección siguiendo las instrucciones que te lleguen por correo.</p>
-</main>  </div>
+        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+      </form>
+      <p class="form-note">Reemplaza <strong>tu-email@ejemplo.com</strong> por tu dirección real. Formsubmit permite enviar mensajes sin backend.</p>
+    </section>
+  </div>
 </Layout>

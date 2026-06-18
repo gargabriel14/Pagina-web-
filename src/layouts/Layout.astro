@@ -3,9 +3,16 @@ import "../styles/global.css";
 
 interface Props {
   title?: string;
+  description?: string;
 }
 
-const { title = "Cristian Gutierrez" } = Astro.props;
+const { 
+  title = "Cristian Gutierrez | Asesoría Migratoria Argentina", 
+  description = "Cristian Gutierrez ofrece asesoría migratoria en Argentina para trabajadores, familias y negocios con enfoque estratégico y acompañamiento integral."
+} = Astro.props as Props;
+const siteUrl = Astro.site ?? "https://cristiangutierrez.com.ar";
+const pageUrl = `${siteUrl}${Astro.url.pathname}`;
+const currentYear = new Date().getFullYear();
 ---
 
 <!DOCTYPE html>
@@ -14,95 +21,134 @@ const { title = "Cristian Gutierrez" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <meta name="description" content="Sitio web premium para despacho de abogados con estilo luxury navy & gold." />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#101622" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+      <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Cristian+Gutierrez+Argentina" />
+    <meta property="og:image:alt" content="Cristian Gutierrez Asesor Migratorio Argentina" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=Cristian+Gutierrez+Argentina" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Cristian Gutierrez" />
+    <meta name="keywords" content="migración Argentina, visa trabajo, residencia, visado, asesor migratorio, trámites migratorios Argentina, extranjero en Argentina" />
+    <link rel="icon" href="https://via.placeholder.com/32x32.png?text=R" />
+    <link rel="canonical" href={pageUrl} />
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "Cristian Gutierrez",
+        "url": siteUrl,
+        "description": description,
+        "logo": "https://via.placeholder.com/300x80.png?text=Cristian+Gutierrez",
+        "areaServed": "AR",
+        "availableLanguage": ["es"],
+        "brand": {
+          "@type": "Brand",
+          "name": "Cristian Gutierrez"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "hola@cristiangutierrez.com.ar",
+          "telephone": "+5491123456789",
+          "areaServed": "AR",
+          "availableLanguage": ["es"]
+        }
+      })}
+    </script>
   </head>
   <body>
-    <!-- HEADER -->
     <header class="header">
       <nav class="navbar">
         <div class="nav-container">
-          <!-- Logo -->
           <div class="logo">
             <span class="logo-text">Cristian <span class="logo-gold">Gutierrez</span></span>
           </div>
 
-          <!-- Hamburger Menu Button (Mobile) -->
-          <button class="menu-toggle" aria-label="Toggle menu">
+          <button class="menu-toggle" aria-label="Toggle menu" type="button">
             <span></span>
             <span></span>
             <span></span>
           </button>
 
-          <!-- Navigation Menu -->
           <ul class="nav-menu">
             <li><a href="/" class="nav-link">Inicio</a></li>
-            <li><a href="/#servicios" class="nav-link">Servicios</a></li>
+            <li><a href="/servicios" class="nav-link">Servicios</a></li>
             <li><a href="/sobre-nosotros" class="nav-link">Sobre Nosotros</a></li>
-            <li><a href="/#contacto" class="nav-link btn btn-primary">Contacto</a></li>
+            <li><a href="/contacto" class="nav-link btn btn-primary">Contacto</a></li>
           </ul>
         </div>
       </nav>
     </header>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
       <slot />
     </main>
 
-    <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-container">
         <div class="footer-grid">
-          <!-- Brand -->
           <div class="footer-section">
-            <h3 class="footer-title">Rosas & Asociados</h3>
-            <p>Asesoría jurídica premium para empresas y clientes de alto patrimonio.</p>
+            <h3 class="footer-title">Cristian Gutierrez</h3>
+            <p>Asesor migratorio en Argentina para trabajadores, familias y emprendedores internacionales.</p>
           </div>
 
-          <!-- Navigation -->
           <div class="footer-section">
             <h4 class="footer-subtitle">Navegación</h4>
             <ul class="footer-menu">
               <li><a href="/">Inicio</a></li>
-              <li><a href="/#servicios">Servicios</a></li>
-              <li><a href="/sobre-nosotros">Sobre Nosotros</a></li>
-              <li><a href="/#contacto">Contacto</a></li>
+              <li><a href="/servicios">Servicios</a></li>
+              <li><a href="/sobre-nosotros">Sobre Mí</a></li>
+              <li><a href="/contacto">Contacto</a></li>
             </ul>
           </div>
 
-          <!-- Contact -->
           <div class="footer-section">
             <h4 class="footer-subtitle">Contacto</h4>
             <ul class="footer-contact">
-              <li><a href="mailto:contacto@bufeterosas.com">contacto@bufeterosas.com</a></li>
-              <li><a href="tel:+5255123456789">+52 55 1234 5678</a></li>
-              <li>Ciudad de México</li>
+              <li><a href="mailto:hola@cristiangutierrez.com.ar">hola@cristiangutierrez.com.ar</a></li>
+              <li><a href="tel:+5491123456789">+54 9 11 2345 6789</a></li>
+              <li>Buenos Aires, Argentina</li>
             </ul>
           </div>
         </div>
 
-        <!-- Copyright -->
+        <div class="footer-grid legal-grid">
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Legal</h4>
+            <ul class="footer-menu">
+              <li><a href="/privacidad">Política de Privacidad</a></li>
+              <li><a href="/terminos">Términos y Condiciones</a></li>
+            </ul>
+          </div>
+        </div>
+
         <div class="footer-bottom">
-          <p>&copy; 2024 Bufete Rosas & Asociados. Todos los derechos reservados.</p>
+          <p>&copy; {currentYear} Cristian Gutierrez. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
 
-    <!-- Mobile Menu Toggle Script -->
-    <script>
+    <script type="module">
       const menuToggle = document.querySelector(".menu-toggle");
       const navMenu = document.querySelector(".nav-menu");
 
-      if (menuToggle) {
+      if (menuToggle && navMenu) {
         menuToggle.addEventListener("click", () => {
-          navMenu?.classList.toggle("active");
+          navMenu.classList.toggle("active");
           menuToggle.classList.toggle("active");
         });
 
-        // Close menu when a link is clicked
         document.querySelectorAll(".nav-link").forEach((link) => {
           link.addEventListener("click", () => {
-            navMenu?.classList.remove("active");
+            navMenu.classList.remove("active");
             menuToggle.classList.remove("active");
           });
         });

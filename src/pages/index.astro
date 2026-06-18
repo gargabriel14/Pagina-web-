@@ -1,83 +1,191 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const contactEmail = "hola@cristiangutierrez.com.ar";
+const contactPhone = "+54 9 11 2345 6789";
+const contactLocation = "Buenos Aires, Argentina";
 ---
 
-<Layout title="Cristian Gutierrez">
+<Layout title="Cristian Gutierrez | Asesor Migratorio Argentina" description="Asesor migratorio para trabajadores, familias y emprendedores que buscan trámites de visa y residencia en Argentina." >
   <div class="page-shell">
-      <header class="hero">
-        <div class="hero-copy">
-          <span class="eyebrow">Despacho legal de alto nivel</span>
-          <h1>Asesoría jurídica con presencia, estrategia y confianza.</h1>
-          <p>Servicios personalizados en derecho corporativo, civil y patrimonial para clientes que buscan resultados discretos y de alto valor.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contacto">Solicitar consulta</a>
-            <a class="btn btn-secondary" href="#servicios">Ver servicios</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="card">
-            <span class="card-label">Experiencia + Confianza</span>
-            <h2>45 años respaldando decisiones estratégicas.</h2>
-            <p>Una firma legal especializada en soluciones ejecutivas para empresas y clientes de alto patrimonio.</p>
-          </div>
-        </div>
-      </header>
+    <header class="hero" id="inicio">
+      <div class="hero-copy">
+        <span class="eyebrow">Asesor migratorio experto</span>
+        <h1>Trámites de migración en Argentina con acompañamiento claro y seguro.</h1>
+        <p>Guío a profesionales, familias y empresas a obtener visas, residencias y permisos laborales en Argentina con soluciones prácticas y confiables.</p>
 
-      <section class="section section-dark" id="servicios">
-        <div class="section-header">
-          <p class="eyebrow">Áreas de práctica</p>
-          <h2>Servicios enfocados en el éxito de su empresa.</h2>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/contacto">Agenda tu consulta</a>
+          <a class="btn btn-secondary" href="/servicios">Conoce mis servicios</a>
         </div>
-        <div class="cards-grid">
-          <article class="service-card">
-            <h3>Derecho Corporativo</h3>
-            <p>Constitución, cumplimiento regulatorio y asesoría estratégica para operaciones nacionales e internacionales.</p>
-          </article>
-          <article class="service-card">
-            <h3>Litigio Civil</h3>
-            <p>Defensa experta en disputas contractuales, patrimoniales y procesos civiles de alto impacto.</p>
-          </article>
-          <article class="service-card">
-            <h3>Patrimonio y Familia</h3>
-            <p>Protección de activos, planificación sucesoria y acuerdos con enfoque en discreción y solidez.</p>
-          </article>
-        </div>
-      </section>
 
-      <section class="section section-light">
-        <div class="section-header">
-          <p class="eyebrow">Nuestra filosofía</p>
-          <h2>Un enfoque de asesoría que combina autoridad y trato cercano.</h2>
-        </div>
-        <div class="feature-grid">
-          <div class="feature-card">
-            <h3>Atención exclusiva</h3>
-            <p>Relaciones directas y respuestas ágiles para clientes que valoran la calidad por encima del volumen.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>+15</strong>
+            <span>Años apoyando trámites migratorios</span>
           </div>
-          <div class="feature-card">
-            <h3>Resultados estratégicos</h3>
-            <p>Soluciones legales diseñadas para proteger su patrimonio y respaldar sus decisiones corporativas.</p>
+          <div class="hero-stat">
+            <strong>95%</strong>
+            <span>Tasa de éxito en visas</span>
           </div>
-          <div class="feature-card">
-            <h3>Presencia confiable</h3>
-            <p>Asesoría con una imagen corporativa impecable y una ejecución impecable en cada caso.</p>
+          <div class="hero-stat">
+            <strong>500+</strong>
+            <span>Casos de familias y empresarios</span>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section class="section section-contact" id="contacto">
-        <div class="contact-card">
-          <span class="eyebrow">Contacto</span>
-          <h2>Comencemos la asesoría para su caso</h2>
-          <p>Comuníquese con nosotros y agende una consulta inicial para evaluar su situación legal con un enfoque premium.</p>
-          <ul>
-            <li><strong>Email:</strong> contacto@email.com</li>
-            <li><strong>Teléfono:</strong> +telefono</li>
-            <li><strong>Ubicación:</strong> Argentina</li>
-          </ul>
-          <a class="btn btn-primary" href="mailto:contacto@bufeterosas.com">Enviar mensaje</a>
+      <div class="hero-visual">
+        <img src="https://via.placeholder.com/840x620.png?text=Asesor+Migratorio+Argentina" alt="Asesor migratorio en Argentina" loading="lazy" width="840" height="620" />
+      </div>
+    </header>
+
+    <section class="section section-dark" id="servicios">
+      <div class="section-header">
+        <p class="eyebrow">Servicios migratorios</p>
+        <h2>Apoyo completo para permisos, visas y regularización en Argentina.</h2>
+      </div>
+      <div class="cards-grid">
+        <article class="service-card">
+          <span class="service-icon">🛂</span>
+          <h3>Visas de trabajo</h3>
+          <p>Trámite especializado para profesionales extranjeros y trabajadores calificados que desean laborar en Argentina.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-icon">👨‍👩‍👧‍👦</span>
+          <h3>Reunificación familiar</h3>
+          <p>Acompaño a las familias en la solicitud de visas de residencia y permisos para convivir legalmente en el país.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-icon">🎓</span>
+          <h3>Visas de estudio</h3>
+          <p>Orientación y gestión documental para estudiantes internacionales que quieren estudiar en Argentina.</p>
+        </article>
+        <article class="service-card">
+          <span class="service-icon">🏢</span>
+          <h3>Residencia e inversión</h3>
+          <p>Asistencia en visas de inversionista, permisos de negocios y trámite de residencia permanente.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-split">
+      <div class="about-copy">
+        <p class="eyebrow">Acerca de mí</p>
+        <h2>Cada cliente recibe un plan migratorio adaptado a su perfil.</h2>
+        <p>Trabajo con personas y compañías para reducir incertidumbre, asegurar tiempos y resolver sus trámites migratorios con confianza.</p>
+
+        <div class="feature-grid feature-grid-2">
+          <div class="feature-card">
+            <span class="feature-icon">✅</span>
+            <h3>Asesoría práctica</h3>
+            <p>Explico cada paso del trámite en lenguaje claro y sencillo.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📄</span>
+            <h3>Documentación segura</h3>
+            <p>Reviso y organizo sus documentos para presentar expedientes completos y sólidos.</p>
+          </div>
         </div>
-      </section>
-    </div>
-  </main>
+      </div>
+
+      <div class="about-image">
+        <img src="https://via.placeholder.com/720x540.png?text=Asesor+de+Migracion" alt="Asesor de migración" loading="lazy" width="720" height="540" />
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="section-header">
+        <p class="eyebrow">Por qué elegir este servicio</p>
+        <h2>Resultados claros con atención personal y respaldo profesional.</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h3>Proceso transparente</h3>
+          <p>Informo fechas clave, requisitos y avances en cada etapa de su trámite.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Estrategia probada</h3>
+          <p>Planificación segura para visas de trabajo, residencia familiar e inversión.</p>
+        </div>
+        <div class="feature-card">
+          <h3>Respaldo constante</h3>
+          <p>Respondo dudas, sigo casos y ajusto el trámite si cambia su situación.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="section-header">
+        <p class="eyebrow">Método de trabajo</p>
+        <h2>Un proceso estructurado para avanzar con confianza.</h2>
+      </div>
+      <div class="process-grid">
+        <article class="process-card">
+          <h3>Diagnóstico</h3>
+          <p>Evaluación personalizada de su situación migratoria y opciones disponibles.</p>
+        </article>
+        <article class="process-card">
+          <h3>Preparación</h3>
+          <p>Organizo su expediente y verifico requisitos con base en la categoría de visa.</p>
+        </article>
+        <article class="process-card">
+          <h3>Presentación</h3>
+          <p>Presento la solicitud al instituto migratorio y realizo el seguimiento administrativo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="section-header">
+        <p class="eyebrow">Testimonios</p>
+        <h2>Historias de clientes que lograron su permiso con claridad y tranquilidad.</h2>
+      </div>
+      <div class="testimonial-grid">
+        <article class="testimonial-card">
+          <p>“Cristian nos ayudó a conseguir las visas de trabajo para nuestro equipo internacional de manera rápida y bien fundamentada.”</p>
+          <strong>— Ana Ruiz, Directora de Talento</strong>
+        </article>
+        <article class="testimonial-card">
+          <p>“Mi familia y yo obtuvimos la residencia gracias a su apoyo claro y a la gestión de todos los documentos necesarios.”</p>
+          <strong>— Jorge y Mariana, Familia expatriada</strong>
+        </article>
+        <article class="testimonial-card">
+          <p>“El proceso fue mucho más fácil con su acompañamiento; resolvimos dudas y avanzamos sin sorpresas.”</p>
+          <strong>— David Pérez, Emprendedor</strong>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-split section-partners">
+      <div class="partners-copy">
+        <p class="eyebrow">Aliados estratégicos</p>
+        <h2>Colaboro con expertos en inmigración, abogados y consultores internacionales.</h2>
+        <p>Esto garantiza procesos sólidos, asesoría actualizada y soporte cuando se requieren trámites especiales.</p>
+      </div>
+      <div class="logo-grid">
+        <div class="logo-item">Embajadas</div>
+        <div class="logo-item">Consultores</div>
+        <div class="logo-item">Empresas</div>
+        <div class="logo-item">Institutos</div>
+      </div>
+    </section>
+
+    <section class="section section-contact" id="contacto">
+      <div class="contact-card">
+        <span class="eyebrow">Contacto</span>
+        <h2>Hablemos de su plan migratorio.</h2>
+        <p>Reciba una orientación inicial y un plan claro para su situación de trabajo, estudio o familia.</p>
+        <ul>
+          <li><strong>Email:</strong> {contactEmail}</li>
+          <li><strong>Teléfono:</strong> {contactPhone}</li>
+          <li><strong>Ubicación:</strong> {contactLocation}</li>
+        </ul>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:{contactEmail}">Enviar mensaje</a>
+          <a class="btn btn-secondary" href="/sobre-nosotros">Conocer al asesor</a>
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>

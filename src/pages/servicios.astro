@@ -1,0 +1,89 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const services = [
+  {
+    title: "Visas de Trabajo",
+    description: "Trámite especializado para profesionales y trabajadores calificados que desean laborar en Argentina."
+  },
+  {
+    title: "Residencia Familiar",
+    description: "Apoyo en solicitud de visas de residencia y permisos para que familias convivan legalmente en Argentina."
+  },
+  {
+    title: "Visas de Estudio",
+    description: "Orientación completa para estudiantes internacionales que desean estudiar en universidades argentinas."
+  },
+  {
+    title: "Residencia e Inversión",
+    description: "Asistencia en visas de inversor, permisos de negocios y residencia permanente para emprendedores."
+  }
+];
+---
+
+<Layout title="Servicios Migratorios - Cristian Gutierrez" description="Servicios de asesoría migratoria en Argentina: visas de trabajo, residencia familiar, estudio e inversión. Trámites rápidos y seguros.">
+  <div class="page-shell">
+    <header class="hero" id="servicios">
+      <div class="hero-copy">
+        <span class="eyebrow">Servicios migratorios</span>
+        <h1>Trámites de migración en Argentina con transparencia y resultados.</h1>
+        <p>Ofrezco asesoría especíalizada para visas, residencia, trabajo y estudio con procesos claros y seguimiento permanente.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/contacto">Consultar</a>
+          <a class="btn btn-secondary" href="/sobre-nosotros">Sobre Mí</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://via.placeholder.com/840x620.png?text=Servicios+Migracion+Argentina" alt="Servicios de migración en Argentina" loading="lazy" width="840" height="620" />
+      </div>
+    </header>
+
+    <section class="section section-dark">
+      <div class="section-header">
+        <p class="eyebrow">Categorías de servicios</p>
+        <h2>Soluciones integrales para tu situación migratoria.</h2>
+      </div>
+      <div class="cards-grid">
+        {services.map((service) => (
+          <article class="service-card">
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section-light section-split">
+      <div class="about-copy">
+        <p class="eyebrow">Por qué elegirnos</p>
+        <h2>Experiencia, claridad y resultados probados en migración Argentina.</h2>
+        <p>Simplifico trámites complejos y evito que cometas errores costosos. Cada caso recibe atención personalizada y seguimiento integral.</p>
+        <div class="feature-grid feature-grid-2">
+          <div class="feature-card">
+            <h3>Atención rápida</h3>
+            <p>Diagnosiós rpido de opciones y evaluación de requisa con eficiencia.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Seguimiento total</h3>
+            <p>Gestión completa del trámite y comunicación constante en cada etapa.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="https://via.placeholder.com/720x540.png?text=Valor+Agregado" alt="Valor agregado" loading="lazy" width="720" height="540" />
+      </div>
+    </section>
+
+    <section class="section section-contact">
+      <div class="contact-card">
+        <span class="eyebrow">Comencemos</span>
+        <h2>¿Pronto a resolver tu situación migratoria?</h2>
+        <p>Agende una consulta inicial sin costo y reciba un plan de acción claro para su caso.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="/contacto">Agendar consulta</a>
+          <a class="btn btn-secondary" href="/sobre-nosotros">Conocer más</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
