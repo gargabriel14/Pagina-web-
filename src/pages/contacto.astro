@@ -1,40 +1,53 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { placeholderImages, siteConfig } from "../data/site";
 ---
 
-<Layout title="Contacto - Cristian Gutierrez" description="Contacte a Cristian Gutierrez para asesoría migratoria en Argentina y trámites de visa y residencia.">
+<Layout
+  title="Contacto - Cristian Gutierrez"
+  description="Contacta a Cristian Gutierrez para una consulta de asesoría migratoria global sobre visas, residencia, permisos y movilidad internacional."
+> 
   <div class="page-shell">
     <section class="section section-split contact-page">
       <div class="about-copy">
         <span class="eyebrow">Contacto</span>
-        <h1>Consultame sobre tu situación migratoria en Argentina.</h1>
-        <p>Completa el formulario o usa los datos de contacto para agendar una consulta sobre visas, residencia y trámites migratorios.</p>
+        <h1>Consúltame sobre tu situación migratoria internacional.</h1>
+        <p>
+          Completa el formulario o usa los datos de contacto para agendar una consulta sobre visas,
+          residencia, permisos y planificación migratoria.
+        </p> 
 
         <div class="feature-grid feature-grid-2">
           <div class="feature-card">
             <h3>Correo</h3>
-            <p><a href="mailto:hola@cristiangutierrez.com.ar">hola@cristiangutierrez.com.ar</a></p>
+            <p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
           </div>
           <div class="feature-card">
             <h3>Teléfono</h3>
-            <p><a href="tel:+5491123456789">+54 9 11 2345 6789</a></p>
-          </div>
+            <p><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></p>
+          </div> 
         </div>
       </div>
       <div class="about-image">
-        <img src="https://via.placeholder.com/720x540.png?text=Contacto" alt="Contacto bufete" loading="lazy" width="720" height="540" />
+        <img
+          src={placeholderImages.contact}
+          alt="Placeholder de contacto para consulta migratoria online"
+          loading="lazy"
+          width="720"
+          height="540"
+        />
       </div>
     </section>
 
     <section class="section section-dark">
       <div class="section-header">
         <p class="eyebrow">Formulario</p>
-        <h2>Envíe su mensaje y nos pondremos en contacto pronto.</h2>
-      </div>
-      <form action="https://formsubmit.co/hola@cristiangutierrez.com.ar" method="POST" class="contact-form">
-        <input type="hidden" name="_subject" value="Nueva consulta desde cristiangutierrez.com.ar" />
+        <h2>Envía tu mensaje y nos pondremos en contacto pronto.</h2>
+      </div> 
+      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" class="contact-form">
+        <input type="hidden" name="_subject" value="Nueva consulta desde pagina-web-orcin.vercel.app" />
         <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value="https://cristiangutierrez.com.ar/contacto" />
+        <input type="hidden" name="_next" value={`${siteConfig.url}/contacto`} />
 
         <label>
           <span>Nombre completo</span>
@@ -47,14 +60,14 @@ import Layout from "../layouts/Layout.astro";
         </label>
 
         <label>
-          <span>Asunto</span>
-          <input type="text" name="subject" required placeholder="Breve descripción" />
+          <span>Destino o consulta</span>
+          <input type="text" name="subject" required placeholder="País, visa o situación a evaluar" />
         </label>
 
         <label>
           <span>Mensaje</span>
-          <textarea name="message" rows="6" required placeholder="Explique su situación..."></textarea>
-        </label>
+          <textarea name="message" rows="6" required placeholder="Explica brevemente tu situación..."></textarea>
+        </label> 
 
         <button type="submit" class="btn btn-primary">Enviar mensaje</button>
       </form>

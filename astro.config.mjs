@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://cristiangutierrez.com.ar',
+  site: process.env.PUBLIC_SITE_URL ?? 'https://pagina-web-orcin.vercel.app',
 });

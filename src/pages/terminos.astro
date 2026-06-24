@@ -1,17 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { placeholderImages } from "../data/site";
 ---
 
-<Layout title="Términos y Condiciones - Cristian Gutierrez" description="Términos y condiciones del uso del sitio y los servicios de asesoría migratoria de Cristian Gutierrez.">
+<Layout
+  title="Términos y condiciones - Cristian Gutierrez"
+  description="Términos y condiciones del uso del sitio y de los servicios de asesoría migratoria global de Cristian Gutierrez."
+>
   <div class="page-shell">
     <section class="section section-split about-page">
       <div class="about-copy">
         <span class="eyebrow">Términos</span>
-        <h1>Condiciones de uso para nuestros servicios y el sitio web.</h1>
-        <p>Lea los términos que regulan la relación con Cristian Gutierrez y el uso de esta página.</p>
+        <h1>Condiciones de uso para el sitio web y los servicios.</h1>
+        <p>
+          Lee los términos que regulan el uso de esta página y la relación con los servicios de asesoría
+          migratoria ofrecidos por Cristian Gutierrez.
+        </p>
       </div>
       <div class="about-image">
-        <img src="https://via.placeholder.com/720x540.png?text=Términos+y+Condiciones" alt="Términos y condiciones" loading="lazy" width="720" height="540" />
+        <img
+          src={placeholderImages.terms}
+          alt="Placeholder de términos y condiciones"
+          loading="lazy"
+          width="720"
+          height="540"
+        />
       </div>
     </section>
 
@@ -23,15 +36,15 @@ import Layout from "../layouts/Layout.astro";
       <div class="feature-grid">
         <div class="feature-card">
           <h3>Información del sitio</h3>
-          <p>El contenido de esta página tiene fines informativos y no sustituye asesoría personalizada.</p>
+          <p>El contenido tiene fines informativos y no sustituye asesoramiento personalizado.</p>
         </div>
         <div class="feature-card">
           <h3>Responsabilidad</h3>
-          <p>No nos hacemos responsables de decisiones tomadas únicamente con la información publicada.</p>
+          <p>Las decisiones migratorias deben tomarse tras revisar el caso y la normativa aplicable.</p>
         </div>
         <div class="feature-card">
           <h3>Derechos</h3>
-          <p>Todo el contenido es propiedad de Cristian Gutierrez y está protegido por derechos de autor.</p>
+          <p>El contenido de esta maqueta pertenece a Cristian Gutierrez y puede evolucionar durante el desarrollo.</p>
         </div>
       </div>
     </section>

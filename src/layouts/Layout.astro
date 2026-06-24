@@ -1,21 +1,27 @@
 ---
 import "../styles/global.css";
+import { siteConfig } from "../data/site";
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  noindex?: boolean;
 }
 
-const { 
-  title = "Cristian Gutierrez | Asesoría Migratoria Argentina", 
-  description = "Cristian Gutierrez ofrece asesoría migratoria en Argentina para trabajadores, familias y negocios con enfoque estratégico y acompañamiento integral."
+const {
+  title = siteConfig.title,
+  description = siteConfig.description,
+  image = siteConfig.ogImage,
+  noindex = false,
 } = Astro.props as Props;
-const siteUrl = Astro.site ?? "https://cristiangutierrez.com.ar";
-const pageUrl = `${siteUrl}${Astro.url.pathname}`;
+
+const siteUrl = Astro.site ?? new URL(siteConfig.url);
+const pageUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const currentYear = new Date().getFullYear();
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -23,56 +29,62 @@ const currentYear = new Date().getFullYear();
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#101622" />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
+    <meta name="author" content={siteConfig.name} />
+    <meta
+      name="keywords"
+      content="asesoría migratoria, migración internacional, visas, residencia, permisos de trabajo, movilidad global, consultoría migratoria"
+    />
+    <link rel="canonical" href={pageUrl} />
+    <link rel="icon" href="https://placehold.co/32x32/101622/F2D25F/png?text=CG" />
+
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_AR" />
-      <meta property="og:url" content={pageUrl} />
-    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Cristian+Gutierrez+Argentina" />
-    <meta property="og:image:alt" content="Cristian Gutierrez Asesor Migratorio Argentina" />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:alt" content="Asesoría migratoria global de Cristian Gutierrez" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://via.placeholder.com/1200x630.png?text=Cristian+Gutierrez+Argentina" />
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content="Cristian Gutierrez" />
-    <meta name="keywords" content="migración Argentina, visa trabajo, residencia, visado, asesor migratorio, trámites migratorios Argentina, extranjero en Argentina" />
-    <link rel="icon" href="https://via.placeholder.com/32x32.png?text=R" />
-    <link rel="canonical" href={pageUrl} />
+    <meta name="twitter:image" content={image} />
+
     <script type="application/ld+json">
       {JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "LegalService",
-        "name": "Cristian Gutierrez",
-        "url": siteUrl,
-        "description": description,
-        "logo": "https://via.placeholder.com/300x80.png?text=Cristian+Gutierrez",
-        "areaServed": "AR",
-        "availableLanguage": ["es"],
-        "brand": {
+        "@type": "ProfessionalService",
+        name: siteConfig.name,
+        url: siteUrl.toString(),
+        description,
+        image,
+        areaServed: "Worldwide",
+        availableLanguage: ["es"],
+        serviceType: "Asesoría migratoria global",
+        brand: {
           "@type": "Brand",
-          "name": "Cristian Gutierrez"
+          name: siteConfig.name,
         },
-        "contactPoint": {
+        contactPoint: {
           "@type": "ContactPoint",
-          "contactType": "customer service",
-          "email": "hola@cristiangutierrez.com.ar",
-          "telephone": "+5491123456789",
-          "areaServed": "AR",
-          "availableLanguage": ["es"]
-        }
+          contactType: "customer service",
+          email: siteConfig.email,
+          telephone: siteConfig.phoneHref,
+          areaServed: "Worldwide",
+          availableLanguage: ["es"],
+        },
       })}
     </script>
   </head>
   <body>
     <header class="header">
-      <nav class="navbar">
+      <nav class="navbar" aria-label="Navegación principal">
         <div class="nav-container">
-          <div class="logo">
+          <a class="logo" href="/" aria-label={`${siteConfig.name} - Inicio`}>
             <span class="logo-text">Cristian <span class="logo-gold">Gutierrez</span></span>
-          </div>
+          </a>
 
-          <button class="menu-toggle" aria-label="Toggle menu" type="button">
+          <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" type="button">
             <span></span>
             <span></span>
             <span></span>
@@ -81,7 +93,7 @@ const currentYear = new Date().getFullYear();
           <ul class="nav-menu">
             <li><a href="/" class="nav-link">Inicio</a></li>
             <li><a href="/servicios" class="nav-link">Servicios</a></li>
-            <li><a href="/sobre-nosotros" class="nav-link">Sobre Nosotros</a></li>
+            <li><a href="/sobre-nosotros" class="nav-link">Sobre Mi</a></li>
             <li><a href="/contacto" class="nav-link btn btn-primary">Contacto</a></li>
           </ul>
         </div>
@@ -96,16 +108,15 @@ const currentYear = new Date().getFullYear();
       <div class="footer-container">
         <div class="footer-grid">
           <div class="footer-section">
-            <h3 class="footer-title">Cristian Gutierrez</h3>
-            <p>Asesor migratorio en Argentina para trabajadores, familias y emprendedores internacionales.</p>
-          </div>
+            <h3 class="footer-title">{siteConfig.name}</h3>
+          <p>Asesoría migratoria global para personas, familias y equipos que necesitan avanzar con claridad.</p>
 
           <div class="footer-section">
             <h4 class="footer-subtitle">Navegación</h4>
             <ul class="footer-menu">
               <li><a href="/">Inicio</a></li>
               <li><a href="/servicios">Servicios</a></li>
-              <li><a href="/sobre-nosotros">Sobre Mí</a></li>
+              <li><a href="/sobre-nosotros">Sobre Mi</a></li>
               <li><a href="/contacto">Contacto</a></li>
             </ul>
           </div>
@@ -113,9 +124,9 @@ const currentYear = new Date().getFullYear();
           <div class="footer-section">
             <h4 class="footer-subtitle">Contacto</h4>
             <ul class="footer-contact">
-              <li><a href="mailto:hola@cristiangutierrez.com.ar">hola@cristiangutierrez.com.ar</a></li>
-              <li><a href="tel:+5491123456789">+54 9 11 2345 6789</a></li>
-              <li>Buenos Aires, Argentina</li>
+              <li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+              <li><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
+              <li>{siteConfig.locationLabel}</li>
             </ul>
           </div>
         </div>
@@ -124,14 +135,14 @@ const currentYear = new Date().getFullYear();
           <div class="footer-section">
             <h4 class="footer-subtitle">Legal</h4>
             <ul class="footer-menu">
-              <li><a href="/privacidad">Política de Privacidad</a></li>
-              <li><a href="/terminos">Términos y Condiciones</a></li>
+              <li><a href="/privacidad">Política de privacidad</a></li>
+              <li><a href="/terminos">Términos y condiciones</a></li>
             </ul>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; {currentYear} Cristian Gutierrez. Todos los derechos reservados.</p>
+          <p>&copy; {currentYear} {siteConfig.name}. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
@@ -142,14 +153,16 @@ const currentYear = new Date().getFullYear();
 
       if (menuToggle && navMenu) {
         menuToggle.addEventListener("click", () => {
-          navMenu.classList.toggle("active");
-          menuToggle.classList.toggle("active");
+          const isActive = navMenu.classList.toggle("active");
+          menuToggle.classList.toggle("active", isActive);
+          menuToggle.setAttribute("aria-expanded", String(isActive));
         });
 
         document.querySelectorAll(".nav-link").forEach((link) => {
           link.addEventListener("click", () => {
             navMenu.classList.remove("active");
             menuToggle.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
           });
         });
       }

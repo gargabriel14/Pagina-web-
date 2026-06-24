@@ -1,17 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { placeholderImages } from "../data/site";
 ---
 
-<Layout title="Política de Privacidad - Cristian Gutierrez" description="Nuestra política de privacidad explica cómo protegemos sus datos personales al utilizar nuestros servicios de asesoría migratoria.">
+<Layout
+  title="Política de privacidad - Cristian Gutierrez"
+  description="Política de privacidad sobre el tratamiento de datos personales en consultas de asesoría migratoria global."
+>
   <div class="page-shell">
     <section class="section section-split about-page">
       <div class="about-copy">
         <span class="eyebrow">Privacidad</span>
-        <h1>Protegemos su información con el mayor cuidado.</h1>
-        <p>En Cristian Gutierrez tratamos los datos personales con confidencialidad y de acuerdo con la normativa aplicable.</p>
+        <h1>Protegemos tu información con cuidado y confidencialidad.</h1>
+        <p>
+          En Cristian Gutierrez tratamos los datos personales con reserva y los usamos solo para responder
+          consultas, preparar diagnósticos y brindar servicios de asesoría migratoria.
+        </p> 
       </div>
       <div class="about-image">
-        <img src="https://via.placeholder.com/720x540.png?text=Privacidad" alt="Política de privacidad" loading="lazy" width="720" height="540" />
+        <img
+          src={placeholderImages.privacy}
+          alt="Placeholder de política de privacidad"
+          loading="lazy"
+          width="720"
+          height="540"
+        />
       </div>
     </section>
 
@@ -23,15 +36,15 @@ import Layout from "../layouts/Layout.astro";
       <div class="feature-grid">
         <div class="feature-card">
           <h3>Datos personales</h3>
-          <p>Recopilamos únicamente la información necesaria para gestionar consultas y brindar servicios legales.</p>
+          <p>Recopilamos únicamente la información necesaria para gestionar consultas y servicios.</p>
         </div>
         <div class="feature-card">
           <h3>Uso responsable</h3>
-          <p>Los datos se utilizan exclusivamente para dar seguimiento a solicitudes y mejorar la atención.</p>
+          <p>Los datos se utilizan para seguimiento de solicitudes, comunicación y mejora de la atención.</p>
         </div>
         <div class="feature-card">
           <h3>Seguridad</h3>
-          <p>Mantenemos controles para evitar accesos no autorizados y preservar la confidencialidad.</p>
+          <p>Mantenemos criterios de confidencialidad para preservar la información compartida.</p>
         </div>
       </div>
     </section>
