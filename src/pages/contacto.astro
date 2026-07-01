@@ -5,17 +5,17 @@ import { siteConfig, siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Contacto - Cristian Gutierrez"
-  description="Contacta a Cristian Gutierrez para una consulta de asesoria migratoria global sobre visas, residencia, permisos y movilidad internacional."
+  title="Contacto - Cristian Gutiérrez"
+  description="Contacta a Cristian Gutiérrez para una consulta de asesoría migratoria global sobre visas, residencia, permisos y movilidad internacional"
 >
   <div class="page-shell">
     <section class="section section-split contact-page">
       <div class="about-copy">
         <span class="eyebrow">Contacto</span>
-        <h1>Consultame sobre tu situacion migratoria internacional.</h1>
+        <h1>Consúltame sobre tu situación migratoria internacional</h1>
         <p>
           Completa el formulario o usa los datos de contacto para agendar una consulta sobre visas,
-          residencia, permisos y planificacion migratoria.
+          residencia, permisos y planificación migratoria
         </p>
 
         <div class="feature-grid feature-grid-2">
@@ -26,7 +26,7 @@ import { siteConfig, siteImages } from "../data/site";
           </div>
           <div class="feature-card">
             <span class="feature-icon"><Icon name="calendar" /></span>
-            <h3>Telefono</h3>
+            <h3>Teléfono</h3>
             <p><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></p>
           </div>
         </div>
@@ -34,7 +34,7 @@ import { siteConfig, siteImages } from "../data/site";
       <div class="about-image">
         <img
           src={siteImages.contact}
-          alt="Escritorio profesional como referencia para fotografia de contacto online"
+          alt="Escritorio profesional como referencia para fotografía de contacto online"
           loading="lazy"
           decoding="async"
           width="720"
@@ -46,7 +46,7 @@ import { siteConfig, siteImages } from "../data/site";
     <section class="section section-dark">
       <div class="section-header">
         <p class="eyebrow">Formulario</p>
-        <h2>Envia tu mensaje y nos pondremos en contacto pronto.</h2>
+        <h2>Envía tu mensaje y nos pondremos en contacto pronto</h2>
       </div>
       <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" class="contact-form">
         <input type="hidden" name="_subject" value="Nueva consulta desde pagina-web-orcin.vercel.app" />
@@ -59,18 +59,18 @@ import { siteConfig, siteImages } from "../data/site";
         </label>
 
         <label>
-          <span>Correo electronico</span>
+          <span>Correo electrónico</span>
           <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
         </label>
 
         <label>
           <span>Destino o consulta</span>
-          <input type="text" name="subject" required placeholder="Pais, visa o situacion a evaluar" />
+          <input type="text" name="subject" required placeholder="País, visa o situación a evaluar" />
         </label>
 
         <label>
           <span>Mensaje</span>
-          <textarea name="message" rows="6" required placeholder="Explica brevemente tu situacion..."></textarea>
+          <textarea name="message" rows="6" required placeholder="Explica brevemente tu situación"></textarea>
         </label>
 
         <button type="submit" class="btn btn-primary">Enviar mensaje</button>

@@ -25,7 +25,7 @@ const currentPath = normalizedPathname.replace(/\/$/, "") || "/";
 const navItems = [
   { href: "/", label: "Inicio" },
   { href: "/servicios/", label: "Servicios" },
-  { href: "/sobre-nosotros/", label: "Sobre Mi" },
+  { href: "/sobre-nosotros/", label: "Sobre mí" },
   { href: "/contacto/", label: "Contacto", featured: true },
 ];
 const isCurrent = (href: string) => {
@@ -53,14 +53,14 @@ const isCurrent = (href: string) => {
     <meta property="og:locale" content={siteConfig.locale} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content={imageUrl} />
-    <meta property="og:image:alt" content="Asesoria migratoria global de Cristian Gutierrez" />
+    <meta property="og:image:alt" content="Asesoría migratoria global de Cristian Gutiérrez" />
     <meta property="og:image:width" content="1600" />
     <meta property="og:image:height" content="1067" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
-    <meta name="twitter:image:alt" content="Asesoria migratoria global de Cristian Gutierrez" />
+    <meta name="twitter:image:alt" content="Asesoría migratoria global de Cristian Gutiérrez" />
 
     {
       !noindex && (
@@ -74,7 +74,7 @@ const isCurrent = (href: string) => {
             image: imageUrl,
             areaServed: "Worldwide",
             availableLanguage: ["es"],
-            serviceType: "Asesoria migratoria global",
+            serviceType: "Asesoría migratoria global",
             brand: {
               "@type": "Brand",
               name: siteConfig.name,
@@ -94,13 +94,13 @@ const isCurrent = (href: string) => {
   </head>
   <body class="page-enter">
     <header class="header">
-      <nav class="navbar" aria-label="Navegacion principal">
+      <nav class="navbar" aria-label="Navegación principal">
         <div class="nav-container">
           <a class="logo" href="/" aria-label={`${siteConfig.name} - Inicio`}>
-            <span class="logo-text">Cristian <span class="logo-gold">Gutierrez</span></span>
+            <span class="logo-text">Cristian <span class="logo-gold">Gutiérrez</span></span>
           </a>
 
-          <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false" type="button">
+          <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" type="button">
             <span></span>
             <span></span>
             <span></span>
@@ -134,15 +134,15 @@ const isCurrent = (href: string) => {
         <div class="footer-grid">
           <div class="footer-section">
             <h3 class="footer-title">{siteConfig.name}</h3>
-            <p>Asesoria migratoria global para personas, familias y equipos que necesitan avanzar con claridad.</p>
+            <p>Asesoría migratoria global para personas, familias y equipos que necesitan avanzar con claridad</p>
           </div>
 
           <div class="footer-section">
-            <h4 class="footer-subtitle">Navegacion</h4>
+            <h4 class="footer-subtitle">Navegación</h4>
             <ul class="footer-menu">
               <li><a href="/">Inicio</a></li>
               <li><a href="/servicios/">Servicios</a></li>
-              <li><a href="/sobre-nosotros/">Sobre Mi</a></li>
+              <li><a href="/sobre-nosotros/">Sobre mí</a></li>
               <li><a href="/contacto/">Contacto</a></li>
             </ul>
           </div>
@@ -161,14 +161,14 @@ const isCurrent = (href: string) => {
           <div class="footer-section">
             <h4 class="footer-subtitle">Legal</h4>
             <ul class="footer-menu">
-              <li><a href="/privacidad/">Politica de privacidad</a></li>
-              <li><a href="/terminos/">Terminos y condiciones</a></li>
+              <li><a href="/privacidad/">Política de privacidad</a></li>
+              <li><a href="/terminos/">Términos y condiciones</a></li>
             </ul>
           </div>
         </div>
 
         <div class="footer-bottom">
-          <p>&copy; {currentYear} {siteConfig.name}. Todos los derechos reservados.</p>
+          <p>&copy; {currentYear} {siteConfig.name} · Todos los derechos reservados</p>
         </div>
       </div>
     </footer>
