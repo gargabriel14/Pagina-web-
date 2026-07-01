@@ -1,27 +1,29 @@
 ---
+import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
-import { placeholderImages } from "../data/site";
+import { siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Política de privacidad - Cristian Gutierrez"
-  description="Política de privacidad sobre el tratamiento de datos personales en consultas de asesoría migratoria global."
+  title="Politica de Privacidad - Cristian Gutierrez"
+  description="Politica de privacidad sobre el tratamiento de datos personales en consultas de asesoria migratoria global."
 >
   <div class="page-shell">
     <section class="section section-split about-page">
       <div class="about-copy">
         <span class="eyebrow">Privacidad</span>
-        <h1>Protegemos tu información con cuidado y confidencialidad.</h1>
+        <h1>Protegemos tu informacion con cuidado y confidencialidad.</h1>
         <p>
           En Cristian Gutierrez tratamos los datos personales con reserva y los usamos solo para responder
-          consultas, preparar diagnósticos y brindar servicios de asesoría migratoria.
-        </p> 
+          consultas, preparar diagnosticos y brindar servicios de asesoria migratoria.
+        </p>
       </div>
       <div class="about-image">
         <img
-          src={placeholderImages.privacy}
-          alt="Placeholder de política de privacidad"
+          src={siteImages.privacy}
+          alt="Firma de documentos como referencia para fotografia legal"
           loading="lazy"
+          decoding="async"
           width="720"
           height="540"
         />
@@ -31,20 +33,23 @@ import { placeholderImages } from "../data/site";
     <section class="section section-light">
       <div class="section-header">
         <p class="eyebrow">Compromiso</p>
-        <h2>Recopilación, uso y conservación de datos.</h2>
+        <h2>Recopilacion, uso y conservacion de datos.</h2>
       </div>
       <div class="feature-grid">
         <div class="feature-card">
+          <span class="feature-icon"><Icon name="document" /></span>
           <h3>Datos personales</h3>
-          <p>Recopilamos únicamente la información necesaria para gestionar consultas y servicios.</p>
+          <p>Recopilamos unicamente la informacion necesaria para gestionar consultas y servicios.</p>
         </div>
         <div class="feature-card">
+          <span class="feature-icon"><Icon name="check" /></span>
           <h3>Uso responsable</h3>
-          <p>Los datos se utilizan para seguimiento de solicitudes, comunicación y mejora de la atención.</p>
+          <p>Los datos se utilizan para seguimiento de solicitudes, comunicacion y mejora de la atencion.</p>
         </div>
         <div class="feature-card">
+          <span class="feature-icon"><Icon name="briefcase" /></span>
           <h3>Seguridad</h3>
-          <p>Mantenemos criterios de confidencialidad para preservar la información compartida.</p>
+          <p>Mantenemos criterios de confidencialidad para preservar la informacion compartida.</p>
         </div>
       </div>
     </section>

@@ -17,8 +17,21 @@ const {
 } = Astro.props as Props;
 
 const siteUrl = Astro.site ?? new URL(siteConfig.url);
-const pageUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const normalizedPathname = Astro.url.pathname === "/" ? "/" : `${Astro.url.pathname.replace(/\/$/, "")}/`;
+const pageUrl = new URL(normalizedPathname, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
 const currentYear = new Date().getFullYear();
+const currentPath = normalizedPathname.replace(/\/$/, "") || "/";
+const navItems = [
+  { href: "/", label: "Inicio" },
+  { href: "/servicios/", label: "Servicios" },
+  { href: "/sobre-nosotros/", label: "Sobre Mi" },
+  { href: "/contacto/", label: "Contacto", featured: true },
+];
+const isCurrent = (href: string) => {
+  const normalizedHref = href.replace(/\/$/, "") || "/";
+  return currentPath === normalizedHref;
+};
 ---
 
 <!doctype html>
@@ -28,57 +41,60 @@ const currentYear = new Date().getFullYear();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#101622" />
+    <meta name="theme-color" content="#0d1010" />
     <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
     <meta name="author" content={siteConfig.name} />
-    <meta
-      name="keywords"
-      content="asesoría migratoria, migración internacional, visas, residencia, permisos de trabajo, movilidad global, consultoría migratoria"
-    />
     <link rel="canonical" href={pageUrl} />
-    <link rel="icon" href="https://placehold.co/32x32/101622/F2D25F/png?text=CG" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={siteConfig.locale} />
     <meta property="og:url" content={pageUrl} />
-    <meta property="og:image" content={image} />
-    <meta property="og:image:alt" content="Asesoría migratoria global de Cristian Gutierrez" />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content="Asesoria migratoria global de Cristian Gutierrez" />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="1067" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content="Asesoria migratoria global de Cristian Gutierrez" />
 
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ProfessionalService",
-        name: siteConfig.name,
-        url: siteUrl.toString(),
-        description,
-        image,
-        areaServed: "Worldwide",
-        availableLanguage: ["es"],
-        serviceType: "Asesoría migratoria global",
-        brand: {
-          "@type": "Brand",
-          name: siteConfig.name,
-        },
-        contactPoint: {
-          "@type": "ContactPoint",
-          contactType: "customer service",
-          email: siteConfig.email,
-          telephone: siteConfig.phoneHref,
-          areaServed: "Worldwide",
-          availableLanguage: ["es"],
-        },
-      })}
-    </script>
+    {
+      !noindex && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            name: siteConfig.name,
+            url: siteUrl.toString(),
+            description,
+            image: imageUrl,
+            areaServed: "Worldwide",
+            availableLanguage: ["es"],
+            serviceType: "Asesoria migratoria global",
+            brand: {
+              "@type": "Brand",
+              name: siteConfig.name,
+            },
+            contactPoint: {
+              "@type": "ContactPoint",
+              contactType: "customer service",
+              email: siteConfig.email,
+              telephone: siteConfig.phoneHref,
+              areaServed: "Worldwide",
+              availableLanguage: ["es"],
+            },
+          })}
+        </script>
+      )
+    }
   </head>
-  <body>
+  <body class="page-enter">
     <header class="header">
-      <nav class="navbar" aria-label="Navegación principal">
+      <nav class="navbar" aria-label="Navegacion principal">
         <div class="nav-container">
           <a class="logo" href="/" aria-label={`${siteConfig.name} - Inicio`}>
             <span class="logo-text">Cristian <span class="logo-gold">Gutierrez</span></span>
@@ -91,10 +107,19 @@ const currentYear = new Date().getFullYear();
           </button>
 
           <ul class="nav-menu">
-            <li><a href="/" class="nav-link">Inicio</a></li>
-            <li><a href="/servicios" class="nav-link">Servicios</a></li>
-            <li><a href="/sobre-nosotros" class="nav-link">Sobre Mi</a></li>
-            <li><a href="/contacto" class="nav-link btn btn-primary">Contacto</a></li>
+            {
+              navItems.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class={`nav-link${item.featured ? " btn btn-primary" : ""}`}
+                    aria-current={isCurrent(item.href) ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </nav>
@@ -109,15 +134,16 @@ const currentYear = new Date().getFullYear();
         <div class="footer-grid">
           <div class="footer-section">
             <h3 class="footer-title">{siteConfig.name}</h3>
-          <p>Asesoría migratoria global para personas, familias y equipos que necesitan avanzar con claridad.</p>
+            <p>Asesoria migratoria global para personas, familias y equipos que necesitan avanzar con claridad.</p>
+          </div>
 
           <div class="footer-section">
-            <h4 class="footer-subtitle">Navegación</h4>
+            <h4 class="footer-subtitle">Navegacion</h4>
             <ul class="footer-menu">
               <li><a href="/">Inicio</a></li>
-              <li><a href="/servicios">Servicios</a></li>
-              <li><a href="/sobre-nosotros">Sobre Mi</a></li>
-              <li><a href="/contacto">Contacto</a></li>
+              <li><a href="/servicios/">Servicios</a></li>
+              <li><a href="/sobre-nosotros/">Sobre Mi</a></li>
+              <li><a href="/contacto/">Contacto</a></li>
             </ul>
           </div>
 
@@ -135,8 +161,8 @@ const currentYear = new Date().getFullYear();
           <div class="footer-section">
             <h4 class="footer-subtitle">Legal</h4>
             <ul class="footer-menu">
-              <li><a href="/privacidad">Política de privacidad</a></li>
-              <li><a href="/terminos">Términos y condiciones</a></li>
+              <li><a href="/privacidad/">Politica de privacidad</a></li>
+              <li><a href="/terminos/">Terminos y condiciones</a></li>
             </ul>
           </div>
         </div>
@@ -150,6 +176,14 @@ const currentYear = new Date().getFullYear();
     <script type="module">
       const menuToggle = document.querySelector(".menu-toggle");
       const navMenu = document.querySelector(".nav-menu");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      const closeMenu = () => {
+        if (!menuToggle || !navMenu) return;
+        navMenu.classList.remove("active");
+        menuToggle.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+      };
 
       if (menuToggle && navMenu) {
         menuToggle.addEventListener("click", () => {
@@ -157,15 +191,51 @@ const currentYear = new Date().getFullYear();
           menuToggle.classList.toggle("active", isActive);
           menuToggle.setAttribute("aria-expanded", String(isActive));
         });
-
-        document.querySelectorAll(".nav-link").forEach((link) => {
-          link.addEventListener("click", () => {
-            navMenu.classList.remove("active");
-            menuToggle.classList.remove("active");
-            menuToggle.setAttribute("aria-expanded", "false");
-          });
-        });
       }
+
+      document.addEventListener("click", (event) => {
+        if (!(event instanceof MouseEvent) || event.defaultPrevented || event.button !== 0) return;
+
+        const link = event.target instanceof Element ? event.target.closest("a") : null;
+        if (!(link instanceof HTMLAnchorElement)) return;
+
+        closeMenu();
+
+        if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || reduceMotion.matches) return;
+        if (link.target && link.target !== "_self") return;
+        if (link.hasAttribute("download")) return;
+
+        const rawHref = link.getAttribute("href") || "";
+        if (
+          !rawHref ||
+          rawHref.startsWith("#") ||
+          rawHref.startsWith("mailto:") ||
+          rawHref.startsWith("tel:")
+        ) {
+          return;
+        }
+
+        const targetUrl = new URL(link.href, window.location.href);
+        const currentUrl = new URL(window.location.href);
+
+        if (targetUrl.origin !== currentUrl.origin) return;
+        if (targetUrl.href === currentUrl.href) return;
+        if (
+          targetUrl.pathname === currentUrl.pathname &&
+          targetUrl.search === currentUrl.search &&
+          targetUrl.hash
+        ) {
+          return;
+        }
+
+        event.preventDefault();
+        document.body.classList.remove("page-enter");
+        document.body.classList.add("page-leaving");
+
+        window.setTimeout(() => {
+          window.location.assign(targetUrl.href);
+        }, 220);
+      });
     </script>
   </body>
 </html>

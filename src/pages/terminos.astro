@@ -1,27 +1,29 @@
 ---
+import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
-import { placeholderImages } from "../data/site";
+import { siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Términos y condiciones - Cristian Gutierrez"
-  description="Términos y condiciones del uso del sitio y de los servicios de asesoría migratoria global de Cristian Gutierrez."
+  title="Terminos y Condiciones - Cristian Gutierrez"
+  description="Terminos y condiciones del uso del sitio y de los servicios de asesoria migratoria global de Cristian Gutierrez."
 >
   <div class="page-shell">
     <section class="section section-split about-page">
       <div class="about-copy">
-        <span class="eyebrow">Términos</span>
+        <span class="eyebrow">Terminos</span>
         <h1>Condiciones de uso para el sitio web y los servicios.</h1>
         <p>
-          Lee los términos que regulan el uso de esta página y la relación con los servicios de asesoría
+          Lee los terminos que regulan el uso de esta pagina y la relacion con los servicios de asesoria
           migratoria ofrecidos por Cristian Gutierrez.
         </p>
       </div>
       <div class="about-image">
         <img
-          src={placeholderImages.terms}
-          alt="Placeholder de términos y condiciones"
+          src={siteImages.terms}
+          alt="Documentos sobre escritorio como referencia para terminos legales"
           loading="lazy"
+          decoding="async"
           width="720"
           height="540"
         />
@@ -35,16 +37,19 @@ import { placeholderImages } from "../data/site";
       </div>
       <div class="feature-grid">
         <div class="feature-card">
-          <h3>Información del sitio</h3>
+          <span class="feature-icon"><Icon name="document" /></span>
+          <h3>Informacion del sitio</h3>
           <p>El contenido tiene fines informativos y no sustituye asesoramiento personalizado.</p>
         </div>
         <div class="feature-card">
+          <span class="feature-icon"><Icon name="check" /></span>
           <h3>Responsabilidad</h3>
           <p>Las decisiones migratorias deben tomarse tras revisar el caso y la normativa aplicable.</p>
         </div>
         <div class="feature-card">
+          <span class="feature-icon"><Icon name="briefcase" /></span>
           <h3>Derechos</h3>
-          <p>El contenido de esta maqueta pertenece a Cristian Gutierrez y puede evolucionar durante el desarrollo.</p>
+          <p>El contenido del sitio pertenece a Cristian Gutierrez y puede evolucionar durante el desarrollo.</p>
         </div>
       </div>
     </section>

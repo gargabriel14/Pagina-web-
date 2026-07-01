@@ -1,48 +1,51 @@
 ---
+import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
-import { placeholderImages, siteConfig } from "../data/site";
+import { caseTypes, processSteps, services, siteConfig, siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Cristian Gutierrez | Asesoría Migratoria Global"
-  description="Acompañamiento migratorio para personas, familias y empresas que buscan visas, residencia, permisos de trabajo y movilidad internacional."
+  title="Cristian Gutierrez | Asesoria Migratoria Global"
+  description="Acompanamiento migratorio para personas, familias y empresas que buscan visas, residencia, permisos de trabajo y movilidad internacional."
 >
   <div class="page-shell">
     <header class="hero" id="inicio">
       <div class="hero-copy">
         <span class="eyebrow">Movilidad internacional</span>
-        <h1>Planifica tu proceso migratorio con una guía clara de principio a fin.</h1>
+        <h1>Planifica tu proceso migratorio con una guia clara de principio a fin.</h1>
         <p>
-          Acompaño a profesionales, familias y equipos internacionales a ordenar requisitos,
-          documentación y siguientes pasos para avanzar con seguridad en distintos destinos.
+          Acompano a profesionales, familias y equipos internacionales a ordenar requisitos,
+          documentacion y siguientes pasos para avanzar con seguridad en distintos destinos.
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/contacto">Agenda tu consulta</a>
-          <a class="btn btn-secondary" href="/servicios">Ver servicios</a>
+          <a class="btn btn-primary" href="/contacto/">Agenda tu consulta</a>
+          <a class="btn btn-secondary" href="/servicios/">Ver servicios</a>
         </div>
 
         <div class="hero-stats">
           <div class="hero-stat">
             <strong>Global</strong>
-            <span>Orientación para procesos internacionales</span>
+            <span>Procesos internacionales</span>
           </div>
           <div class="hero-stat">
             <strong>1:1</strong>
-            <span>Diagnóstico adaptado a cada perfil</span>
+            <span>Perfil a medida</span>
           </div>
           <div class="hero-stat">
             <strong>360</strong>
-            <span>Revisión de estrategia, tiempos y documentos</span>
+            <span>Estrategia y documentos</span>
           </div>
         </div>
       </div>
 
       <div class="hero-visual">
         <img
-          src={placeholderImages.hero}
-          alt="Placeholder visual de asesoría migratoria global"
+          src={siteImages.hero}
+          alt="Reunion de asesoria migratoria en una oficina profesional"
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
           width="840"
           height="620"
         />
@@ -55,26 +58,13 @@ import { placeholderImages, siteConfig } from "../data/site";
         <h2>Apoyo para visas, residencia, permisos y planes de movilidad.</h2>
       </div>
       <div class="cards-grid">
-        <article class="service-card">
-          <span class="service-icon">VI</span>
-          <h3>Visas y permisos</h3>
-          <p>Análisis de requisitos, rutas posibles y documentación necesaria según país de origen y destino.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-icon">FA</span>
-          <h3>Familias internacionales</h3>
-          <p>Orientación para procesos familiares, reunificación, acompañantes y organización de expedientes.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-icon">ED</span>
-          <h3>Estudio y talento</h3>
-          <p>Preparación de planes para estudiantes, profesionales y perfiles que buscan oportunidades fuera de su país.</p>
-        </article>
-        <article class="service-card">
-          <span class="service-icon">CO</span>
-          <h3>Empresas y movilidad</h3>
-          <p>Apoyo a emprendedores y equipos que necesitan estructurar traslados, permisos y expansión internacional.</p>
-        </article>
+        {services.map((service) => (
+          <article class="service-card">
+            <span class="service-icon"><Icon name={service.icon} /></span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </article>
+        ))}
       </div>
     </section>
 
@@ -83,29 +73,30 @@ import { placeholderImages, siteConfig } from "../data/site";
         <p class="eyebrow">Acerca de mi</p>
         <h2>Cada caso empieza con una estrategia migratoria realista.</h2>
         <p>
-          Trabajo con personas y compañías para reducir incertidumbre, ordenar requisitos y convertir procesos
+          Trabajo con personas y companias para reducir incertidumbre, ordenar requisitos y convertir procesos
           complejos en una hoja de ruta comprensible.
         </p>
 
         <div class="feature-grid feature-grid-2">
           <div class="feature-card">
-            <span class="feature-icon">OK</span>
-            <h3>Asesoría práctica</h3>
+            <span class="feature-icon"><Icon name="check" /></span>
+            <h3>Asesoria practica</h3>
             <p>Explico escenarios, riesgos y pasos concretos con lenguaje claro.</p>
           </div>
           <div class="feature-card">
-            <span class="feature-icon">DOC</span>
-            <h3>Documentación ordenada</h3>
-            <p>Ayudo a preparar expedientes consistentes, completos y fáciles de revisar.</p>
-          </div> 
+            <span class="feature-icon"><Icon name="document" /></span>
+            <h3>Documentacion ordenada</h3>
+            <p>Ayudo a preparar expedientes consistentes, completos y faciles de revisar.</p>
+          </div>
         </div>
       </div>
 
       <div class="about-image">
         <img
-          src={placeholderImages.advisor}
-          alt="Placeholder de consultoría migratoria personalizada"
+          src={siteImages.advisor}
+          alt="Saludo profesional como referencia para fotografia del asesor"
           loading="lazy"
+          decoding="async"
           width="720"
           height="540"
         />
@@ -119,15 +110,18 @@ import { placeholderImages, siteConfig } from "../data/site";
       </div>
       <div class="feature-grid">
         <div class="feature-card">
+          <span class="feature-icon"><Icon name="globe" /></span>
           <h3>Proceso transparente</h3>
-          <p>Identifico requisitos, tiempos estimados y puntos críticos antes de avanzar.</p>
+          <p>Identifico requisitos, tiempos estimados y puntos criticos antes de avanzar.</p>
         </div>
         <div class="feature-card">
+          <span class="feature-icon"><Icon name="passport" /></span>
           <h3>Estrategia por perfil</h3>
-          <p>El plan se adapta al destino, objetivo migratorio, familia, empresa y documentación disponible.</p>
+          <p>El plan se adapta al destino, objetivo migratorio, familia, empresa y documentacion disponible.</p>
         </div>
         <div class="feature-card">
-          <h3>Acompañamiento continuo</h3>
+          <span class="feature-icon"><Icon name="calendar" /></span>
+          <h3>Acompanamiento continuo</h3>
           <p>Respondo dudas, reviso avances y ajusto el plan si cambian las condiciones del caso.</p>
         </div>
       </div>
@@ -139,54 +133,43 @@ import { placeholderImages, siteConfig } from "../data/site";
         <h2>Un proceso estructurado para avanzar con confianza.</h2>
       </div>
       <div class="process-grid">
-        <article class="process-card">
-          <h3>Diagnóstico</h3>
-          <p>Evaluación inicial de objetivos, perfil, país de origen, destino y alternativas disponibles.</p>
-        </article>
-        <article class="process-card">
-          <h3>Preparación</h3>
-          <p>Organización de requisitos, documentos, prioridades y calendario de acciones.</p>
-        </article>
-        <article class="process-card">
-          <h3>Seguimiento</h3>
-          <p>Acompañamiento durante avances, ajustes y comunicación de próximos pasos.</p>
-        </article>
+        {processSteps.map((step) => (
+          <article class="process-card">
+            <span class="step-number">{step.number}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </article>
+        ))}
       </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="section section-light">
       <div class="section-header">
-        <p class="eyebrow">Testimonios</p>
-        <h2>Historias de ejemplo para representar resultados y confianza.</h2>
+        <p class="eyebrow">Casos tipo</p>
+        <h2>Situaciones frecuentes donde una estrategia clara cambia el proceso.</h2>
       </div>
       <div class="testimonial-grid">
-        <article class="testimonial-card">
-          <p>"Cristian nos ayudo a ordenar el proceso de traslado del equipo y entender que documentos priorizar."</p>
-          <strong>Ana Ruiz, Directora de Talento</strong>
-        </article>
-        <article class="testimonial-card">
-          <p>"Mi familia y yo recibimos una hoja de ruta clara para evaluar opciones de residencia internacional."</p>
-          <strong>Jorge y Mariana, Familia expatriada</strong>
-        </article>
-        <article class="testimonial-card">
-          <p>"El proceso fue mucho más fácil con su acompañamiento; resolvimos dudas antes de tomar decisiones."</p>
-          <strong>David Perez, Emprendedor</strong>
-        </article>
+        {caseTypes.map((caseType) => (
+          <article class="testimonial-card">
+            <p>{caseType.description}</p>
+            <strong>{caseType.title}</strong>
+          </article>
+        ))}
       </div>
     </section>
 
     <section class="section section-split section-partners">
       <div class="partners-copy">
         <p class="eyebrow">Red internacional</p>
-        <h2>Colaboración con especialistas según destino, perfil y tipo de trámite.</h2>
+        <h2>Colaboracion con especialistas segun destino, perfil y tipo de tramite.</h2>
         <p>
-          Esta sección deja espacio para aliados, abogados locales, gestores, consultores fiscales y partners
-          de integración cuando el proyecto lo requiera.
+          Esta seccion deja espacio para aliados, abogados locales, gestores, consultores fiscales y partners
+          de integracion cuando el proyecto lo requiera.
         </p>
       </div>
       <div class="logo-grid">
-        <div class="logo-item">Abogados</div>
-        <div class="logo-item">Consultores</div>
+        <div class="logo-item">Abogados locales</div>
+        <div class="logo-item">Traductores</div>
         <div class="logo-item">Empresas</div>
         <div class="logo-item">Instituciones</div>
       </div>
@@ -196,15 +179,15 @@ import { placeholderImages, siteConfig } from "../data/site";
       <div class="contact-card">
         <span class="eyebrow">Contacto</span>
         <h2>Hablemos de tu plan migratorio.</h2>
-        <p>Recibe una orientación inicial y una ruta clara para tu situación de trabajo, estudio, familia o empresa.</p>
+        <p>Recibe una orientacion inicial y una ruta clara para tu situacion de trabajo, estudio, familia o empresa.</p>
         <ul>
           <li><strong>Email:</strong> {siteConfig.email}</li>
-          <li><strong>Teléfono:</strong> {siteConfig.phone}</li>
+          <li><strong>Telefono:</strong> {siteConfig.phone}</li>
           <li><strong>Modalidad:</strong> {siteConfig.locationLabel}</li>
         </ul>
         <div class="contact-actions">
           <a class="btn btn-primary" href={`mailto:${siteConfig.email}`}>Enviar mensaje</a>
-          <a class="btn btn-secondary" href="/sobre-nosotros">Conocer al asesor</a>
+          <a class="btn btn-secondary" href="/sobre-nosotros/">Conocer al asesor</a>
         </div>
       </div>
     </section>
