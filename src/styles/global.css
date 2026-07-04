@@ -69,9 +69,23 @@ a {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
+summary:focus-visible,
 textarea:focus-visible {
   outline: 3px solid rgba(224, 173, 63, 0.46);
   outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .header {
@@ -1132,25 +1146,6 @@ form button {
     }
   }
 
-  @supports (animation-timeline: view()) {
-    .page-shell > .section {
-      animation: section-reveal both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 42%;
-    }
-
-    @keyframes section-reveal {
-      from {
-        opacity: 0.72;
-        transform: translateY(18px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  }
 }
 
 @media (min-width: 640px) {
