@@ -1,0 +1,45 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width: string | number;
+  height: string | number;
+  sizes: string;
+  loading?: "eager" | "lazy";
+  decoding?: "async" | "auto" | "sync";
+  fetchpriority?: "high" | "low" | "auto";
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  sizes,
+  loading = "lazy",
+  decoding = "async",
+  fetchpriority,
+  class: className,
+} = Astro.props as Props;
+
+const widths = [480, 720, 1080, 1400];
+const fileName = src.split("/").pop() ?? "";
+const baseName = fileName.replace(/\.[^.]+$/, "");
+const srcset = (format: "avif" | "webp") =>
+  widths.map((imageWidth) => `/images/optimized/${baseName}-${imageWidth}.${format} ${imageWidth}w`).join(", ");
+---
+
+<picture class={className}>
+  <source type="image/avif" srcset={srcset("avif")} sizes={sizes} />
+  <source type="image/webp" srcset={srcset("webp")} sizes={sizes} />
+  <img
+    src={src}
+    alt={alt}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    width={width}
+    height={height}
+  />
+</picture>

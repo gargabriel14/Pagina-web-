@@ -1,6 +1,7 @@
 ---
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 import { siteConfig, siteImages } from "../data/site";
 ---
 
@@ -12,7 +13,7 @@ import { siteConfig, siteImages } from "../data/site";
     <section class="section section-split about-page">
       <div class="about-copy">
         <span class="eyebrow">Mi trayectoria</span>
-        <h1>Asesoría migratoria con enfoque global y acompañamiento cercano</h1>
+        <h1>Asesoría migratoria para tomar decisiones internacionales con más claridad</h1>
         <p>
           En Cristian Gutiérrez combino criterio legal, visión práctica y comunicación clara para ayudar
           a personas, familias y empresas a estructurar procesos migratorios internacionales
@@ -23,13 +24,14 @@ import { siteConfig, siteImages } from "../data/site";
         </p>
       </div>
       <div class="about-image">
-        <img
+        <ResponsiveImage
           src={siteImages.about}
           alt="Saludo profesional como referencia para fotografía de trayectoria"
           loading="lazy"
           decoding="async"
           width="720"
           height="540"
+          sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
       </div>
     </section>
@@ -37,15 +39,15 @@ import { siteConfig, siteImages } from "../data/site";
     <section class="section section-light">
       <div class="section-header">
         <p class="eyebrow">Mi enfoque</p>
-        <h2>Claridad, confiabilidad y decisiones mejor informadas</h2>
+        <h2>La consulta se centra en lo que necesitas decidir ahora</h2>
       </div>
       <div class="feature-grid feature-grid-2">
-        <div class="feature-card">
+        <div class="feature-card lift-card">
           <span class="feature-icon"><Icon name="check" /></span>
           <h3>Asesoría transparente</h3>
           <p>Explico cada paso del trámite sin complejidades innecesarias</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card lift-card">
           <span class="feature-icon"><Icon name="document" /></span>
           <h3>Gestión ágil</h3>
           <p>Organizo prioridades, documentos y próximos pasos para evitar fricción</p>
@@ -53,13 +55,19 @@ import { siteConfig, siteImages } from "../data/site";
       </div>
     </section>
 
+    <section class="section conversion-band">
+      <p>Si tu proceso todavía está lleno de dudas, la consulta sirve para ordenar el escenario antes de avanzar</p>
+      <strong>Primero claridad, después documentos, formularios y decisiones</strong>
+      <a class="conversion-link" href="/contacto/">Solicitar evaluación inicial</a>
+    </section>
+
     <section class="section section-dark">
       <div class="section-header">
         <p class="eyebrow">Contacto directo</p>
-        <h2>Hablemos de tu caso migratorio</h2>
+        <h2>Hablemos de tu caso y de la ruta que conviene revisar primero</h2>
       </div>
       <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" class="contact-form">
-        <input type="hidden" name="_subject" value="Nuevo mensaje desde sobre-mi" />
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde sobre mí" />
         <input type="hidden" name="_captcha" value="false" />
 
         <label>
@@ -74,7 +82,7 @@ import { siteConfig, siteImages } from "../data/site";
 
         <label>
           <span>Mensaje</span>
-          <textarea name="message" rows="6" required placeholder="Cuéntanos brevemente tu situación"></textarea>
+          <textarea name="message" rows="6" required placeholder="Cuéntame brevemente tu situación"></textarea>
         </label>
 
         <button type="submit" class="btn btn-primary">Enviar mensaje</button>

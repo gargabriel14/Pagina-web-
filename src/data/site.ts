@@ -1,4 +1,12 @@
-export type IconName = "passport" | "family" | "study" | "briefcase" | "check" | "document" | "globe" | "calendar";
+export type IconName =
+  | "passport"
+  | "family"
+  | "study"
+  | "briefcase"
+  | "check"
+  | "document"
+  | "globe"
+  | "calendar";
 
 export const siteConfig = {
   name: "Cristian Gutiérrez",
@@ -61,38 +69,110 @@ export const services = [
   },
 ];
 
+export const trustSignals = [
+  {
+    value: "Online",
+    label: "Atención internacional",
+  },
+  {
+    value: "1:1",
+    label: "Diagnóstico por perfil",
+  },
+  {
+    value: "360",
+    label: "Ruta, requisitos y documentos",
+  },
+];
+
+export const audiencePaths = [
+  {
+    icon: "briefcase" satisfies IconName,
+    title: "Profesionales",
+    description:
+      "Evalúa opciones de visado, trabajo remoto, permisos laborales y oportunidades fuera de tu país",
+  },
+  {
+    icon: "family" satisfies IconName,
+    title: "Familias",
+    description:
+      "Planifica residencia, reunificación, acompañantes, requisitos escolares y documentación familiar",
+  },
+  {
+    icon: "globe" satisfies IconName,
+    title: "Empresas",
+    description:
+      "Coordina movilidad de talento, traslados, permisos y cumplimiento entre distintos países",
+  },
+];
+
+export const consultationDeliverables = [
+  {
+    icon: "globe" satisfies IconName,
+    title: "Mapa de ruta",
+    description:
+      "Una lectura clara de origen, destino, objetivo, requisitos y alternativas viables",
+  },
+  {
+    icon: "document" satisfies IconName,
+    title: "Checklist documental",
+    description:
+      "Una lista priorizada para preparar el expediente sin perder tiempo en papeles innecesarios",
+  },
+  {
+    icon: "calendar" satisfies IconName,
+    title: "Plan de próximos pasos",
+    description:
+      "Una secuencia de acciones para saber qué revisar, qué preparar y cuándo avanzar",
+  },
+];
+
+export const decisionPoints = [
+  "Qué visa, residencia o permiso puede tener sentido para tu perfil",
+  "Qué riesgos conviene revisar antes de pagar tasas, traducciones o reservas",
+  "Qué documentos pueden fortalecer el expediente y cuáles necesitan orden",
+  "Qué tiempos, dependientes o condiciones pueden cambiar la estrategia",
+];
+
 export const processSteps = [
   {
     number: "01",
     title: "Diagnóstico",
-    description: "Evaluación inicial de objetivos, perfil, país de origen, destino y alternativas disponibles",
+    description:
+      "Evaluación inicial de objetivos, perfil, país de origen, destino y alternativas disponibles",
   },
   {
     number: "02",
     title: "Preparación",
-    description: "Organización de requisitos, documentos, prioridades y calendario de acciones",
+    description:
+      "Organización de requisitos, documentos, prioridades y calendario de acciones",
   },
   {
     number: "03",
     title: "Seguimiento",
-    description: "Acompañamiento durante avances, ajustes y comunicación de próximos pasos",
+    description:
+      "Acompañamiento durante avances, ajustes y comunicación de próximos pasos",
   },
 ];
 
-export const caseTypes = [
+export const faqItems = [
   {
-    title: "Talento global",
-    description:
-      "Profesionales que necesitan evaluar permisos de trabajo, tiempos y documentación antes de aceptar una oferta internacional",
+    question: "¿Puedo consultar si todavía no elegí país de destino?",
+    answer:
+      "Sí, la consulta puede ayudarte a comparar alternativas y entender qué destinos encajan mejor con tu perfil",
   },
   {
-    title: "Movilidad familiar",
-    description:
-      "Familias que quieren entender rutas de residencia, acompañantes, requisitos escolares y preparación de expedientes",
+    question: "¿La asesoría garantiza la aprobación de una visa?",
+    answer:
+      "No se prometen resultados migratorios, el valor está en reducir incertidumbre, ordenar requisitos y preparar una estrategia responsable",
   },
   {
-    title: "Equipos y empresas",
-    description:
-      "Empresas que trasladan colaboradores o expanden operaciones y necesitan coordinar requisitos entre países",
+    question: "¿También trabajas con empresas y equipos?",
+    answer:
+      "Sí, se pueden revisar traslados de talento, permisos, dependientes, documentación y coordinación con especialistas por destino",
+  },
+  {
+    question: "¿La atención es internacional?",
+    answer:
+      "Sí, la atención es online y está pensada para personas, familias y empresas que se mueven entre países",
   },
 ];

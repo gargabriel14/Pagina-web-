@@ -1,6 +1,7 @@
 ---
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 import { siteImages } from "../data/site";
 ---
 
@@ -19,13 +20,14 @@ import { siteImages } from "../data/site";
         </p>
       </div>
       <div class="about-image">
-        <img
+        <ResponsiveImage
           src={siteImages.terms}
           alt="Documentos sobre escritorio como referencia para términos legales"
           loading="lazy"
           decoding="async"
           width="720"
           height="540"
+          sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
       </div>
     </section>

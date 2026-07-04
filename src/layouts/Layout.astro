@@ -26,7 +26,7 @@ const navItems = [
   { href: "/", label: "Inicio" },
   { href: "/servicios/", label: "Servicios" },
   { href: "/sobre-nosotros/", label: "Sobre mí" },
-  { href: "/contacto/", label: "Contacto", featured: true },
+  { href: "/contacto/", label: "Contáctame", featured: true },
 ];
 const isCurrent = (href: string) => {
   const normalizedHref = href.replace(/\/$/, "") || "/";
@@ -100,13 +100,7 @@ const isCurrent = (href: string) => {
             <span class="logo-text">Cristian <span class="logo-gold">Gutiérrez</span></span>
           </a>
 
-          <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" type="button">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-
-          <ul class="nav-menu">
+          <ul class="nav-menu nav-menu-desktop">
             {
               navItems.map((item) => (
                 <li>
@@ -121,6 +115,30 @@ const isCurrent = (href: string) => {
               ))
             }
           </ul>
+
+          <details class="nav-disclosure">
+            <summary class="menu-toggle" aria-label="Abrir menú">
+              <span></span>
+              <span></span>
+              <span></span>
+            </summary>
+
+            <ul class="nav-menu nav-menu-mobile">
+              {
+                navItems.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class={`nav-link${item.featured ? " btn btn-primary" : ""}`}
+                      aria-current={isCurrent(item.href) ? "page" : undefined}
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </details>
         </div>
       </nav>
     </header>
@@ -131,8 +149,8 @@ const isCurrent = (href: string) => {
 
     <footer class="footer">
       <div class="footer-container">
-        <div class="footer-grid">
-          <div class="footer-section">
+        <div class="footer-grid footer-grid-main">
+          <div class="footer-section footer-brand">
             <h3 class="footer-title">{siteConfig.name}</h3>
             <p>Asesoría migratoria global para personas, familias y equipos que necesitan avanzar con claridad</p>
           </div>
@@ -155,9 +173,7 @@ const isCurrent = (href: string) => {
               <li>{siteConfig.locationLabel}</li>
             </ul>
           </div>
-        </div>
 
-        <div class="footer-grid legal-grid">
           <div class="footer-section">
             <h4 class="footer-subtitle">Legal</h4>
             <ul class="footer-menu">
@@ -173,25 +189,8 @@ const isCurrent = (href: string) => {
       </div>
     </footer>
 
-    <script type="module">
-      const menuToggle = document.querySelector(".menu-toggle");
-      const navMenu = document.querySelector(".nav-menu");
+    <script>
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-      const closeMenu = () => {
-        if (!menuToggle || !navMenu) return;
-        navMenu.classList.remove("active");
-        menuToggle.classList.remove("active");
-        menuToggle.setAttribute("aria-expanded", "false");
-      };
-
-      if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", () => {
-          const isActive = navMenu.classList.toggle("active");
-          menuToggle.classList.toggle("active", isActive);
-          menuToggle.setAttribute("aria-expanded", String(isActive));
-        });
-      }
 
       document.addEventListener("click", (event) => {
         if (!(event instanceof MouseEvent) || event.defaultPrevented || event.button !== 0) return;
@@ -199,34 +198,24 @@ const isCurrent = (href: string) => {
         const link = event.target instanceof Element ? event.target.closest("a") : null;
         if (!(link instanceof HTMLAnchorElement)) return;
 
-        closeMenu();
+        const mobileMenu = link.closest(".nav-disclosure");
+        if (mobileMenu instanceof HTMLDetailsElement) {
+          mobileMenu.removeAttribute("open");
+        }
 
         if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || reduceMotion.matches) return;
         if (link.target && link.target !== "_self") return;
         if (link.hasAttribute("download")) return;
 
         const rawHref = link.getAttribute("href") || "";
-        if (
-          !rawHref ||
-          rawHref.startsWith("#") ||
-          rawHref.startsWith("mailto:") ||
-          rawHref.startsWith("tel:")
-        ) {
-          return;
-        }
+        if (!rawHref || rawHref.startsWith("#") || rawHref.startsWith("mailto:") || rawHref.startsWith("tel:")) return;
 
         const targetUrl = new URL(link.href, window.location.href);
         const currentUrl = new URL(window.location.href);
 
         if (targetUrl.origin !== currentUrl.origin) return;
         if (targetUrl.href === currentUrl.href) return;
-        if (
-          targetUrl.pathname === currentUrl.pathname &&
-          targetUrl.search === currentUrl.search &&
-          targetUrl.hash
-        ) {
-          return;
-        }
+        if (targetUrl.pathname === currentUrl.pathname && targetUrl.search === currentUrl.search && targetUrl.hash) return;
 
         event.preventDefault();
         document.body.classList.remove("page-enter");
@@ -234,7 +223,7 @@ const isCurrent = (href: string) => {
 
         window.setTimeout(() => {
           window.location.assign(targetUrl.href);
-        }, 220);
+        }, 240);
       });
     </script>
   </body>

@@ -1,7 +1,8 @@
 ---
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
-import { services, siteImages } from "../data/site";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
+import { audiencePaths, consultationDeliverables, services, siteImages } from "../data/site";
 ---
 
 <Layout
@@ -12,18 +13,18 @@ import { services, siteImages } from "../data/site";
     <header class="hero" id="servicios">
       <div class="hero-copy">
         <span class="eyebrow">Servicios migratorios</span>
-        <h1>Soluciones para procesos migratorios entre países</h1>
+        <h1>Servicios para decidir, preparar y avanzar con criterio migratorio</h1>
         <p>
-          Asesoría especializada para entender opciones, preparar documentos y avanzar con una estrategia clara
-          según origen, destino y objetivo migratorio
+          Acompañamiento para personas, familias y empresas que necesitan entender opciones, ordenar requisitos
+          y evitar decisiones costosas antes de iniciar un trámite internacional
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/contacto/">Consultar</a>
-          <a class="btn btn-secondary" href="/sobre-nosotros/">Sobre mí</a>
+          <a class="btn btn-primary" href="/contacto/">Evaluar mi ruta</a>
+          <a class="btn btn-secondary" href="/sobre-nosotros/">Conocer el enfoque</a>
         </div>
       </div>
       <div class="hero-visual">
-        <img
+        <ResponsiveImage
           src={siteImages.services}
           alt="Equipo en oficina como referencia para fotografía de servicios migratorios"
           loading="eager"
@@ -31,6 +32,7 @@ import { services, siteImages } from "../data/site";
           decoding="async"
           width="840"
           height="620"
+          sizes="(min-width: 1024px) 560px, calc(100vw - 32px)"
         />
       </div>
     </header>
@@ -38,11 +40,11 @@ import { services, siteImages } from "../data/site";
     <section class="section section-dark">
       <div class="section-header">
         <p class="eyebrow">Categorías de servicios</p>
-        <h2>Una ruta ordenada para tu situación migratoria</h2>
+        <h2>Elige el tipo de apoyo que más se parece a tu situación actual</h2>
       </div>
       <div class="cards-grid">
         {services.map((service) => (
-          <article class="service-card">
+          <article class="service-card lift-card">
             <span class="service-icon"><Icon name={service.icon} /></span>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
@@ -51,13 +53,45 @@ import { services, siteImages } from "../data/site";
       </div>
     </section>
 
+    <section class="section section-light">
+      <div class="section-header">
+        <p class="eyebrow">Formatos de consulta</p>
+        <h2>La asesoría se adapta al momento en el que estás</h2>
+      </div>
+      <div class="audience-grid">
+        {audiencePaths.map((path) => (
+          <article class="audience-card">
+            <span class="feature-icon"><Icon name={path.icon} /></span>
+            <h3>{path.title}</h3>
+            <p>{path.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="section-header">
+        <p class="eyebrow">Entregables</p>
+        <h2>Lo importante es salir con claridad para actuar</h2>
+      </div>
+      <div class="feature-grid">
+        {consultationDeliverables.map((item) => (
+          <article class="feature-card lift-card">
+            <span class="feature-icon"><Icon name={item.icon} /></span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
     <section class="section section-light section-split">
       <div class="about-copy">
         <p class="eyebrow">Por qué elegirnos</p>
-        <h2>Experiencia, criterio y comunicación clara durante el proceso</h2>
+        <h2>La diferencia está en decidir bien antes de moverte</h2>
         <p>
-          Simplifico trámites complejos y ayudo a evitar errores costosos, cada caso recibe atención
-          personalizada, revisión de requisitos y seguimiento integral
+          Un proceso migratorio suele fallar por falta de estrategia, documentos mal priorizados o decisiones
+          tomadas con información incompleta, por eso cada consulta parte del perfil real y del destino posible
         </p>
         <div class="feature-grid feature-grid-2">
           <div class="feature-card">
@@ -73,13 +107,14 @@ import { services, siteImages } from "../data/site";
         </div>
       </div>
       <div class="about-image">
-        <img
+        <ResponsiveImage
           src={siteImages.value}
           alt="Mesa con documentos como referencia para fotografía de revisión documental"
           loading="lazy"
           decoding="async"
           width="720"
           height="540"
+          sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
       </div>
     </section>
@@ -87,11 +122,10 @@ import { services, siteImages } from "../data/site";
     <section class="section section-contact">
       <div class="contact-card">
         <span class="eyebrow">Comencemos</span>
-        <h2>¿Listo para ordenar tu situación migratoria?</h2>
-        <p>Agenda una consulta inicial y recibe un plan de acción claro para tu caso</p>
+        <h2>Agenda una consulta y transforma dudas en próximos pasos</h2>
+        <p>Comparte tu origen, destino, objetivo y momento actual para revisar qué ruta conviene mirar primero</p>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="/contacto/">Agendar consulta</a>
-          <a class="btn btn-secondary" href="/sobre-nosotros/">Conocer mas</a>
+          <a class="btn btn-primary" href="/contacto/">Solicitar evaluación inicial</a>
         </div>
       </div>
     </section>

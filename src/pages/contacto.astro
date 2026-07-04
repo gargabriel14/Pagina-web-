@@ -1,6 +1,7 @@
 ---
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 import { siteConfig, siteImages } from "../data/site";
 ---
 
@@ -12,10 +13,9 @@ import { siteConfig, siteImages } from "../data/site";
     <section class="section section-split contact-page">
       <div class="about-copy">
         <span class="eyebrow">Contacto</span>
-        <h1>Consúltame sobre tu situación migratoria internacional</h1>
+        <h1>Cuéntame tu caso y recibe una primera lectura estratégica</h1>
         <p>
-          Completa el formulario o usa los datos de contacto para agendar una consulta sobre visas,
-          residencia, permisos y planificación migratoria
+          Para orientarte mejor, comparte tu país de origen, destino, objetivo migratorio y etapa actual del proceso
         </p>
 
         <div class="feature-grid feature-grid-2">
@@ -32,13 +32,14 @@ import { siteConfig, siteImages } from "../data/site";
         </div>
       </div>
       <div class="about-image">
-        <img
+        <ResponsiveImage
           src={siteImages.contact}
           alt="Escritorio profesional como referencia para fotografía de contacto online"
           loading="lazy"
           decoding="async"
           width="720"
           height="540"
+          sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
       </div>
     </section>
@@ -46,34 +47,52 @@ import { siteConfig, siteImages } from "../data/site";
     <section class="section section-dark">
       <div class="section-header">
         <p class="eyebrow">Formulario</p>
-        <h2>Envía tu mensaje y nos pondremos en contacto pronto</h2>
+        <h2>Mientras más claro sea el contexto, mejor será la primera respuesta</h2>
       </div>
       <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" class="contact-form">
-        <input type="hidden" name="_subject" value="Nueva consulta desde pagina-web-orcin.vercel.app" />
+        <input type="hidden" name="_subject" value="Nueva consulta desde página web" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_next" value={`${siteConfig.url}/contacto`} />
 
-        <label>
-          <span>Nombre completo</span>
-          <input type="text" name="name" required placeholder="Tu nombre completo" />
-        </label>
+        <div class="form-grid">
+          <label>
+            <span>Nombre completo</span>
+            <input type="text" name="name" required placeholder="Tu nombre completo" />
+          </label>
+
+          <label>
+            <span>Correo electrónico</span>
+            <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
+          </label>
+
+          <label>
+            <span>País de origen</span>
+            <input type="text" name="origin_country" required placeholder="Ejemplo: Colombia" />
+          </label>
+
+          <label>
+            <span>Destino que quieres evaluar</span>
+            <input type="text" name="destination_country" required placeholder="Ejemplo: España" />
+          </label>
+        </div>
 
         <label>
-          <span>Correo electrónico</span>
-          <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
-        </label>
-
-        <label>
-          <span>Destino o consulta</span>
-          <input type="text" name="subject" required placeholder="País, visa o situación a evaluar" />
+          <span>Tipo de consulta</span>
+          <select name="consultation_type" required>
+            <option value="">Selecciona una opción</option>
+            <option value="Visa o residencia">Visa o residencia</option>
+            <option value="Familia o acompañantes">Familia o acompañantes</option>
+            <option value="Trabajo, estudio o talento">Trabajo, estudio o talento</option>
+            <option value="Empresa o movilidad de equipo">Empresa o movilidad de equipo</option>
+          </select>
         </label>
 
         <label>
           <span>Mensaje</span>
-          <textarea name="message" rows="6" required placeholder="Explica brevemente tu situación"></textarea>
+          <textarea name="message" rows="6" required placeholder="Explica tu objetivo, fecha estimada y cualquier documento o duda importante"></textarea>
         </label>
 
-        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+        <button type="submit" class="btn btn-primary">Solicitar evaluación inicial</button>
       </form>
     </section>
   </div>

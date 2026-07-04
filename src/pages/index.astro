@@ -1,46 +1,64 @@
 ---
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
-import { caseTypes, processSteps, services, siteConfig, siteImages } from "../data/site";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
+import {
+  audiencePaths,
+  consultationDeliverables,
+  decisionPoints,
+  faqItems,
+  processSteps,
+  services,
+  siteConfig,
+  siteImages,
+  trustSignals,
+} from "../data/site";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
+  })),
+};
 ---
 
 <Layout
   title="Cristian Gutiérrez | Asesoría Migratoria Global"
-  description="Acompañamiento migratorio para personas, familias y empresas que buscan visas, residencia, permisos de trabajo y movilidad internacional"
+  description="Asesoría migratoria global para personas, familias y empresas que necesitan claridad, estrategia y acompañamiento antes de iniciar un proceso internacional"
 >
   <div class="page-shell">
-    <header class="hero" id="inicio">
+    <header class="hero hero-conversion" id="inicio">
       <div class="hero-copy">
-        <span class="eyebrow">Movilidad internacional</span>
-        <h1>Planifica tu proceso migratorio con una guía clara de principio a fin</h1>
+        <span class="eyebrow">Movilidad internacional con criterio</span>
+        <h1>Tu proceso migratorio no empieza con un formulario, empieza con una estrategia</h1>
         <p>
-          Acompaño a profesionales, familias y equipos internacionales a ordenar requisitos,
-          documentación y siguientes pasos para avanzar con seguridad en distintos destinos
+          Cristian Gutiérrez te ayuda a evaluar opciones, ordenar documentos y tomar decisiones migratorias
+          con una ruta clara antes de invertir tiempo, dinero y energía
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/contacto/">Agenda tu consulta</a>
+          <a class="btn btn-primary" href="/contacto/">Evaluar mi ruta migratoria</a>
           <a class="btn btn-secondary" href="/servicios/">Ver servicios</a>
         </div>
 
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <strong>Global</strong>
-            <span>Procesos internacionales</span>
-          </div>
-          <div class="hero-stat">
-            <strong>1:1</strong>
-            <span>Perfil a medida</span>
-          </div>
-          <div class="hero-stat">
-            <strong>360</strong>
-            <span>Estrategia y documentos</span>
-          </div>
+        <div class="hero-proof" aria-label="Señales de confianza">
+          {trustSignals.map((signal) => (
+            <div class="hero-stat">
+              <strong>{signal.value}</strong>
+              <span>{signal.label}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div class="hero-visual">
-        <img
+      <div class="hero-visual hero-visual-panel">
+        <ResponsiveImage
           src={siteImages.hero}
           alt="Reunión de asesoría migratoria en una oficina profesional"
           loading="eager"
@@ -48,18 +66,28 @@ import { caseTypes, processSteps, services, siteConfig, siteImages } from "../da
           decoding="async"
           width="840"
           height="620"
+          sizes="(min-width: 1024px) 560px, calc(100vw - 32px)"
         />
+        <div class="visual-callout">
+          <span>Consulta estratégica</span>
+          <strong>Origen, destino, objetivo, riesgos y documentos clave</strong>
+        </div>
       </div>
     </header>
+
+    <section class="section conversion-band">
+      <p>Si estás por aplicar a una visa, mudarte con tu familia o trasladar talento, el primer paso no es llenar formularios</p>
+      <strong>El primer paso es saber qué ruta tiene sentido para tu perfil</strong>
+    </section>
 
     <section class="section section-dark" id="servicios">
       <div class="section-header">
         <p class="eyebrow">Servicios migratorios</p>
-        <h2>Apoyo para visas, residencia, permisos y planes de movilidad</h2>
+        <h2>Asesoría para convertir un proceso complejo en una ruta posible</h2>
       </div>
       <div class="cards-grid">
         {services.map((service) => (
-          <article class="service-card">
+          <article class="service-card lift-card">
             <span class="service-icon"><Icon name={service.icon} /></span>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
@@ -68,71 +96,106 @@ import { caseTypes, processSteps, services, siteConfig, siteImages } from "../da
       </div>
     </section>
 
+    <section class="section section-dark decision-section">
+      <div class="section-header">
+        <p class="eyebrow">Decisiones críticas</p>
+        <h2>La consulta está pensada para responder lo que realmente cambia el resultado</h2>
+      </div>
+      <div class="decision-layout">
+        <div class="decision-list">
+          {decisionPoints.map((point) => (
+            <div class="decision-item">
+              <span><Icon name="check" /></span>
+              <p>{point}</p>
+            </div>
+          ))}
+        </div>
+        <div class="decision-panel">
+          <span class="eyebrow">Antes de avanzar</span>
+          <h3>Evita comprar tranquilidad falsa</h3>
+          <p>
+            Un trámite mal elegido puede consumir semanas, dinero y oportunidades, una ruta bien revisada te
+            permite avanzar con prioridades y límites claros
+          </p>
+          <a class="btn btn-primary" href="/contacto/">Revisar mi situación</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="section-header">
+        <p class="eyebrow">Qué recibes</p>
+        <h2>Sales de la consulta con una ruta accionable, no con dudas nuevas</h2>
+      </div>
+      <div class="feature-grid">
+        {consultationDeliverables.map((item) => (
+          <article class="feature-card lift-card">
+            <span class="feature-icon"><Icon name={item.icon} /></span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
     <section class="section section-split">
       <div class="about-copy">
         <p class="eyebrow">Acerca de mí</p>
-        <h2>Cada caso empieza con una estrategia migratoria realista</h2>
+        <h2>Tu caso no necesita promesas, necesita criterio y una hoja de ruta</h2>
         <p>
-          Trabajo con personas y compañías para reducir incertidumbre, ordenar requisitos y convertir procesos
-          complejos en una hoja de ruta comprensible
+          Trabajo con personas, familias y compañías que necesitan avanzar sin perderse entre requisitos,
+          tiempos, formularios y cambios de normativa
         </p>
 
         <div class="feature-grid feature-grid-2">
           <div class="feature-card">
             <span class="feature-icon"><Icon name="check" /></span>
             <h3>Asesoría práctica</h3>
-            <p>Explico escenarios, riesgos y pasos concretos con lenguaje claro</p>
+            <p>Escenarios, riesgos y pasos concretos explicados en lenguaje claro</p>
           </div>
           <div class="feature-card">
             <span class="feature-icon"><Icon name="document" /></span>
             <h3>Documentación ordenada</h3>
-            <p>Ayudo a preparar expedientes consistentes, completos y fáciles de revisar</p>
+            <p>Expedientes consistentes, completos y fáciles de revisar</p>
           </div>
         </div>
       </div>
 
-      <div class="about-image">
-        <img
+      <div class="about-image image-reveal">
+        <ResponsiveImage
           src={siteImages.advisor}
           alt="Saludo profesional como referencia para fotografía del asesor"
           loading="lazy"
           decoding="async"
           width="720"
           height="540"
+          sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
-      </div>
-    </section>
-
-    <section class="section section-light">
-      <div class="section-header">
-        <p class="eyebrow">Por qué elegir este servicio</p>
-        <h2>Claridad, seguimiento y criterio para tomar mejores decisiones</h2>
-      </div>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <span class="feature-icon"><Icon name="globe" /></span>
-          <h3>Proceso transparente</h3>
-          <p>Identifico requisitos, tiempos estimados y puntos críticos antes de avanzar</p>
-        </div>
-        <div class="feature-card">
-          <span class="feature-icon"><Icon name="passport" /></span>
-          <h3>Estrategia por perfil</h3>
-          <p>El plan se adapta al destino, objetivo migratorio, familia, empresa y documentación disponible</p>
-        </div>
-        <div class="feature-card">
-          <span class="feature-icon"><Icon name="calendar" /></span>
-          <h3>Acompañamiento continuo</h3>
-          <p>Respondo dudas, reviso avances y ajusto el plan si cambian las condiciones del caso</p>
-        </div>
       </div>
     </section>
 
     <section class="section section-dark">
       <div class="section-header">
-        <p class="eyebrow">Método de trabajo</p>
-        <h2>Un proceso estructurado para avanzar con confianza</h2>
+        <p class="eyebrow">Elige tu punto de partida</p>
+        <h2>Cada perfil necesita una estrategia distinta</h2>
       </div>
-      <div class="process-grid">
+      <div class="audience-grid">
+        {audiencePaths.map((path) => (
+          <article class="audience-card">
+            <span class="feature-icon"><Icon name={path.icon} /></span>
+            <h3>{path.title}</h3>
+            <p>{path.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="section-header">
+        <p class="eyebrow">Método de trabajo</p>
+        <h2>Un proceso diseñado para que sepas qué hacer después de cada conversación</h2>
+      </div>
+      <div class="process-grid process-timeline">
         {processSteps.map((step) => (
           <article class="process-card">
             <span class="step-number">{step.number}</span>
@@ -143,17 +206,17 @@ import { caseTypes, processSteps, services, siteConfig, siteImages } from "../da
       </div>
     </section>
 
-    <section class="section section-light">
+    <section class="section section-dark">
       <div class="section-header">
-        <p class="eyebrow">Casos tipo</p>
-        <h2>Situaciones frecuentes donde una estrategia clara cambia el proceso</h2>
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Respuestas rápidas antes de agendar</h2>
       </div>
-      <div class="testimonial-grid">
-        {caseTypes.map((caseType) => (
-          <article class="testimonial-card">
-            <p>{caseType.description}</p>
-            <strong>{caseType.title}</strong>
-          </article>
+      <div class="faq-list">
+        {faqItems.map((item) => (
+          <details class="faq-item">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
         ))}
       </div>
     </section>
@@ -161,10 +224,10 @@ import { caseTypes, processSteps, services, siteConfig, siteImages } from "../da
     <section class="section section-split section-partners">
       <div class="partners-copy">
         <p class="eyebrow">Red internacional</p>
-        <h2>Colaboración con especialistas según destino, perfil y tipo de trámite</h2>
+        <h2>Cuando el caso lo requiere, se coordina con especialistas por destino</h2>
         <p>
-          Esta sección deja espacio para aliados, abogados locales, gestores, consultores fiscales y partners
-          de integración cuando el proyecto lo requiera
+          Esta estructura permite integrar abogados locales, traductores, consultores fiscales y aliados de
+          movilidad cuando el proyecto migratorio necesita soporte adicional
         </p>
       </div>
       <div class="logo-grid">
@@ -176,20 +239,26 @@ import { caseTypes, processSteps, services, siteConfig, siteImages } from "../da
     </section>
 
     <section class="section section-contact" id="contacto">
-      <div class="contact-card">
-        <span class="eyebrow">Contacto</span>
-        <h2>Hablemos de tu plan migratorio</h2>
-        <p>Recibe una orientación inicial y una ruta clara para tu situación de trabajo, estudio, familia o empresa</p>
+      <div class="contact-card contact-card-wide">
+        <span class="eyebrow">Siguiente paso</span>
+        <h2>Cuéntame tu caso y recibe una primera ruta de acción</h2>
+        <p>
+          Comparte tu país de origen, destino, objetivo migratorio y momento actual para entender qué camino
+          conviene revisar primero
+        </p>
         <ul>
           <li><strong>Correo:</strong> {siteConfig.email}</li>
           <li><strong>Teléfono:</strong> {siteConfig.phone}</li>
           <li><strong>Modalidad:</strong> {siteConfig.locationLabel}</li>
         </ul>
         <div class="contact-actions">
-          <a class="btn btn-primary" href={`mailto:${siteConfig.email}`}>Enviar mensaje</a>
-          <a class="btn btn-secondary" href="/sobre-nosotros/">Conocer al asesor</a>
+          <a class="btn btn-primary" href="/contacto/">Solicitar evaluación inicial</a>
         </div>
       </div>
     </section>
   </div>
+
+  <script type="application/ld+json">
+    {JSON.stringify(faqSchema)}
+  </script>
 </Layout>
