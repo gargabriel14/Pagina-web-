@@ -15,8 +15,8 @@ import {
 } from "../data/site";
 
 const faqSchema = {
-  "@context": "https://schema.org",
   "@type": "FAQPage",
+  "@id": `${siteConfig.url}/#faq`,
   mainEntity: faqItems.map((item) => ({
     "@type": "Question",
     name: item.question,
@@ -29,8 +29,13 @@ const faqSchema = {
 ---
 
 <Layout
-  title="Cristian Gutiérrez | Asesoría Migratoria Global"
+  title="Asesoría migratoria global | Cristian Gutiérrez"
   description="Asesoría migratoria global para personas, familias y empresas que necesitan claridad, estrategia y acompañamiento antes de iniciar un proceso internacional"
+  preloadImage={{
+    src: siteImages.hero,
+    sizes: "(min-width: 1024px) 560px, calc(100vw - 32px)",
+  }}
+  structuredData={faqSchema}
 >
   <div class="page-shell">
     <header class="hero hero-conversion" id="inicio">
@@ -38,7 +43,7 @@ const faqSchema = {
         <span class="eyebrow">Movilidad internacional con criterio</span>
         <h1>Tu proceso migratorio no empieza con un formulario, empieza con una estrategia</h1>
         <p>
-          Cristian Gutiérrez te ayuda a evaluar opciones, ordenar documentos y tomar decisiones migratorias
+          Cristian Gutiérrez ayuda a evaluar opciones, ordenar documentos y tomar decisiones migratorias
           con una ruta clara antes de invertir tiempo, dinero y energía
         </p>
 
@@ -140,10 +145,10 @@ const faqSchema = {
 
     <section class="section section-split">
       <div class="about-copy">
-        <p class="eyebrow">Acerca de mí</p>
+        <p class="eyebrow">Enfoque profesional</p>
         <h2>Tu caso no necesita promesas, necesita criterio y una hoja de ruta</h2>
         <p>
-          Trabajo con personas, familias y compañías que necesitan avanzar sin perderse entre requisitos,
+          La asesoría acompaña a personas, familias y compañías que necesitan avanzar sin perderse entre requisitos,
           tiempos, formularios y cambios de normativa
         </p>
 
@@ -161,7 +166,7 @@ const faqSchema = {
         </div>
       </div>
 
-      <div class="about-image image-reveal">
+      <div class="about-image">
         <ResponsiveImage
           src={siteImages.advisor}
           alt="Saludo profesional como referencia para fotografía del asesor"
@@ -221,7 +226,7 @@ const faqSchema = {
       </div>
     </section>
 
-    <section class="section section-split section-partners">
+    <section class="section section-split">
       <div class="partners-copy">
         <p class="eyebrow">Red internacional</p>
         <h2>Cuando el caso lo requiere, se coordina con especialistas por destino</h2>
@@ -241,7 +246,7 @@ const faqSchema = {
     <section class="section section-contact" id="contacto">
       <div class="contact-card contact-card-wide">
         <span class="eyebrow">Siguiente paso</span>
-        <h2>Cuéntame tu caso y recibe una primera ruta de acción</h2>
+        <h2>Comparte tu caso y recibe una primera ruta de acción</h2>
         <p>
           Comparte tu país de origen, destino, objetivo migratorio y momento actual para entender qué camino
           conviene revisar primero
@@ -257,8 +262,4 @@ const faqSchema = {
       </div>
     </section>
   </div>
-
-  <script type="application/ld+json">
-    {JSON.stringify(faqSchema)}
-  </script>
 </Layout>

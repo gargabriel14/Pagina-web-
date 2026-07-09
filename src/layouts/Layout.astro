@@ -1,11 +1,16 @@
 ---
 import "../styles/global.css";
-import { siteConfig } from "../data/site";
+import { services, siteConfig } from "../data/site";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  preloadImage?: {
+    src: string;
+    sizes: string;
+  };
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
 }
 
@@ -13,24 +18,114 @@ const {
   title = siteConfig.title,
   description = siteConfig.description,
   image = siteConfig.ogImage,
+  preloadImage,
+  structuredData,
   noindex = false,
 } = Astro.props as Props;
 
 const siteUrl = Astro.site ?? new URL(siteConfig.url);
+const homeUrl = new URL("/", siteUrl).toString();
 const normalizedPathname = Astro.url.pathname === "/" ? "/" : `${Astro.url.pathname.replace(/\/$/, "")}/`;
 const pageUrl = new URL(normalizedPathname, siteUrl).toString();
 const imageUrl = new URL(image, siteUrl).toString();
 const currentYear = new Date().getFullYear();
 const currentPath = normalizedPathname.replace(/\/$/, "") || "/";
+const optimizedWidths = [480, 720, 1080, 1400];
+const getImageBaseName = (src: string) => (src.split("/").pop() ?? "").replace(/\.[^.]+$/, "");
+const getOptimizedSrcset = (src: string, format: "avif" | "webp") => {
+  const baseName = getImageBaseName(src);
+  return optimizedWidths
+    .map((imageWidth) => `/images/optimized/${baseName}-${imageWidth}.${format} ${imageWidth}w`)
+    .join(", ");
+};
+const preloadImageHref = preloadImage
+  ? `/images/optimized/${getImageBaseName(preloadImage.src)}-720.avif`
+  : undefined;
+const preloadImageSrcset = preloadImage ? getOptimizedSrcset(preloadImage.src, "avif") : undefined;
 const navItems = [
   { href: "/", label: "Inicio" },
   { href: "/servicios/", label: "Servicios" },
-  { href: "/sobre-nosotros/", label: "Sobre mí" },
+  { href: "/sobre-nosotros/", label: "Enfoque" },
   { href: "/contacto/", label: "Contáctame", featured: true },
 ];
 const isCurrent = (href: string) => {
   const normalizedHref = href.replace(/\/$/, "") || "/";
   return currentPath === normalizedHref;
+};
+const websiteId = new URL("#website", homeUrl).toString();
+const businessId = new URL("#business", homeUrl).toString();
+const webpageId = new URL("#webpage", pageUrl).toString();
+const extraStructuredData = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
+const structuredDataGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: homeUrl,
+      name: siteConfig.name,
+      description: siteConfig.description,
+      inLanguage: siteConfig.language,
+      publisher: {
+        "@id": businessId,
+      },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": businessId,
+      name: siteConfig.name,
+      url: homeUrl,
+      description: siteConfig.description,
+      image: imageUrl,
+      areaServed: "Worldwide",
+      availableLanguage: [siteConfig.language],
+      serviceType: "Asesoría migratoria global",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Servicios de asesoría migratoria global",
+        itemListElement: services.map((service) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: service.title,
+            description: service.description,
+            areaServed: "Worldwide",
+          },
+        })),
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        email: siteConfig.email,
+        telephone: siteConfig.phoneHref,
+        areaServed: "Worldwide",
+        availableLanguage: [siteConfig.language],
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": webpageId,
+      url: pageUrl,
+      name: title,
+      description,
+      inLanguage: siteConfig.language,
+      isPartOf: {
+        "@id": websiteId,
+      },
+      about: {
+        "@id": businessId,
+      },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: imageUrl,
+      },
+    },
+    ...extraStructuredData,
+  ],
 };
 ---
 
@@ -46,48 +141,40 @@ const isCurrent = (href: string) => {
     <meta name="author" content={siteConfig.name} />
     <link rel="canonical" href={pageUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {
+      preloadImageHref && preloadImageSrcset && (
+        <link
+          rel="preload"
+          as="image"
+          href={preloadImageHref}
+          type="image/avif"
+          imagesrcset={preloadImageSrcset}
+          imagesizes={preloadImage?.sizes}
+          fetchpriority="high"
+        />
+      )
+    }
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:locale" content={siteConfig.locale} />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content={imageUrl} />
-    <meta property="og:image:alt" content="Asesoría migratoria global de Cristian Gutiérrez" />
+    <meta property="og:image:alt" content={siteConfig.ogImageAlt} />
     <meta property="og:image:width" content="1600" />
     <meta property="og:image:height" content="1067" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
-    <meta name="twitter:image:alt" content="Asesoría migratoria global de Cristian Gutiérrez" />
+    <meta name="twitter:image:alt" content={siteConfig.ogImageAlt} />
 
     {
       !noindex && (
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            name: siteConfig.name,
-            url: siteUrl.toString(),
-            description,
-            image: imageUrl,
-            areaServed: "Worldwide",
-            availableLanguage: ["es"],
-            serviceType: "Asesoría migratoria global",
-            brand: {
-              "@type": "Brand",
-              name: siteConfig.name,
-            },
-            contactPoint: {
-              "@type": "ContactPoint",
-              contactType: "customer service",
-              email: siteConfig.email,
-              telephone: siteConfig.phoneHref,
-              areaServed: "Worldwide",
-              availableLanguage: ["es"],
-            },
-          })}
+          {JSON.stringify(structuredDataGraph)}
         </script>
       )
     }
@@ -160,7 +247,7 @@ const isCurrent = (href: string) => {
             <ul class="footer-menu">
               <li><a href="/">Inicio</a></li>
               <li><a href="/servicios/">Servicios</a></li>
-              <li><a href="/sobre-nosotros/">Sobre mí</a></li>
+              <li><a href="/sobre-nosotros/">Enfoque</a></li>
               <li><a href="/contacto/">Contacto</a></li>
             </ul>
           </div>

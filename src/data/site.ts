@@ -10,7 +10,7 @@ export type IconName =
 
 export const siteConfig = {
   name: "Cristian Gutiérrez",
-  title: "Cristian Gutiérrez | Asesoría Migratoria Global",
+  title: "Asesoría migratoria global | Cristian Gutiérrez",
   description:
     "Asesoría migratoria global para personas, familias y empresas que necesitan planificar visas, residencia, permisos y movilidad internacional",
   url: "https://pagina-web-orcin.vercel.app",
@@ -18,8 +18,10 @@ export const siteConfig = {
   phone: "+54 9 11 2345 6789",
   phoneHref: "+5491123456789",
   locationLabel: "Atención online internacional",
+  language: "es",
   locale: "es_ES",
   ogImage: "/images/advisor-meeting.jpg",
+  ogImageAlt: "Asesoría migratoria global con atención online internacional",
 };
 
 export const siteImages = {
@@ -34,12 +36,12 @@ export const siteImages = {
 };
 
 export const sitePages = [
-  { path: "/", priority: "1.0" },
-  { path: "/servicios/", priority: "0.8" },
-  { path: "/sobre-nosotros/", priority: "0.7" },
-  { path: "/contacto/", priority: "0.8" },
-  { path: "/privacidad/", priority: "0.4" },
-  { path: "/terminos/", priority: "0.4" },
+  { path: "/", priority: "1.0", changefreq: "weekly" },
+  { path: "/servicios/", priority: "0.8", changefreq: "monthly" },
+  { path: "/sobre-nosotros/", priority: "0.7", changefreq: "monthly" },
+  { path: "/contacto/", priority: "0.8", changefreq: "monthly" },
+  { path: "/privacidad/", priority: "0.3", changefreq: "yearly" },
+  { path: "/terminos/", priority: "0.3", changefreq: "yearly" },
 ];
 
 export const services = [

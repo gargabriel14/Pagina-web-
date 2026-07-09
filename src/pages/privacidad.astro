@@ -6,11 +6,16 @@ import { siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Política de Privacidad - Cristian Gutiérrez"
+  title="Política de privacidad | Cristian Gutiérrez"
   description="Política de privacidad sobre el tratamiento de datos personales en consultas de asesoría migratoria global"
+  image={siteImages.privacy}
+  preloadImage={{
+    src: siteImages.privacy,
+    sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
+  }}
 >
   <div class="page-shell">
-    <section class="section section-split about-page">
+    <section class="section section-split">
       <div class="about-copy">
         <span class="eyebrow">Privacidad</span>
         <h1>Protegemos tu información con cuidado y confidencialidad</h1>
@@ -23,7 +28,8 @@ import { siteImages } from "../data/site";
         <ResponsiveImage
           src={siteImages.privacy}
           alt="Firma de documentos como referencia para fotografía legal"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
           decoding="async"
           width="720"
           height="540"

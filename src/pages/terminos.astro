@@ -6,11 +6,16 @@ import { siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Términos y Condiciones - Cristian Gutiérrez"
+  title="Términos y condiciones | Cristian Gutiérrez"
   description="Términos y condiciones del uso del sitio y de los servicios de asesoría migratoria global de Cristian Gutiérrez"
+  image={siteImages.terms}
+  preloadImage={{
+    src: siteImages.terms,
+    sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
+  }}
 >
   <div class="page-shell">
-    <section class="section section-split about-page">
+    <section class="section section-split">
       <div class="about-copy">
         <span class="eyebrow">Términos</span>
         <h1>Condiciones de uso para el sitio web y los servicios</h1>
@@ -23,7 +28,8 @@ import { siteImages } from "../data/site";
         <ResponsiveImage
           src={siteImages.terms}
           alt="Documentos sobre escritorio como referencia para términos legales"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
           decoding="async"
           width="720"
           height="540"
@@ -51,7 +57,7 @@ import { siteImages } from "../data/site";
         <div class="feature-card">
           <span class="feature-icon"><Icon name="briefcase" /></span>
           <h3>Derechos</h3>
-          <p>El contenido del sitio pertenece a Cristian Gutiérrez y puede evolucionar durante el desarrollo</p>
+          <p>El contenido del sitio pertenece a Cristian Gutiérrez y se actualiza cuando el servicio o la normativa lo requiere</p>
         </div>
       </div>
     </section>

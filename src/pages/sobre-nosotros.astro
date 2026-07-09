@@ -6,20 +6,25 @@ import { siteConfig, siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Sobre mí - Cristian Gutiérrez"
-  description="Conoce el enfoque de Cristian Gutiérrez para brindar asesoría migratoria global con claridad, estrategia y acompañamiento personalizado"
+  title="Enfoque migratorio | Cristian Gutiérrez"
+  description="Conoce el enfoque de asesoría migratoria global de Cristian Gutiérrez: claridad, estrategia y acompañamiento personalizado"
+  image={siteImages.about}
+  preloadImage={{
+    src: siteImages.about,
+    sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
+  }}
 >
   <div class="page-shell">
-    <section class="section section-split about-page">
+    <section class="section section-split">
       <div class="about-copy">
-        <span class="eyebrow">Mi trayectoria</span>
+        <span class="eyebrow">Enfoque profesional</span>
         <h1>Asesoría migratoria para tomar decisiones internacionales con más claridad</h1>
         <p>
-          En Cristian Gutiérrez combino criterio legal, visión práctica y comunicación clara para ayudar
+          En Cristian Gutiérrez se combinan criterio legal, visión práctica y comunicación clara para ayudar
           a personas, familias y empresas a estructurar procesos migratorios internacionales
         </p>
         <p>
-          Mi trabajo se centra en comprender cada situación particular, reducir incertidumbre administrativa
+          El trabajo se centra en comprender cada situación particular, reducir incertidumbre administrativa
           y guiar el proceso de principio a fin con transparencia
         </p>
       </div>
@@ -27,7 +32,8 @@ import { siteConfig, siteImages } from "../data/site";
         <ResponsiveImage
           src={siteImages.about}
           alt="Saludo profesional como referencia para fotografía de trayectoria"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
           decoding="async"
           width="720"
           height="540"
@@ -38,7 +44,7 @@ import { siteConfig, siteImages } from "../data/site";
 
     <section class="section section-light">
       <div class="section-header">
-        <p class="eyebrow">Mi enfoque</p>
+        <p class="eyebrow">Método de trabajo</p>
         <h2>La consulta se centra en lo que necesitas decidir ahora</h2>
       </div>
       <div class="feature-grid feature-grid-2">
@@ -66,23 +72,24 @@ import { siteConfig, siteImages } from "../data/site";
         <p class="eyebrow">Contacto directo</p>
         <h2>Hablemos de tu caso y de la ruta que conviene revisar primero</h2>
       </div>
-      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" class="contact-form">
-        <input type="hidden" name="_subject" value="Nuevo mensaje desde sobre mí" />
+      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form">
+        <input type="hidden" name="_subject" value="Nuevo mensaje desde enfoque migratorio" />
         <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value={`${siteConfig.url}/sobre-nosotros/`} />
 
         <label>
           <span>Nombre completo</span>
-          <input type="text" name="name" required placeholder="Tu nombre completo" />
+          <input type="text" name="name" autocomplete="name" required placeholder="Tu nombre completo" />
         </label>
 
         <label>
           <span>Correo electrónico</span>
-          <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
+          <input type="email" name="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com" />
         </label>
 
         <label>
           <span>Mensaje</span>
-          <textarea name="message" rows="6" required placeholder="Cuéntame brevemente tu situación"></textarea>
+          <textarea name="message" rows="6" required placeholder="Describe brevemente tu situación"></textarea>
         </label>
 
         <button type="submit" class="btn btn-primary">Enviar mensaje</button>

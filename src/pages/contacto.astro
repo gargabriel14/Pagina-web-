@@ -6,14 +6,19 @@ import { siteConfig, siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Contacto - Cristian Gutiérrez"
+  title="Contacto para asesoría migratoria | Cristian Gutiérrez"
   description="Contacta a Cristian Gutiérrez para una consulta de asesoría migratoria global sobre visas, residencia, permisos y movilidad internacional"
+  image={siteImages.contact}
+  preloadImage={{
+    src: siteImages.contact,
+    sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
+  }}
 >
   <div class="page-shell">
-    <section class="section section-split contact-page">
+    <section class="section section-split">
       <div class="about-copy">
         <span class="eyebrow">Contacto</span>
-        <h1>Cuéntame tu caso y recibe una primera lectura estratégica</h1>
+        <h1>Comparte tu caso y recibe una primera lectura estratégica</h1>
         <p>
           Para orientarte mejor, comparte tu país de origen, destino, objetivo migratorio y etapa actual del proceso
         </p>
@@ -36,7 +41,8 @@ import { siteConfig, siteImages } from "../data/site";
         <ResponsiveImage
           src={siteImages.contact}
           alt="Escritorio profesional como referencia para fotografía de contacto online"
-          loading="lazy"
+          loading="eager"
+          fetchpriority="high"
           decoding="async"
           width="720"
           height="540"
@@ -50,25 +56,25 @@ import { siteConfig, siteImages } from "../data/site";
         <p class="eyebrow">Formulario</p>
         <h2>Mientras más claro sea el contexto, mejor será la primera respuesta</h2>
       </div>
-      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" class="contact-form">
+      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form">
         <input type="hidden" name="_subject" value="Nueva consulta desde página web" />
         <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value={`${siteConfig.url}/contacto`} />
+        <input type="hidden" name="_next" value={`${siteConfig.url}/contacto/`} />
 
         <div class="form-grid">
           <label>
             <span>Nombre completo</span>
-            <input type="text" name="name" required placeholder="Tu nombre completo" />
+            <input type="text" name="name" autocomplete="name" required placeholder="Tu nombre completo" />
           </label>
 
           <label>
             <span>Correo electrónico</span>
-            <input type="email" name="email" required placeholder="tucorreo@ejemplo.com" />
+            <input type="email" name="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com" />
           </label>
 
           <label>
             <span>País de origen</span>
-            <input type="text" name="origin_country" required placeholder="Ejemplo: Colombia" />
+            <input type="text" name="origin_country" autocomplete="country-name" required placeholder="Ejemplo: Colombia" />
           </label>
 
           <label>
