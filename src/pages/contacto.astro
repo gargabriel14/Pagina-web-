@@ -3,12 +3,16 @@ import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
 import { siteConfig, siteImages } from "../data/site";
+
+const siteUrl = Astro.site ?? new URL(siteConfig.url);
+const thankYouUrl = new URL("/gracias/", siteUrl).toString();
 ---
 
 <Layout
   title="Contacto para asesoría migratoria | Cristian Gutiérrez"
-  description="Contacta a Cristian Gutiérrez para una consulta de asesoría migratoria global sobre visas, residencia, permisos y movilidad internacional"
+  description="Contacta a Cristian Gutiérrez para evaluar visas, residencia, permisos, reunificación y movilidad internacional con atención online"
   image={siteImages.contact}
+  imageAlt="Asesor migratorio disponible para una consulta online internacional"
   preloadImage={{
     src: siteImages.contact,
     sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
@@ -40,7 +44,7 @@ import { siteConfig, siteImages } from "../data/site";
       <div class="about-image">
         <ResponsiveImage
           src={siteImages.contact}
-          alt="Escritorio profesional como referencia para fotografía de contacto online"
+          alt="Asesor migratorio disponible para una consulta online internacional"
           loading="eager"
           fetchpriority="high"
           decoding="async"
@@ -59,7 +63,7 @@ import { siteConfig, siteImages } from "../data/site";
       <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form">
         <input type="hidden" name="_subject" value="Nueva consulta desde página web" />
         <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value={`${siteConfig.url}/contacto/`} />
+        <input type="hidden" name="_next" value={thankYouUrl} />
 
         <div class="form-grid">
           <label>
@@ -99,7 +103,15 @@ import { siteConfig, siteImages } from "../data/site";
           <textarea name="message" rows="6" required placeholder="Explica tu objetivo, fecha estimada y cualquier documento o duda importante"></textarea>
         </label>
 
-        <button type="submit" class="btn btn-primary">Solicitar evaluación inicial</button>
+        <div class="privacy-consent">
+          <input id="privacy-consent" type="checkbox" name="privacy_consent" value="Aceptado" required />
+          <label for="privacy-consent">Acepto la <a href="/privacidad/">política de privacidad</a> y el uso de mis datos para responder esta consulta</label>
+        </div>
+
+        <div class="form-submit-row">
+          <button type="submit" class="btn btn-primary" aria-describedby="privacy-note">Enviar mi caso</button>
+          <p id="privacy-note">Tu información se usa únicamente para revisar y responder tu consulta</p>
+        </div>
       </form>
     </section>
   </div>

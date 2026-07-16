@@ -2,17 +2,43 @@
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
-import { audiencePaths, consultationDeliverables, services, siteImages } from "../data/site";
+import { audiencePaths, consultationDeliverables, services, siteConfig, siteImages } from "../data/site";
+
+const siteUrl = Astro.site ?? new URL(siteConfig.url);
+const serviceSchema = {
+  "@type": "Service",
+  "@id": new URL("/servicios/#service", siteUrl).toString(),
+  name: "Asesoría migratoria internacional",
+  description: "Evaluación estratégica de visas, residencia, permisos, reunificación y movilidad internacional",
+  areaServed: "Worldwide",
+  provider: {
+    "@id": new URL("/#business", siteUrl).toString(),
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servicios migratorios",
+    itemListElement: services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.title,
+        description: service.description,
+      },
+    })),
+  },
+};
 ---
 
 <Layout
-  title="Servicios de asesoría migratoria global | Cristian Gutiérrez"
-  description="Servicios de asesoría migratoria global: visas, residencia, permisos de trabajo, estudio, familias y movilidad empresarial"
+  title="Servicios migratorios internacionales | Cristian Gutiérrez"
+  description="Servicios de asesoría migratoria internacional para visas, residencia, permisos de trabajo, estudio, familias y movilidad empresarial"
   image={siteImages.services}
+  imageAlt="Asesor migratorio planificando una ruta internacional con sus clientes"
   preloadImage={{
     src: siteImages.services,
     sizes: "(min-width: 1024px) 560px, calc(100vw - 32px)",
   }}
+  structuredData={serviceSchema}
 >
   <div class="page-shell">
     <header class="hero" id="servicios">
@@ -24,14 +50,14 @@ import { audiencePaths, consultationDeliverables, services, siteImages } from ".
           y evitar decisiones costosas antes de iniciar un trámite internacional
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/contacto/">Evaluar mi ruta</a>
+          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
           <a class="btn btn-secondary" href="/sobre-nosotros/">Conocer el enfoque</a>
         </div>
       </div>
       <div class="hero-visual">
         <ResponsiveImage
           src={siteImages.services}
-          alt="Equipo en oficina como referencia para fotografía de servicios migratorios"
+          alt="Asesor migratorio planificando una ruta internacional con sus clientes"
           loading="eager"
           fetchpriority="high"
           decoding="async"
@@ -49,7 +75,7 @@ import { audiencePaths, consultationDeliverables, services, siteImages } from ".
       </div>
       <div class="cards-grid">
         {services.map((service) => (
-          <article class="service-card lift-card">
+          <article class="service-card">
             <span class="service-icon"><Icon name={service.icon} /></span>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
@@ -60,8 +86,8 @@ import { audiencePaths, consultationDeliverables, services, siteImages } from ".
 
     <section class="section section-light">
       <div class="section-header">
-        <p class="eyebrow">Formatos de consulta</p>
-        <h2>La asesoría se adapta al momento en el que estás</h2>
+        <p class="eyebrow">A quién acompaña</p>
+        <h2>Personas, familias y empresas necesitan respuestas distintas</h2>
       </div>
       <div class="audience-grid">
         {audiencePaths.map((path) => (
@@ -81,7 +107,7 @@ import { audiencePaths, consultationDeliverables, services, siteImages } from ".
       </div>
       <div class="feature-grid">
         {consultationDeliverables.map((item) => (
-          <article class="feature-card lift-card">
+          <article class="feature-card">
             <span class="feature-icon"><Icon name={item.icon} /></span>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
@@ -114,7 +140,7 @@ import { audiencePaths, consultationDeliverables, services, siteImages } from ".
       <div class="about-image">
         <ResponsiveImage
           src={siteImages.value}
-          alt="Mesa con documentos como referencia para fotografía de revisión documental"
+          alt="Asesor migratorio revisando documentos durante una consulta"
           loading="lazy"
           decoding="async"
           width="720"
@@ -130,7 +156,7 @@ import { audiencePaths, consultationDeliverables, services, siteImages } from ".
         <h2>Agenda una consulta y transforma dudas en próximos pasos</h2>
         <p>Comparte tu origen, destino, objetivo y momento actual para revisar qué ruta conviene mirar primero</p>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="/contacto/">Solicitar evaluación inicial</a>
+          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
         </div>
       </div>
     </section>

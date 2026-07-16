@@ -2,13 +2,14 @@
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
-import { siteConfig, siteImages } from "../data/site";
+import { siteImages } from "../data/site";
 ---
 
 <Layout
-  title="Enfoque migratorio | Cristian Gutiérrez"
-  description="Conoce el enfoque de asesoría migratoria global de Cristian Gutiérrez: claridad, estrategia y acompañamiento personalizado"
+  title="Enfoque de asesoría migratoria | Cristian Gutiérrez"
+  description="Conoce el enfoque de asesoría migratoria internacional de Cristian Gutiérrez: análisis personalizado, comunicación clara y próximos pasos"
   image={siteImages.about}
+  imageAlt="Asesor migratorio preparando el análisis de un caso internacional"
   preloadImage={{
     src: siteImages.about,
     sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
@@ -20,18 +21,18 @@ import { siteConfig, siteImages } from "../data/site";
         <span class="eyebrow">Enfoque profesional</span>
         <h1>Asesoría migratoria para tomar decisiones internacionales con más claridad</h1>
         <p>
-          En Cristian Gutiérrez se combinan criterio legal, visión práctica y comunicación clara para ayudar
-          a personas, familias y empresas a estructurar procesos migratorios internacionales
+          La asesoría de Cristian Gutiérrez combina análisis personalizado, visión práctica y comunicación clara
+          para ayudar a personas, familias y empresas a estructurar procesos migratorios internacionales
         </p>
         <p>
-          El trabajo se centra en comprender cada situación particular, reducir incertidumbre administrativa
-          y guiar el proceso de principio a fin con transparencia
+          El trabajo empieza por comprender tu situación, reducir incertidumbre y convertir requisitos complejos
+          en decisiones que puedas entender y ejecutar
         </p>
       </div>
       <div class="about-image">
         <ResponsiveImage
           src={siteImages.about}
-          alt="Saludo profesional como referencia para fotografía de trayectoria"
+          alt="Asesor migratorio preparando el análisis de un caso internacional"
           loading="eager"
           fetchpriority="high"
           decoding="async"
@@ -47,53 +48,31 @@ import { siteConfig, siteImages } from "../data/site";
         <p class="eyebrow">Método de trabajo</p>
         <h2>La consulta se centra en lo que necesitas decidir ahora</h2>
       </div>
-      <div class="feature-grid feature-grid-2">
-        <div class="feature-card lift-card">
+      <div class="feature-grid">
+        <div class="feature-card">
           <span class="feature-icon"><Icon name="check" /></span>
           <h3>Asesoría transparente</h3>
-          <p>Explico cada paso del trámite sin complejidades innecesarias</p>
+          <p>Cada opción se explica con sus requisitos, límites y riesgos relevantes</p>
         </div>
-        <div class="feature-card lift-card">
+        <div class="feature-card">
           <span class="feature-icon"><Icon name="document" /></span>
           <h3>Gestión ágil</h3>
           <p>Organizo prioridades, documentos y próximos pasos para evitar fricción</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon"><Icon name="briefcase" /></span>
+          <h3>Criterio responsable</h3>
+          <p>No se prometen aprobaciones, se prepara una estrategia basada en tu situación real</p>
         </div>
       </div>
     </section>
 
     <section class="section conversion-band">
-      <p>Si tu proceso todavía está lleno de dudas, la consulta sirve para ordenar el escenario antes de avanzar</p>
-      <strong>Primero claridad, después documentos, formularios y decisiones</strong>
-      <a class="conversion-link" href="/contacto/">Solicitar evaluación inicial</a>
-    </section>
-
-    <section class="section section-dark">
-      <div class="section-header">
-        <p class="eyebrow">Contacto directo</p>
-        <h2>Hablemos de tu caso y de la ruta que conviene revisar primero</h2>
+      <div>
+        <p>Si tu proceso todavía está lleno de dudas, la consulta sirve para ordenar el escenario antes de avanzar</p>
+        <strong>Primero claridad, después documentos y formularios</strong>
       </div>
-      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form">
-        <input type="hidden" name="_subject" value="Nuevo mensaje desde enfoque migratorio" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value={`${siteConfig.url}/sobre-nosotros/`} />
-
-        <label>
-          <span>Nombre completo</span>
-          <input type="text" name="name" autocomplete="name" required placeholder="Tu nombre completo" />
-        </label>
-
-        <label>
-          <span>Correo electrónico</span>
-          <input type="email" name="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com" />
-        </label>
-
-        <label>
-          <span>Mensaje</span>
-          <textarea name="message" rows="6" required placeholder="Describe brevemente tu situación"></textarea>
-        </label>
-
-        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
-      </form>
+      <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
     </section>
   </div>
 </Layout>

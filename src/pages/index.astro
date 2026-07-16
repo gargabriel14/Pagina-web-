@@ -3,7 +3,6 @@ import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
 import {
-  audiencePaths,
   consultationDeliverables,
   decisionPoints,
   faqItems,
@@ -14,9 +13,10 @@ import {
   trustSignals,
 } from "../data/site";
 
+const siteUrl = Astro.site ?? new URL(siteConfig.url);
 const faqSchema = {
   "@type": "FAQPage",
-  "@id": `${siteConfig.url}/#faq`,
+  "@id": new URL("/#faq", siteUrl).toString(),
   mainEntity: faqItems.map((item) => ({
     "@type": "Question",
     name: item.question,
@@ -29,8 +29,8 @@ const faqSchema = {
 ---
 
 <Layout
-  title="Asesoría migratoria global | Cristian Gutiérrez"
-  description="Asesoría migratoria global para personas, familias y empresas que necesitan claridad, estrategia y acompañamiento antes de iniciar un proceso internacional"
+  title="Asesoría migratoria internacional | Cristian Gutiérrez"
+  description="Asesoría migratoria internacional para evaluar visas, residencia, permisos y movilidad con una estrategia clara antes de iniciar el proceso"
   preloadImage={{
     src: siteImages.hero,
     sizes: "(min-width: 1024px) 560px, calc(100vw - 32px)",
@@ -41,14 +41,14 @@ const faqSchema = {
     <header class="hero hero-conversion" id="inicio">
       <div class="hero-copy">
         <span class="eyebrow">Movilidad internacional con criterio</span>
-        <h1>Tu proceso migratorio no empieza con un formulario, empieza con una estrategia</h1>
+        <h1>Asesoría migratoria internacional para avanzar con una ruta clara</h1>
         <p>
-          Cristian Gutiérrez ayuda a evaluar opciones, ordenar documentos y tomar decisiones migratorias
-          con una ruta clara antes de invertir tiempo, dinero y energía
+          Cristian Gutiérrez te ayuda a evaluar opciones, anticipar riesgos y ordenar los próximos pasos antes
+          de invertir tiempo y dinero en un proceso migratorio
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/contacto/">Evaluar mi ruta migratoria</a>
+          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
           <a class="btn btn-secondary" href="/servicios/">Ver servicios</a>
         </div>
 
@@ -62,10 +62,10 @@ const faqSchema = {
         </div>
       </div>
 
-      <div class="hero-visual hero-visual-panel">
+      <div class="hero-visual">
         <ResponsiveImage
           src={siteImages.hero}
-          alt="Reunión de asesoría migratoria en una oficina profesional"
+          alt="Asesor migratorio conversando con un cliente en su oficina"
           loading="eager"
           fetchpriority="high"
           decoding="async"
@@ -74,25 +74,20 @@ const faqSchema = {
           sizes="(min-width: 1024px) 560px, calc(100vw - 32px)"
         />
         <div class="visual-callout">
-          <span>Consulta estratégica</span>
-          <strong>Origen, destino, objetivo, riesgos y documentos clave</strong>
+          <span>Primera evaluación</span>
+          <strong>Origen, destino, objetivo y próximos pasos</strong>
         </div>
       </div>
     </header>
 
-    <section class="section conversion-band">
-      <p>Si estás por aplicar a una visa, mudarte con tu familia o trasladar talento, el primer paso no es llenar formularios</p>
-      <strong>El primer paso es saber qué ruta tiene sentido para tu perfil</strong>
-    </section>
-
     <section class="section section-dark" id="servicios">
       <div class="section-header">
-        <p class="eyebrow">Servicios migratorios</p>
-        <h2>Asesoría para convertir un proceso complejo en una ruta posible</h2>
+        <p class="eyebrow">Cómo puedo ayudarte</p>
+        <h2>Una estrategia adaptada a tu objetivo migratorio</h2>
       </div>
       <div class="cards-grid">
         {services.map((service) => (
-          <article class="service-card lift-card">
+          <article class="service-card">
             <span class="service-icon"><Icon name={service.icon} /></span>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
@@ -101,7 +96,7 @@ const faqSchema = {
       </div>
     </section>
 
-    <section class="section section-dark decision-section">
+    <section class="section section-dark">
       <div class="section-header">
         <p class="eyebrow">Decisiones críticas</p>
         <h2>La consulta está pensada para responder lo que realmente cambia el resultado</h2>
@@ -117,12 +112,12 @@ const faqSchema = {
         </div>
         <div class="decision-panel">
           <span class="eyebrow">Antes de avanzar</span>
-          <h3>Evita comprar tranquilidad falsa</h3>
+          <h3>Evita avanzar con una ruta equivocada</h3>
           <p>
-            Un trámite mal elegido puede consumir semanas, dinero y oportunidades, una ruta bien revisada te
-            permite avanzar con prioridades y límites claros
+            Una decisión tomada con información incompleta puede consumir semanas, dinero y oportunidades
+            que una evaluación temprana ayuda a proteger
           </p>
-          <a class="btn btn-primary" href="/contacto/">Revisar mi situación</a>
+          <a class="btn btn-primary" href="/contacto/">Revisar mi caso</a>
         </div>
       </div>
     </section>
@@ -134,7 +129,7 @@ const faqSchema = {
       </div>
       <div class="feature-grid">
         {consultationDeliverables.map((item) => (
-          <article class="feature-card lift-card">
+          <article class="feature-card">
             <span class="feature-icon"><Icon name={item.icon} /></span>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
@@ -146,10 +141,10 @@ const faqSchema = {
     <section class="section section-split">
       <div class="about-copy">
         <p class="eyebrow">Enfoque profesional</p>
-        <h2>Tu caso no necesita promesas, necesita criterio y una hoja de ruta</h2>
+        <h2>Orientación directa, sin promesas vacías ni pasos innecesarios</h2>
         <p>
-          La asesoría acompaña a personas, familias y compañías que necesitan avanzar sin perderse entre requisitos,
-          tiempos, formularios y cambios de normativa
+          Cada caso parte de tu situación real, el país de origen, el destino y el momento del proceso para que
+          entiendas qué conviene revisar primero
         </p>
 
         <div class="feature-grid feature-grid-2">
@@ -169,7 +164,7 @@ const faqSchema = {
       <div class="about-image">
         <ResponsiveImage
           src={siteImages.advisor}
-          alt="Saludo profesional como referencia para fotografía del asesor"
+          alt="Asesor migratorio preparando una evaluación internacional en su oficina"
           loading="lazy"
           decoding="async"
           width="720"
@@ -179,28 +174,12 @@ const faqSchema = {
       </div>
     </section>
 
-    <section class="section section-dark">
-      <div class="section-header">
-        <p class="eyebrow">Elige tu punto de partida</p>
-        <h2>Cada perfil necesita una estrategia distinta</h2>
-      </div>
-      <div class="audience-grid">
-        {audiencePaths.map((path) => (
-          <article class="audience-card">
-            <span class="feature-icon"><Icon name={path.icon} /></span>
-            <h3>{path.title}</h3>
-            <p>{path.description}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
     <section class="section section-light">
       <div class="section-header">
         <p class="eyebrow">Método de trabajo</p>
         <h2>Un proceso diseñado para que sepas qué hacer después de cada conversación</h2>
       </div>
-      <div class="process-grid process-timeline">
+      <div class="process-grid">
         {processSteps.map((step) => (
           <article class="process-card">
             <span class="step-number">{step.number}</span>
@@ -226,38 +205,21 @@ const faqSchema = {
       </div>
     </section>
 
-    <section class="section section-split">
-      <div class="partners-copy">
-        <p class="eyebrow">Red internacional</p>
-        <h2>Cuando el caso lo requiere, se coordina con especialistas por destino</h2>
-        <p>
-          Esta estructura permite integrar abogados locales, traductores, consultores fiscales y aliados de
-          movilidad cuando el proyecto migratorio necesita soporte adicional
-        </p>
-      </div>
-      <div class="logo-grid">
-        <div class="logo-item">Abogados locales</div>
-        <div class="logo-item">Traductores</div>
-        <div class="logo-item">Empresas</div>
-        <div class="logo-item">Instituciones</div>
-      </div>
-    </section>
-
     <section class="section section-contact" id="contacto">
       <div class="contact-card contact-card-wide">
         <span class="eyebrow">Siguiente paso</span>
-        <h2>Comparte tu caso y recibe una primera ruta de acción</h2>
+        <h2>Cuéntame qué quieres lograr y revisemos por dónde empezar</h2>
         <p>
-          Comparte tu país de origen, destino, objetivo migratorio y momento actual para entender qué camino
-          conviene revisar primero
+          Comparte tu país de origen, destino, objetivo y momento actual para preparar una primera lectura
+          de tu situación
         </p>
         <ul>
-          <li><strong>Correo:</strong> {siteConfig.email}</li>
-          <li><strong>Teléfono:</strong> {siteConfig.phone}</li>
+          <li><strong>Correo:</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+          <li><strong>Teléfono:</strong> <a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
           <li><strong>Modalidad:</strong> {siteConfig.locationLabel}</li>
         </ul>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="/contacto/">Solicitar evaluación inicial</a>
+          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
         </div>
       </div>
     </section>

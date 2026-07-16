@@ -2,13 +2,14 @@
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
-import { siteImages } from "../data/site";
+import { siteConfig, siteImages } from "../data/site";
 ---
 
 <Layout
   title="Política de privacidad | Cristian Gutiérrez"
   description="Política de privacidad sobre el tratamiento de datos personales en consultas de asesoría migratoria global"
   image={siteImages.privacy}
+  imageAlt="Documentos organizados para proteger información personal"
   preloadImage={{
     src: siteImages.privacy,
     sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
@@ -27,7 +28,7 @@ import { siteImages } from "../data/site";
       <div class="about-image">
         <ResponsiveImage
           src={siteImages.privacy}
-          alt="Firma de documentos como referencia para fotografía legal"
+          alt="Documentos organizados para proteger la información de una consulta"
           loading="eager"
           fetchpriority="high"
           decoding="async"
@@ -60,6 +61,10 @@ import { siteImages } from "../data/site";
           <p>Mantenemos criterios de confidencialidad para preservar la información compartida</p>
         </div>
       </div>
+      <p class="legal-note">
+        Puedes solicitar acceso, corrección o eliminación de tus datos escribiendo a
+        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+      </p>
     </section>
   </div>
 </Layout>

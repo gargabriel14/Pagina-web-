@@ -10,9 +10,9 @@ export type IconName =
 
 export const siteConfig = {
   name: "Cristian Gutiérrez",
-  title: "Asesoría migratoria global | Cristian Gutiérrez",
+  title: "Asesoría migratoria internacional | Cristian Gutiérrez",
   description:
-    "Asesoría migratoria global para personas, familias y empresas que necesitan planificar visas, residencia, permisos y movilidad internacional",
+    "Asesoría migratoria internacional para personas, familias y empresas que necesitan evaluar visas, residencia, permisos y movilidad global",
   url: "https://pagina-web-orcin.vercel.app",
   email: "hola@cristiangutierrez.com.ar",
   phone: "+54 9 11 2345 6789",
@@ -20,19 +20,20 @@ export const siteConfig = {
   locationLabel: "Atención online internacional",
   language: "es",
   locale: "es_ES",
-  ogImage: "/images/advisor-meeting.jpg",
-  ogImageAlt: "Asesoría migratoria global con atención online internacional",
+  logo: "/brand-mark.svg",
+  ogImage: "/images/cristian-consultation.jpg",
+  ogImageAlt: "Asesor migratorio atendiendo una consulta internacional",
 };
 
 export const siteImages = {
-  hero: "/images/advisor-meeting.jpg",
-  advisor: "/images/global-mobility-consultation.jpg",
-  services: "/images/team-consultation.jpg",
-  contact: "/images/office-strategy-session.jpg",
+  hero: "/images/cristian-consultation.jpg",
+  advisor: "/images/cristian-advisor.jpg",
+  services: "/images/cristian-team-consultation.jpg",
+  contact: "/images/cristian-advisor.jpg",
   privacy: "/images/legal-documents.jpg",
-  terms: "/images/document-review.jpg",
-  about: "/images/global-mobility-consultation.jpg",
-  value: "/images/document-review.jpg",
+  terms: "/images/legal-documents.jpg",
+  about: "/images/cristian-advisor.jpg",
+  value: "/images/cristian-consultation.jpg",
 };
 
 export const sitePages = [
@@ -47,7 +48,7 @@ export const sitePages = [
 export const services = [
   {
     icon: "passport" satisfies IconName,
-    title: "Visas y permisos",
+    title: "Visas, residencia y permisos",
     description:
       "Análisis de requisitos, rutas posibles y documentación necesaria según país de origen y destino",
   },
@@ -73,16 +74,16 @@ export const services = [
 
 export const trustSignals = [
   {
-    value: "Online",
+    value: "100% online",
     label: "Atención internacional",
   },
   {
     value: "1:1",
-    label: "Diagnóstico por perfil",
+    label: "Estrategia por perfil",
   },
   {
-    value: "360",
-    label: "Ruta, requisitos y documentos",
+    value: "Ruta clara",
+    label: "Requisitos y próximos pasos",
   },
 ];
 
