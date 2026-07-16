@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import { ClientRouter, slide } from "astro:transitions";
 import { siteConfig } from "../data/site";
 
 interface Props {
@@ -56,6 +57,7 @@ const isCurrent = (href: string) => {
   const normalizedHref = href.replace(/\/$/, "") || "/";
   return currentPath === normalizedHref;
 };
+const pageTransition = slide({ duration: "280ms" });
 const websiteId = new URL("#website", homeUrl).toString();
 const businessId = new URL("#business", homeUrl).toString();
 const advisorId = new URL("#advisor", homeUrl).toString();
@@ -166,10 +168,11 @@ const structuredDataGraph = {
         <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataGraph)} />
       )
     }
+    <ClientRouter fallback="animate" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
-    <header class="header">
+    <header class="header" transition:name="site-header" transition:animate="none">
       <nav class="navbar" aria-label="Navegación principal">
         <div class="nav-container">
           <a class="logo" href="/" aria-label={`${siteConfig.name} - Inicio`}>
@@ -220,54 +223,56 @@ const structuredDataGraph = {
       </nav>
     </header>
 
-    <main class="main-content" id="main-content">
-      <slot />
-    </main>
+    <div class="page-stage" transition:name="page-content" transition:animate={pageTransition}>
+      <main class="main-content" id="main-content">
+        <slot />
+      </main>
 
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-grid footer-grid-main">
-          <div class="footer-section footer-brand">
-            <a class="footer-logo" href="/" aria-label={`${siteConfig.name} - Inicio`}>
-              <img class="brand-mark" src={siteConfig.logo} alt="" width="40" height="40" loading="lazy" />
-              <span class="footer-title">{siteConfig.name}</span>
-            </a>
-            <p>Asesoría migratoria internacional para personas, familias y equipos que necesitan avanzar con claridad</p>
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-grid footer-grid-main">
+            <div class="footer-section footer-brand">
+              <a class="footer-logo" href="/" aria-label={`${siteConfig.name} - Inicio`}>
+                <img class="brand-mark" src={siteConfig.logo} alt="" width="40" height="40" loading="lazy" />
+                <span class="footer-title">{siteConfig.name}</span>
+              </a>
+              <p>Asesoría migratoria internacional para personas, familias y equipos que necesitan avanzar con claridad</p>
+            </div>
+
+            <div class="footer-section">
+              <h2 class="footer-subtitle">Navegación</h2>
+              <ul class="footer-menu">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/servicios/">Servicios</a></li>
+                <li><a href="/sobre-nosotros/">Enfoque</a></li>
+                <li><a href="/contacto/">Contacto</a></li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h2 class="footer-subtitle">Contacto</h2>
+              <ul class="footer-contact">
+                <li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
+                <li><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
+                <li>{siteConfig.locationLabel}</li>
+              </ul>
+            </div>
+
+            <div class="footer-section">
+              <h2 class="footer-subtitle">Legal</h2>
+              <ul class="footer-menu">
+                <li><a href="/privacidad/">Política de privacidad</a></li>
+                <li><a href="/terminos/">Términos y condiciones</a></li>
+              </ul>
+            </div>
           </div>
 
-          <div class="footer-section">
-            <h2 class="footer-subtitle">Navegación</h2>
-            <ul class="footer-menu">
-              <li><a href="/">Inicio</a></li>
-              <li><a href="/servicios/">Servicios</a></li>
-              <li><a href="/sobre-nosotros/">Enfoque</a></li>
-              <li><a href="/contacto/">Contacto</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-section">
-            <h2 class="footer-subtitle">Contacto</h2>
-            <ul class="footer-contact">
-              <li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
-              <li><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
-              <li>{siteConfig.locationLabel}</li>
-            </ul>
-          </div>
-
-          <div class="footer-section">
-            <h2 class="footer-subtitle">Legal</h2>
-            <ul class="footer-menu">
-              <li><a href="/privacidad/">Política de privacidad</a></li>
-              <li><a href="/terminos/">Términos y condiciones</a></li>
-            </ul>
+          <div class="footer-bottom">
+            <p>&copy; {currentYear} {siteConfig.name} · Todos los derechos reservados</p>
           </div>
         </div>
-
-        <div class="footer-bottom">
-          <p>&copy; {currentYear} {siteConfig.name} · Todos los derechos reservados</p>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </div>
 
   </body>
 </html>
