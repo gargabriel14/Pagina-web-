@@ -3,8 +3,10 @@ import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
 import {
+  advisorStatement,
   consultationDeliverables,
   decisionPoints,
+  destinations,
   faqItems,
   processSteps,
   services,
@@ -26,6 +28,12 @@ const faqSchema = {
     },
   })),
 };
+const serviceTags = [
+  "Requisitos · Rutas · Documentos",
+  "Familia · Reunificación · Dependientes",
+  "Estudio · Talento · Oportunidades",
+  "Equipos · Traslados · Expansión",
+];
 ---
 
 <Layout
@@ -33,22 +41,25 @@ const faqSchema = {
   description="Asesoría migratoria internacional para evaluar visas, residencia, permisos y movilidad con una estrategia clara antes de iniciar el proceso"
   preloadImage={{
     src: siteImages.hero,
-    sizes: "(min-width: 1024px) 560px, calc(100vw - 32px)",
+    sizes: "(min-width: 1024px) 600px, calc(100vw - 32px)",
   }}
   structuredData={faqSchema}
 >
-  <div class="page-shell">
-    <header class="hero hero-conversion" id="inicio">
-      <div class="hero-copy">
+  <div class="page-shell home-shell">
+    <header class="hero hero-dossier" id="inicio">
+      <div class="hero-copy" data-reveal>
         <span class="eyebrow">Movilidad internacional con criterio</span>
-        <h1>Asesoría migratoria internacional para avanzar con una ruta clara</h1>
-        <p>
-          Cristian Gutiérrez te ayuda a evaluar opciones, anticipar riesgos y ordenar los próximos pasos antes
-          de invertir tiempo y dinero en un proceso migratorio
+        <h1>
+          Tu proceso migratorio necesita una
+          <span class="serif-italic">ruta clara</span>
+        </h1>
+        <p class="hero-lede">
+          Cristian Gutiérrez transforma requisitos, alternativas y riesgos en un plan que puedas entender antes
+          de invertir tiempo y dinero
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
+          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso <span aria-hidden="true">→</span></a>
           <a class="btn btn-secondary" href="/servicios/">Ver servicios</a>
         </div>
 
@@ -62,143 +73,197 @@ const faqSchema = {
         </div>
       </div>
 
-      <div class="hero-visual">
-        <ResponsiveImage
-          src={siteImages.hero}
-          alt="Asesor migratorio conversando con un cliente en su oficina"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-          width="840"
-          height="620"
-          sizes="(min-width: 1024px) 560px, calc(100vw - 32px)"
-        />
-        <div class="visual-callout">
-          <span>Primera evaluación</span>
-          <strong>Origen, destino, objetivo y próximos pasos</strong>
-        </div>
+      <div class="dossier-stage" data-reveal style="--d:.12s">
+        <span class="dossier-shadow" aria-hidden="true"></span>
+        <article class="dossier-card">
+          <div class="dossier-head">
+            <span>Expediente de movilidad</span>
+            <strong>CG · 001</strong>
+          </div>
+          <div class="dossier-photo">
+            <ResponsiveImage
+              src={siteImages.hero}
+              alt="Cristian Gutiérrez atendiendo una consulta migratoria internacional"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="1536"
+              height="1024"
+              sizes="(min-width: 1024px) 600px, calc(100vw - 32px)"
+            />
+            <span class="dossier-stamp">Primera<br />evaluación</span>
+          </div>
+          <div class="dossier-route" aria-label="Datos que se revisan en la evaluación">
+            <span><small>Origen</small>Tu situación</span>
+            <i aria-hidden="true"></i>
+            <span><small>Destino</small>Tu objetivo</span>
+            <i aria-hidden="true"></i>
+            <span><small>Ruta</small>Próximos pasos</span>
+          </div>
+          <div class="dossier-barcode" aria-hidden="true"></div>
+        </article>
       </div>
     </header>
 
-    <section class="section section-dark" id="servicios">
-      <div class="section-header">
+    <div class="marquee" aria-label="Destinos que se evalúan con frecuencia">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          {destinations.map((place) => <span class="marquee-item">{place}<i aria-hidden="true">✦</i></span>)}
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          {destinations.map((place) => <span class="marquee-item">{place}<i>✦</i></span>)}
+        </div>
+      </div>
+    </div>
+
+    <section class="section services-section" id="servicios">
+      <div class="section-header" data-reveal>
         <p class="eyebrow">Cómo puedo ayudarte</p>
         <h2>Una estrategia adaptada a tu objetivo migratorio</h2>
       </div>
-      <div class="cards-grid">
-        {services.map((service) => (
-          <article class="service-card">
-            <span class="service-icon"><Icon name={service.icon} /></span>
+      <div class="cards-grid services-grid">
+        {services.map((service, i) => (
+          <article class={`service-card service-card-${i + 1}`} data-reveal style={`--d:${i * 0.08}s`}>
+            <div class="service-card-head">
+              <span class="service-number">0{i + 1}</span>
+              <span class="service-icon"><Icon name={service.icon} /></span>
+            </div>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
+            <span class="service-tag">{serviceTags[i]}</span>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="section section-dark">
-      <div class="section-header">
-        <p class="eyebrow">Decisiones críticas</p>
-        <h2>La consulta está pensada para responder lo que realmente cambia el resultado</h2>
-      </div>
+    <section class="section decision-section">
       <div class="decision-layout">
+        <div class="decision-panel" data-reveal>
+          <p class="eyebrow">Decisiones críticas</p>
+          <h2>Resolvemos lo que realmente cambia tu estrategia</h2>
+          <p>
+            Cada respuesta se trabaja sobre tu perfil, tu origen y tu destino, no sobre ejemplos genéricos
+          </p>
+          <div class="decision-callout">
+            <span>Antes de avanzar</span>
+            <h3>Evita invertir en una ruta equivocada</h3>
+            <p>Una evaluación temprana puede proteger semanas, dinero y oportunidades</p>
+            <a class="btn btn-light" href="/contacto/">Revisar mi caso <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
         <div class="decision-list">
-          {decisionPoints.map((point) => (
-            <div class="decision-item">
-              <span><Icon name="check" /></span>
+          {decisionPoints.map((point, i) => (
+            <article class="decision-item" data-reveal style={`--d:${i * 0.07}s`}>
+              <span class="decision-index">Pregunta 0{i + 1}</span>
+              <div class="decision-check"><Icon name="check" /></div>
               <p>{point}</p>
-            </div>
+            </article>
           ))}
         </div>
-        <div class="decision-panel">
-          <span class="eyebrow">Antes de avanzar</span>
-          <h3>Evita avanzar con una ruta equivocada</h3>
-          <p>
-            Una decisión tomada con información incompleta puede consumir semanas, dinero y oportunidades
-            que una evaluación temprana ayuda a proteger
-          </p>
-          <a class="btn btn-primary" href="/contacto/">Revisar mi caso</a>
-        </div>
       </div>
     </section>
 
-    <section class="section section-light">
-      <div class="section-header">
+    <section class="section deliverables-section">
+      <div class="section-header" data-reveal>
         <p class="eyebrow">Qué recibes</p>
-        <h2>Sales de la consulta con una ruta accionable, no con dudas nuevas</h2>
+        <h2>Sales con una ruta accionable, no con dudas nuevas</h2>
       </div>
-      <div class="feature-grid">
-        {consultationDeliverables.map((item) => (
-          <article class="feature-card">
-            <span class="feature-icon"><Icon name={item.icon} /></span>
+      <div class="document-grid">
+        {consultationDeliverables.map((item, i) => (
+          <article class={`document-card document-card-${i + 1}`} data-reveal style={`--d:${i * 0.08}s`}>
+            <div class="document-head">
+              <strong>Entregable 0{i + 1}</strong>
+              <span>CG / DOSSIER</span>
+            </div>
+            <span class="document-icon"><Icon name={item.icon} /></span>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
+            <div class="document-lines" aria-hidden="true"></div>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="section section-split">
-      <div class="about-copy">
-        <p class="eyebrow">Enfoque profesional</p>
+    <figure class="image-band" data-reveal>
+      <ResponsiveImage
+        src={siteImages.services}
+        alt="Cristian Gutiérrez explicando una estrategia migratoria a una pareja"
+        loading="lazy"
+        decoding="async"
+        width="1536"
+        height="960"
+        sizes="(min-width: 1240px) 1180px, calc(100vw - 32px)"
+      />
+      <blockquote>
+        <span>Principio de trabajo</span>
+        <p>“{advisorStatement.quote}”</p>
+        <figcaption>{advisorStatement.name} · {advisorStatement.role}</figcaption>
+      </blockquote>
+    </figure>
+
+    <section class="section section-split advisor-section">
+      <div class="about-image portrait-frame" data-reveal>
+        <span class="portrait-back" aria-hidden="true"></span>
+        <ResponsiveImage
+          src={siteImages.advisor}
+          alt="Retrato profesional de Cristian Gutiérrez"
+          loading="lazy"
+          decoding="async"
+          width="1024"
+          height="1536"
+          sizes="(min-width: 1024px) 470px, calc(100vw - 32px)"
+        />
+        <span class="portrait-stamp">Enfoque<br />profesional</span>
+      </div>
+      <div class="about-copy" data-reveal style="--d:.1s">
+        <p class="eyebrow">Cristian Gutiérrez</p>
         <h2>Orientación directa, sin promesas vacías ni pasos innecesarios</h2>
         <p>
-          Cada caso parte de tu situación real, el país de origen, el destino y el momento del proceso para que
-          entiendas qué conviene revisar primero
+          Cada caso parte de tu situación real, el país de origen, el destino y el momento del proceso para
+          entender qué conviene revisar primero
         </p>
-
-        <div class="feature-grid feature-grid-2">
-          <div class="feature-card">
-            <span class="feature-icon"><Icon name="check" /></span>
+        <div class="advisor-points">
+          <div>
+            <span>A / 01</span>
             <h3>Asesoría práctica</h3>
             <p>Escenarios, riesgos y pasos concretos explicados en lenguaje claro</p>
           </div>
-          <div class="feature-card">
-            <span class="feature-icon"><Icon name="document" /></span>
+          <div>
+            <span>A / 02</span>
             <h3>Documentación ordenada</h3>
             <p>Expedientes consistentes, completos y fáciles de revisar</p>
           </div>
         </div>
-      </div>
-
-      <div class="about-image">
-        <ResponsiveImage
-          src={siteImages.advisor}
-          alt="Asesor migratorio preparando una evaluación internacional en su oficina"
-          loading="lazy"
-          decoding="async"
-          width="720"
-          height="540"
-          sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
-        />
+        <a class="text-link" href="/sobre-nosotros/">Conocer el enfoque <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
-    <section class="section section-light">
-      <div class="section-header">
+    <section class="section process-section">
+      <div class="section-header" data-reveal>
         <p class="eyebrow">Método de trabajo</p>
         <h2>Un proceso diseñado para que sepas qué hacer después de cada conversación</h2>
       </div>
       <div class="process-grid">
-        {processSteps.map((step) => (
-          <article class="process-card">
+        {processSteps.map((step, i) => (
+          <article class="process-card" data-reveal style={`--d:${i * 0.08}s`}>
             <span class="step-number">{step.number}</span>
             <h3>{step.title}</h3>
             <p>{step.description}</p>
+            <span class="process-status">Fase {i + 1} de 3</span>
           </article>
         ))}
       </div>
     </section>
 
-    <section class="section section-dark">
-      <div class="section-header">
+    <section class="section faq-section" id="faq">
+      <div class="section-header section-header-center" data-reveal>
         <p class="eyebrow">Preguntas frecuentes</p>
         <h2>Respuestas rápidas antes de agendar</h2>
       </div>
       <div class="faq-list">
-        {faqItems.map((item) => (
-          <details class="faq-item">
-            <summary>{item.question}</summary>
+        {faqItems.map((item, i) => (
+          <details class="faq-item" data-reveal style={`--d:${i * 0.05}s`}>
+            <summary><span>0{i + 1}</span>{item.question}</summary>
             <p>{item.answer}</p>
           </details>
         ))}
@@ -206,20 +271,16 @@ const faqSchema = {
     </section>
 
     <section class="section section-contact" id="contacto">
-      <div class="contact-card contact-card-wide">
-        <span class="eyebrow">Siguiente paso</span>
-        <h2>Cuéntame qué quieres lograr y revisemos por dónde empezar</h2>
-        <p>
-          Comparte tu país de origen, destino, objetivo y momento actual para preparar una primera lectura
-          de tu situación
-        </p>
-        <ul>
-          <li><strong>Correo:</strong> <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
-          <li><strong>Teléfono:</strong> <a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
-          <li><strong>Modalidad:</strong> {siteConfig.locationLabel}</li>
-        </ul>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
+      <div class="contact-card contact-card-wide" data-reveal>
+        <span class="contact-reference">Solicitud · CG-01</span>
+        <div>
+          <span class="eyebrow">Siguiente paso</span>
+          <h2>Cuéntame qué quieres lograr y revisemos por dónde empezar</h2>
+          <p>Comparte tu origen, destino, objetivo y momento actual para preparar una primera lectura</p>
+        </div>
+        <div class="contact-card-actions">
+          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso <span aria-hidden="true">→</span></a>
+          <a class="contact-email" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
         </div>
       </div>
     </section>

@@ -20,9 +20,9 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
 >
   <div class="page-shell">
     <section class="section section-split">
-      <div class="about-copy">
+      <div class="about-copy" data-reveal>
         <span class="eyebrow">Contacto</span>
-        <h1>Comparte tu caso y recibe una primera lectura estratégica</h1>
+        <h1>Comparte tu caso y recibe una primera lectura <span class="serif-italic">estratégica</span></h1>
         <p>
           Para orientarte mejor, comparte tu país de origen, destino, objetivo migratorio y etapa actual del proceso
         </p>
@@ -41,7 +41,8 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
           </div>
         </div>
       </div>
-      <div class="about-image">
+      <div class="about-image portrait-frame" data-reveal style="--d:.12s">
+        <span class="portrait-back" aria-hidden="true"></span>
         <ResponsiveImage
           src={siteImages.contact}
           alt="Asesor migratorio disponible para una consulta online internacional"
@@ -52,15 +53,16 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
           height="540"
           sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
+        <span class="portrait-stamp" aria-hidden="true">Consulta<br />internacional</span>
       </div>
     </section>
 
     <section class="section section-dark">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <p class="eyebrow">Formulario</p>
         <h2>Mientras más claro sea el contexto, mejor será la primera respuesta</h2>
       </div>
-      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form">
+      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form" data-reveal>
         <input type="hidden" name="_subject" value="Nueva consulta desde página web" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_next" value={thankYouUrl} />

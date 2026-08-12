@@ -17,9 +17,9 @@ import { siteImages } from "../data/site";
 >
   <div class="page-shell">
     <section class="section section-split">
-      <div class="about-copy">
+      <div class="about-copy" data-reveal>
         <span class="eyebrow">Enfoque profesional</span>
-        <h1>Asesoría migratoria para tomar decisiones internacionales con más claridad</h1>
+        <h1>Decisiones internacionales tomadas con más <span class="serif-italic">claridad</span></h1>
         <p>
           La asesoría de Cristian Gutiérrez combina análisis personalizado, visión práctica y comunicación clara
           para ayudar a personas, familias y empresas a estructurar procesos migratorios internacionales
@@ -29,7 +29,8 @@ import { siteImages } from "../data/site";
           en decisiones que puedas entender y ejecutar
         </p>
       </div>
-      <div class="about-image">
+      <div class="about-image portrait-frame" data-reveal style="--d:.12s">
+        <span class="portrait-back" aria-hidden="true"></span>
         <ResponsiveImage
           src={siteImages.about}
           alt="Asesor migratorio preparando el análisis de un caso internacional"
@@ -40,26 +41,27 @@ import { siteImages } from "../data/site";
           height="540"
           sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
+        <span class="portrait-stamp" aria-hidden="true">Enfoque<br />profesional</span>
       </div>
     </section>
 
     <section class="section section-light">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <p class="eyebrow">Método de trabajo</p>
         <h2>La consulta se centra en lo que necesitas decidir ahora</h2>
       </div>
       <div class="feature-grid">
-        <div class="feature-card">
+        <div class="feature-card" data-reveal>
           <span class="feature-icon"><Icon name="check" /></span>
           <h3>Asesoría transparente</h3>
           <p>Cada opción se explica con sus requisitos, límites y riesgos relevantes</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-reveal style="--d:.08s">
           <span class="feature-icon"><Icon name="document" /></span>
           <h3>Gestión ágil</h3>
           <p>Organizo prioridades, documentos y próximos pasos para evitar fricción</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card" data-reveal style="--d:.16s">
           <span class="feature-icon"><Icon name="briefcase" /></span>
           <h3>Criterio responsable</h3>
           <p>No se prometen aprobaciones, se prepara una estrategia basada en tu situación real</p>
@@ -67,7 +69,7 @@ import { siteImages } from "../data/site";
       </div>
     </section>
 
-    <section class="section conversion-band">
+    <section class="section conversion-band" data-reveal>
       <div>
         <p>Si tu proceso todavía está lleno de dudas, la consulta sirve para ordenar el escenario antes de avanzar</p>
         <strong>Primero claridad, después documentos y formularios</strong>

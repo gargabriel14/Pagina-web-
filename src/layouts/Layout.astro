@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import "@fontsource-variable/fraunces";
+import "@fontsource-variable/instrument-sans";
 import { ClientRouter, slide } from "astro:transitions";
 import { siteConfig } from "../data/site";
 
@@ -101,7 +103,7 @@ const structuredDataGraph = {
       "@type": "Person",
       "@id": advisorId,
       name: siteConfig.name,
-      jobTitle: "Asesor migratorio",
+      jobTitle: "Abogado y asesor migratorio internacional",
       url: homeUrl,
       worksFor: {
         "@id": businessId,
@@ -131,7 +133,7 @@ const structuredDataGraph = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0d1010" />
+    <meta name="theme-color" content="#0b1711" />
     <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
     <link rel="canonical" href={pageUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
@@ -172,6 +174,18 @@ const structuredDataGraph = {
   </head>
   <body>
     <a class="skip-link" href="#main-content">Saltar al contenido</a>
+    <div class="topbar" transition:name="site-topbar" transition:animate="none">
+      <div class="topbar-inner">
+        <span>
+          <strong>Tu Multiverso Legal</strong>
+          <span class="topbar-dot" aria-hidden="true"></span>
+          Estrategia migratoria internacional
+        </span>
+        <span class="topbar-contact">
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </span>
+      </div>
+    </div>
     <header class="header" transition:name="site-header" transition:animate="none">
       <nav class="navbar" aria-label="Navegación principal">
         <div class="nav-container">
@@ -236,7 +250,10 @@ const structuredDataGraph = {
                 <img class="brand-mark" src={siteConfig.logo} alt="" width="40" height="40" loading="lazy" />
                 <span class="footer-title">{siteConfig.name}</span>
               </a>
-              <p>Asesoría migratoria internacional para personas, familias y equipos que necesitan avanzar con claridad</p>
+              <p>Orientación migratoria internacional para personas, familias y equipos que necesitan avanzar con claridad</p>
+              <a class="footer-social" href={siteConfig.instagram} target="_blank" rel="noopener noreferrer">
+                @tumultiversolegal <span aria-hidden="true">↗</span>
+              </a>
             </div>
 
             <div class="footer-section">

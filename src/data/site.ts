@@ -17,6 +17,7 @@ export const siteConfig = {
   email: "hola@cristiangutierrez.com.ar",
   phone: "+54 9 11 2345 6789",
   phoneHref: "+5491123456789",
+  instagram: "https://www.instagram.com/tumultiversolegal/",
   locationLabel: "Atención online internacional",
   language: "es",
   locale: "es_ES",
@@ -74,18 +75,40 @@ export const services = [
 
 export const trustSignals = [
   {
-    value: "100% online",
-    label: "Atención internacional",
+    value: "100%",
+    label: "Atención online internacional",
   },
   {
     value: "1:1",
-    label: "Estrategia por perfil",
+    label: "Estrategia personalizada por perfil",
   },
   {
-    value: "Ruta clara",
-    label: "Requisitos y próximos pasos",
+    value: "24–48 h",
+    label: "Primera lectura de tu caso",
   },
 ];
+
+export const destinations = [
+  "España",
+  "Portugal",
+  "Canadá",
+  "Estados Unidos",
+  "Alemania",
+  "Italia",
+  "Países Bajos",
+  "Reino Unido",
+  "Australia",
+  "Emiratos Árabes",
+  "Nueva Zelanda",
+  "Uruguay",
+];
+
+export const advisorStatement = {
+  quote:
+    "Mi trabajo no es prometerte un resultado, es darte una ruta clara antes de que inviertas tiempo y dinero. Primero entendemos tu caso real; después decidimos con criterio",
+  name: "Cristian Gutiérrez",
+  role: "Abogado · Estrategia migratoria internacional",
+};
 
 export const audiencePaths = [
   {

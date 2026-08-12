@@ -42,9 +42,9 @@ const serviceSchema = {
 >
   <div class="page-shell">
     <header class="hero" id="servicios">
-      <div class="hero-copy">
+      <div class="hero-copy" data-reveal>
         <span class="eyebrow">Servicios migratorios</span>
-        <h1>Servicios para decidir, preparar y avanzar con criterio migratorio</h1>
+        <h1>Servicios para decidir, preparar y avanzar con <span class="serif-italic">criterio</span></h1>
         <p>
           Acompañamiento para personas, familias y empresas que necesitan entender opciones, ordenar requisitos
           y evitar decisiones costosas antes de iniciar un trámite internacional
@@ -54,7 +54,7 @@ const serviceSchema = {
           <a class="btn btn-secondary" href="/sobre-nosotros/">Conocer el enfoque</a>
         </div>
       </div>
-      <div class="hero-visual">
+      <div class="hero-visual" data-reveal style="--d:.12s">
         <ResponsiveImage
           src={siteImages.services}
           alt="Asesor migratorio planificando una ruta internacional con sus clientes"
@@ -69,13 +69,13 @@ const serviceSchema = {
     </header>
 
     <section class="section section-dark">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <p class="eyebrow">Categorías de servicios</p>
         <h2>Elige el tipo de apoyo que más se parece a tu situación actual</h2>
       </div>
       <div class="cards-grid">
-        {services.map((service) => (
-          <article class="service-card">
+        {services.map((service, i) => (
+          <article class="service-card" data-reveal style={`--d:${i * 0.08}s`}>
             <span class="service-icon"><Icon name={service.icon} /></span>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
@@ -85,13 +85,13 @@ const serviceSchema = {
     </section>
 
     <section class="section section-light">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <p class="eyebrow">A quién acompaña</p>
         <h2>Personas, familias y empresas necesitan respuestas distintas</h2>
       </div>
       <div class="audience-grid">
-        {audiencePaths.map((path) => (
-          <article class="audience-card">
+        {audiencePaths.map((path, i) => (
+          <article class="audience-card" data-reveal style={`--d:${i * 0.08}s`}>
             <span class="feature-icon"><Icon name={path.icon} /></span>
             <h3>{path.title}</h3>
             <p>{path.description}</p>
@@ -101,13 +101,13 @@ const serviceSchema = {
     </section>
 
     <section class="section section-dark">
-      <div class="section-header">
+      <div class="section-header" data-reveal>
         <p class="eyebrow">Entregables</p>
         <h2>Lo importante es salir con claridad para actuar</h2>
       </div>
       <div class="feature-grid">
-        {consultationDeliverables.map((item) => (
-          <article class="feature-card">
+        {consultationDeliverables.map((item, i) => (
+          <article class="feature-card" data-reveal style={`--d:${i * 0.08}s`}>
             <span class="feature-icon"><Icon name={item.icon} /></span>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
@@ -117,7 +117,7 @@ const serviceSchema = {
     </section>
 
     <section class="section section-light section-split">
-      <div class="about-copy">
+      <div class="about-copy" data-reveal>
         <p class="eyebrow">Por qué este enfoque</p>
         <h2>La diferencia está en decidir bien antes de moverte</h2>
         <p>
@@ -137,7 +137,7 @@ const serviceSchema = {
           </div>
         </div>
       </div>
-      <div class="about-image">
+      <div class="about-image" data-reveal style="--d:.12s">
         <ResponsiveImage
           src={siteImages.value}
           alt="Asesor migratorio revisando documentos durante una consulta"
@@ -151,7 +151,7 @@ const serviceSchema = {
     </section>
 
     <section class="section section-contact">
-      <div class="contact-card">
+      <div class="contact-card" data-reveal>
         <span class="eyebrow">Comencemos</span>
         <h2>Agenda una consulta y transforma dudas en próximos pasos</h2>
         <p>Comparte tu origen, destino, objetivo y momento actual para revisar qué ruta conviene mirar primero</p>
