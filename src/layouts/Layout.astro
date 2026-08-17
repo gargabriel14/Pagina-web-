@@ -52,7 +52,7 @@ const preloadImageSrcset = preloadImage ? getOptimizedSrcset(preloadImage.src, "
 const navItems = [
   { href: "/", label: "Inicio" },
   { href: "/servicios/", label: "Servicios" },
-  { href: "/sobre-nosotros/", label: "Enfoque" },
+  { href: "/enfoque/", label: "Enfoque" },
   { href: "/contacto/", label: "Contáctame", featured: true },
 ];
 const isCurrent = (href: string) => {
@@ -62,7 +62,6 @@ const isCurrent = (href: string) => {
 const pageTransition = slide({ duration: "280ms" });
 const websiteId = new URL("#website", homeUrl).toString();
 const businessId = new URL("#business", homeUrl).toString();
-const advisorId = new URL("#advisor", homeUrl).toString();
 const webpageId = new URL("#webpage", pageUrl).toString();
 const extraStructuredData = structuredData
   ? Array.isArray(structuredData)
@@ -90,23 +89,11 @@ const structuredDataGraph = {
       logo: logoUrl,
       areaServed: "Worldwide",
       serviceType: "Asesoría migratoria internacional",
-      founder: {
-        "@id": advisorId,
-      },
       contactPoint: {
         "@type": "ContactPoint",
         email: siteConfig.email,
         telephone: siteConfig.phoneHref,
-      },
-    },
-    {
-      "@type": "Person",
-      "@id": advisorId,
-      name: siteConfig.name,
-      jobTitle: "Abogado y asesor migratorio internacional",
-      url: homeUrl,
-      worksFor: {
-        "@id": businessId,
+        availableLanguage: "Spanish",
       },
     },
     {
@@ -191,7 +178,7 @@ const structuredDataGraph = {
         <div class="nav-container">
           <a class="logo" href="/" aria-label={`${siteConfig.name} - Inicio`}>
             <img class="brand-mark" src={siteConfig.logo} alt="" width="40" height="40" />
-            <span class="logo-text">Cristian <span class="logo-gold">Gutiérrez</span></span>
+            <span class="logo-text">Tu Multiverso <span class="logo-gold">Legal</span></span>
           </a>
 
           <ul class="nav-menu nav-menu-desktop">
@@ -250,7 +237,7 @@ const structuredDataGraph = {
                 <img class="brand-mark" src={siteConfig.logo} alt="" width="40" height="40" loading="lazy" />
                 <span class="footer-title">{siteConfig.name}</span>
               </a>
-              <p>Orientación migratoria internacional para personas, familias y equipos que necesitan avanzar con claridad</p>
+              <p>Estrategia migratoria internacional para personas, familias y equipos que necesitan avanzar con claridad</p>
               <a class="footer-social" href={siteConfig.instagram} target="_blank" rel="noopener noreferrer">
                 @tumultiversolegal <span aria-hidden="true">↗</span>
               </a>
@@ -261,7 +248,7 @@ const structuredDataGraph = {
               <ul class="footer-menu">
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/servicios/">Servicios</a></li>
-                <li><a href="/sobre-nosotros/">Enfoque</a></li>
+                <li><a href="/enfoque/">Enfoque</a></li>
                 <li><a href="/contacto/">Contacto</a></li>
               </ul>
             </div>

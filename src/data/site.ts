@@ -9,12 +9,12 @@ export type IconName =
   | "calendar";
 
 export const siteConfig = {
-  name: "Cristian Gutiérrez",
-  title: "Asesoría migratoria internacional | Cristian Gutiérrez",
+  name: "Tu Multiverso Legal",
+  title: "Asesoría migratoria internacional | Tu Multiverso Legal",
   description:
     "Asesoría migratoria internacional para personas, familias y empresas que necesitan evaluar visas, residencia, permisos y movilidad global",
   url: "https://pagina-web-orcin.vercel.app",
-  email: "hola@cristiangutierrez.com.ar",
+  email: "hola@tumultiversolegal.com",
   phone: "+54 9 11 2345 6789",
   phoneHref: "+5491123456789",
   instagram: "https://www.instagram.com/tumultiversolegal/",
@@ -40,7 +40,7 @@ export const siteImages = {
 export const sitePages = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/servicios/", priority: "0.8", changefreq: "monthly" },
-  { path: "/sobre-nosotros/", priority: "0.7", changefreq: "monthly" },
+  { path: "/enfoque/", priority: "0.7", changefreq: "monthly" },
   { path: "/contacto/", priority: "0.8", changefreq: "monthly" },
   { path: "/privacidad/", priority: "0.3", changefreq: "yearly" },
   { path: "/terminos/", priority: "0.3", changefreq: "yearly" },
@@ -106,8 +106,8 @@ export const destinations = [
 export const advisorStatement = {
   quote:
     "Mi trabajo no es prometerte un resultado, es darte una ruta clara antes de que inviertas tiempo y dinero. Primero entendemos tu caso real; después decidimos con criterio",
-  name: "Cristian Gutiérrez",
-  role: "Abogado · Estrategia migratoria internacional",
+  name: "Tu Multiverso Legal",
+  role: "Estrategia migratoria internacional",
 };
 
 export const audiencePaths = [
