@@ -6,13 +6,20 @@ export type IconName =
   | "check"
   | "document"
   | "globe"
-  | "calendar";
+  | "calendar"
+  | "scale"
+  | "music"
+  | "network"
+  | "spark"
+  | "map"
+  | "handshake";
 
 export const siteConfig = {
-  name: "Tu Multiverso Legal",
-  title: "Asesoría migratoria internacional | Tu Multiverso Legal",
+  name: "Cristian Gutiérrez",
+  tagline: "Gestión estratégica de oportunidades y proyectos",
+  title: "Cristian Gutiérrez | Gestión estratégica de oportunidades y proyectos",
   description:
-    "Asesoría migratoria internacional para personas, familias y empresas que necesitan evaluar visas, residencia, permisos y movilidad global",
+    "Gestión estratégica de oportunidades y proyectos en derecho y migración, entretenimiento y cultura, negocios y experiencias turísticas",
   url: "https://pagina-web-orcin.vercel.app",
   email: "hola@tumultiversolegal.com",
   phone: "+54 9 11 2345 6789",
@@ -23,7 +30,7 @@ export const siteConfig = {
   locale: "es_ES",
   logo: "/brand-mark.svg",
   ogImage: "/images/cristian-consultation.jpg",
-  ogImageAlt: "Asesor migratorio atendiendo una consulta internacional",
+  ogImageAlt: "Cristian Gutiérrez atendiendo una consulta internacional",
 };
 
 export const siteImages = {
@@ -39,8 +46,12 @@ export const siteImages = {
 
 export const sitePages = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
-  { path: "/servicios/", priority: "0.8", changefreq: "monthly" },
-  { path: "/enfoque/", priority: "0.7", changefreq: "monthly" },
+  { path: "/legal/", priority: "0.9", changefreq: "monthly" },
+  { path: "/legal/servicios/", priority: "0.8", changefreq: "monthly" },
+  { path: "/entertainment/", priority: "0.8", changefreq: "monthly" },
+  { path: "/business/", priority: "0.8", changefreq: "monthly" },
+  { path: "/experiences/", priority: "0.8", changefreq: "monthly" },
+  { path: "/sobre-mi/", priority: "0.7", changefreq: "monthly" },
   { path: "/contacto/", priority: "0.8", changefreq: "monthly" },
   { path: "/privacidad/", priority: "0.3", changefreq: "yearly" },
   { path: "/terminos/", priority: "0.3", changefreq: "yearly" },

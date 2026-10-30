@@ -3,16 +3,17 @@ import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
 import { siteConfig, siteImages } from "../data/site";
+import { areas } from "../data/areas";
 
 const siteUrl = Astro.site ?? new URL(siteConfig.url);
 const thankYouUrl = new URL("/gracias/", siteUrl).toString();
 ---
 
 <Layout
-  title="Contacto para asesoría migratoria | Tu Multiverso Legal"
-  description="Contacta a Tu Multiverso Legal para evaluar visas, residencia, permisos, reunificación y movilidad internacional con atención online"
+  title={`Contacto | ${siteConfig.name}`}
+  description="Contacta a Cristian Gutiérrez para casos legales y migratorios, proyectos culturales, alianzas de negocio o experiencias turísticas, con atención online"
   image={siteImages.contact}
-  imageAlt="Asesor migratorio disponible para una consulta online internacional"
+  imageAlt="Cristian Gutiérrez disponible para una consulta online internacional"
   preloadImage={{
     src: siteImages.contact,
     sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
@@ -22,9 +23,9 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
     <section class="section section-split">
       <div class="about-copy" data-reveal>
         <span class="eyebrow">Contacto</span>
-        <h1>Comparte tu caso y recibe una primera lectura <span class="serif-italic">estratégica</span></h1>
+        <h1>Comparte tu caso o proyecto y recibe una primera lectura <span class="serif-italic">estratégica</span></h1>
         <p>
-          Para orientarte mejor, comparte tu país de origen, destino, objetivo migratorio y etapa actual del proceso
+          Elige el área que mejor encaja, cuéntame tu objetivo y en qué punto estás, y preparo una primera respuesta
         </p>
 
         <h2 class="sr-only">Datos de contacto</h2>
@@ -45,7 +46,7 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
         <span class="portrait-back" aria-hidden="true"></span>
         <ResponsiveImage
           src={siteImages.contact}
-          alt="Asesor migratorio disponible para una consulta online internacional"
+          alt="Cristian Gutiérrez disponible para una consulta online internacional"
           loading="eager"
           fetchpriority="high"
           decoding="async"
@@ -63,7 +64,7 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
         <h2>Mientras más claro sea el contexto, mejor será la primera respuesta</h2>
       </div>
       <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form" data-reveal>
-        <input type="hidden" name="_subject" value="Nueva consulta desde página web" />
+        <input type="hidden" name="_subject" value="Nueva consulta desde la web de Cristian Gutiérrez" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_next" value={thankYouUrl} />
 
@@ -79,30 +80,23 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
           </label>
 
           <label>
-            <span>País de origen</span>
-            <input type="text" name="origin_country" autocomplete="country-name" required placeholder="Ejemplo: Colombia" />
+            <span>Área de interés</span>
+            <select name="area" id="contact-area" required>
+              <option value="">Selecciona un área</option>
+              {areas.map((area) => <option value={area.name} data-slug={area.slug}>{area.name}</option>)}
+              <option value="Otro / aún no lo sé">Otro / aún no lo sé</option>
+            </select>
           </label>
 
           <label>
-            <span>Destino que quieres evaluar</span>
-            <input type="text" name="destination_country" required placeholder="Ejemplo: España" />
+            <span>País donde estás</span>
+            <input type="text" name="country" autocomplete="country-name" placeholder="Ejemplo: Colombia" />
           </label>
         </div>
 
         <label>
-          <span>Tipo de consulta</span>
-          <select name="consultation_type" required>
-            <option value="">Selecciona una opción</option>
-            <option value="Visa o residencia">Visa o residencia</option>
-            <option value="Familia o acompañantes">Familia o acompañantes</option>
-            <option value="Trabajo, estudio o talento">Trabajo, estudio o talento</option>
-            <option value="Empresa o movilidad de equipo">Empresa o movilidad de equipo</option>
-          </select>
-        </label>
-
-        <label>
           <span>Mensaje</span>
-          <textarea name="message" rows="6" required placeholder="Explica tu objetivo, fecha estimada y cualquier documento o duda importante"></textarea>
+          <textarea name="message" rows="6" required placeholder="Explica tu objetivo, en qué punto estás y cualquier fecha, documento o duda importante"></textarea>
         </label>
 
         <div class="privacy-consent">
@@ -118,3 +112,13 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
     </section>
   </div>
 </Layout>
+
+<script is:inline>
+  // Preselect the area when arriving from an area page (/contacto/?area=slug)
+  (() => {
+    const slug = new URLSearchParams(location.search).get("area");
+    const select = document.getElementById("contact-area");
+    const option = slug && select && select.querySelector(`option[data-slug="${CSS.escape(slug)}"]`);
+    if (option) option.selected = true;
+  })();
+</script>

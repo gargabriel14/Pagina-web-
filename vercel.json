@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/servicios", "destination": "/legal/servicios/", "permanent": true },
+    { "source": "/servicios/", "destination": "/legal/servicios/", "permanent": true },
+    { "source": "/enfoque", "destination": "/sobre-mi/", "permanent": true },
+    { "source": "/enfoque/", "destination": "/sobre-mi/", "permanent": true }
+  ]
+}
