@@ -3,7 +3,7 @@ import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
 import { advisorStatement, siteConfig, siteImages } from "../data/site";
-import { areas, umbrellaPillars, umbrellaSteps } from "../data/areas";
+import { areas, umbrellaPillars, umbrellaSteps, umbrellaValues } from "../data/areas";
 ---
 
 <Layout
@@ -67,6 +67,26 @@ import { areas, umbrellaPillars, umbrellaSteps } from "../data/areas";
             <span class="area-tags">{area.tags.join(" · ")}</span>
             <span class="area-link">Explorar <span aria-hidden="true">→</span></span>
           </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Por qué un mismo punto de contacto</p>
+        <h2>Personas, ideas y negocios rara vez encajan en una sola casilla</h2>
+        <p>
+          Un artista puede necesitar resolver su situación migratoria, una empresa puede buscar alianzas y
+          experiencias para su equipo. Tener una mirada que conecte esos frentes ahorra tiempo y decisiones aisladas
+        </p>
+      </div>
+      <div class="feature-grid">
+        {umbrellaValues.map((item, i) => (
+          <article class="feature-card" data-reveal style={`--d:${i * 0.08}s`}>
+            <span class="feature-icon"><Icon name={item.icon} /></span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </article>
         ))}
       </div>
     </section>

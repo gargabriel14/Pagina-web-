@@ -773,6 +773,11 @@ textarea:focus-visible {
   margin-bottom: 2.4rem;
 }
 
+.section-header h2 + p {
+  margin-top: 1.1rem;
+  font-size: 1.02rem;
+}
+
 .section-header h2,
 .about-copy h2,
 .contact-card h2,
@@ -889,6 +894,10 @@ textarea:focus-visible {
 
 .area-page .service-number {
   -webkit-text-stroke-color: var(--area-accent);
+}
+
+.area-page .service-tag {
+  color: var(--area-accent);
 }
 
 .service-icon,
@@ -1775,6 +1784,12 @@ textarea::placeholder {
 .section-light .audience-card {
   border-color: var(--line-dark);
   background: var(--paper-bright);
+}
+
+.section-light .feature-icon {
+  border-color: rgba(111, 76, 15, 0.35);
+  background: rgba(145, 105, 25, 0.1);
+  color: var(--gold-dark);
 }
 
 .section-light .feature-card p,

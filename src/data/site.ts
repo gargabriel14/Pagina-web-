@@ -9,7 +9,10 @@ export type IconName =
   | "calendar"
   | "scale"
   | "music"
-  | "network";
+  | "network"
+  | "spark"
+  | "map"
+  | "handshake";
 
 export const siteConfig = {
   name: "Cristian Gutiérrez",
