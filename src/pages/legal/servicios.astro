@@ -1,18 +1,18 @@
 ---
-import Icon from "../components/Icon.astro";
-import Layout from "../layouts/Layout.astro";
-import ResponsiveImage from "../components/ResponsiveImage.astro";
-import { audiencePaths, consultationDeliverables, services, siteConfig, siteImages } from "../data/site";
+import Icon from "../../components/Icon.astro";
+import Layout from "../../layouts/Layout.astro";
+import ResponsiveImage from "../../components/ResponsiveImage.astro";
+import { audiencePaths, consultationDeliverables, services, siteConfig, siteImages } from "../../data/site";
 
 const siteUrl = Astro.site ?? new URL(siteConfig.url);
 const serviceSchema = {
   "@type": "Service",
-  "@id": new URL("/servicios/#service", siteUrl).toString(),
+  "@id": new URL("/legal/servicios/#service", siteUrl).toString(),
   name: "Asesoría migratoria internacional",
   description: "Evaluación estratégica de visas, residencia, permisos, reunificación y movilidad internacional",
   areaServed: "Worldwide",
   provider: {
-    "@id": new URL("/#business", siteUrl).toString(),
+    "@id": new URL("/#person", siteUrl).toString(),
   },
   hasOfferCatalog: {
     "@type": "OfferCatalog",
@@ -43,15 +43,15 @@ const serviceSchema = {
   <div class="page-shell">
     <header class="hero" id="servicios">
       <div class="hero-copy" data-reveal>
-        <span class="eyebrow">Servicios migratorios</span>
+        <span class="eyebrow">Tu Multiverso Legal · Servicios</span>
         <h1>Servicios para decidir, preparar y avanzar con <span class="serif-italic">criterio</span></h1>
         <p>
           Acompañamiento para personas, familias y empresas que necesitan entender opciones, ordenar requisitos
           y evitar decisiones costosas antes de iniciar un trámite internacional
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
-          <a class="btn btn-secondary" href="/enfoque/">Conocer el enfoque</a>
+          <a class="btn btn-primary" href="/contacto/?area=legal">Evaluar mi caso</a>
+          <a class="btn btn-secondary" href="/sobre-mi/">Conocer a Cristian</a>
         </div>
       </div>
       <div class="hero-visual" data-reveal style="--d:.12s">
@@ -156,7 +156,7 @@ const serviceSchema = {
         <h2>Agenda una consulta y transforma dudas en próximos pasos</h2>
         <p>Comparte tu origen, destino, objetivo y momento actual para revisar qué ruta conviene mirar primero</p>
         <div class="contact-actions">
-          <a class="btn btn-primary" href="/contacto/">Evaluar mi caso</a>
+          <a class="btn btn-primary" href="/contacto/?area=legal">Evaluar mi caso</a>
         </div>
       </div>
     </section>

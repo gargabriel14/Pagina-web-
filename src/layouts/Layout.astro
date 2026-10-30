@@ -4,6 +4,7 @@ import "@fontsource-variable/fraunces";
 import "@fontsource-variable/instrument-sans";
 import { ClientRouter, slide } from "astro:transitions";
 import { siteConfig } from "../data/site";
+import { areas } from "../data/areas";
 
 interface Props {
   title?: string;
@@ -34,7 +35,6 @@ const normalizedPathname = Astro.url.pathname === "/" ? "/" : `${Astro.url.pathn
 const pageUrl = new URL(normalizedPathname, siteUrl).toString();
 const imageUrl = new URL(image, siteUrl).toString();
 const businessImageUrl = new URL(siteConfig.ogImage, siteUrl).toString();
-const logoUrl = new URL(siteConfig.logo, siteUrl).toString();
 const currentYear = new Date().getFullYear();
 const currentPath = normalizedPathname.replace(/\/$/, "") || "/";
 const optimizedWidths = [480, 720, 1080, 1400];
@@ -49,19 +49,15 @@ const preloadImageHref = preloadImage
   ? `/images/optimized/${getImageBaseName(preloadImage.src)}-720.avif`
   : undefined;
 const preloadImageSrcset = preloadImage ? getOptimizedSrcset(preloadImage.src, "avif") : undefined;
-const navItems = [
-  { href: "/", label: "Inicio" },
-  { href: "/servicios/", label: "Servicios" },
-  { href: "/enfoque/", label: "Enfoque" },
-  { href: "/contacto/", label: "Contáctame", featured: true },
-];
 const isCurrent = (href: string) => {
   const normalizedHref = href.replace(/\/$/, "") || "/";
   return currentPath === normalizedHref;
 };
+const isInArea = (href: string) => `${currentPath}/`.startsWith(href);
+const inAnyArea = areas.some((area) => isInArea(area.path));
 const pageTransition = slide({ duration: "280ms" });
 const websiteId = new URL("#website", homeUrl).toString();
-const businessId = new URL("#business", homeUrl).toString();
+const personId = new URL("#person", homeUrl).toString();
 const webpageId = new URL("#webpage", pageUrl).toString();
 const extraStructuredData = structuredData
   ? Array.isArray(structuredData)
@@ -80,21 +76,17 @@ const structuredDataGraph = {
       inLanguage: siteConfig.language,
     },
     {
-      "@type": "ProfessionalService",
-      "@id": businessId,
+      "@type": "Person",
+      "@id": personId,
       name: siteConfig.name,
       url: homeUrl,
       description: siteConfig.description,
+      jobTitle: siteConfig.tagline,
       image: businessImageUrl,
-      logo: logoUrl,
-      areaServed: "Worldwide",
-      serviceType: "Asesoría migratoria internacional",
-      contactPoint: {
-        "@type": "ContactPoint",
-        email: siteConfig.email,
-        telephone: siteConfig.phoneHref,
-        availableLanguage: "Spanish",
-      },
+      email: siteConfig.email,
+      telephone: siteConfig.phoneHref,
+      sameAs: [siteConfig.instagram],
+      knowsAbout: areas.map((area) => area.name),
     },
     {
       "@type": "WebPage",
@@ -164,9 +156,9 @@ const structuredDataGraph = {
     <div class="topbar" transition:name="site-topbar" transition:animate="none">
       <div class="topbar-inner">
         <span>
-          <strong>Tu Multiverso Legal</strong>
+          <strong>{siteConfig.name}</strong>
           <span class="topbar-dot" aria-hidden="true"></span>
-          Estrategia migratoria internacional
+          {siteConfig.tagline}
         </span>
         <span class="topbar-contact">
           <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
@@ -178,23 +170,39 @@ const structuredDataGraph = {
         <div class="nav-container">
           <a class="logo" href="/" aria-label={`${siteConfig.name} - Inicio`}>
             <img class="brand-mark" src={siteConfig.logo} alt="" width="40" height="40" />
-            <span class="logo-text">Tu Multiverso <span class="logo-gold">Legal</span></span>
+            <span class="logo-text">Cristian <span class="logo-gold">Gutiérrez</span></span>
           </a>
 
           <ul class="nav-menu nav-menu-desktop">
-            {
-              navItems.map((item) => (
-                <li>
-                  <a
-                    href={item.href}
-                    class={`nav-link${item.featured ? " btn btn-primary" : ""}`}
-                    aria-current={isCurrent(item.href) ? "page" : undefined}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))
-            }
+            <li><a href="/" class="nav-link" aria-current={isCurrent("/") ? "page" : undefined}>Inicio</a></li>
+            <li class="nav-dropdown">
+              <a href="/#areas" class={`nav-link nav-dropdown-trigger${inAnyArea ? " is-active" : ""}`}>
+                Áreas <span aria-hidden="true">▾</span>
+              </a>
+              <ul class="nav-submenu">
+                {
+                  areas.map((area) => (
+                    <li>
+                      <a
+                        href={area.path}
+                        class="nav-submenu-link"
+                        style={`--area-accent:${area.accent}`}
+                        aria-current={isInArea(area.path) ? "page" : undefined}
+                      >
+                        <strong>{area.name}</strong>
+                        <span>{area.summary}</span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </li>
+            <li><a href="/sobre-mi/" class="nav-link" aria-current={isCurrent("/sobre-mi/") ? "page" : undefined}>Sobre mí</a></li>
+            <li>
+              <a href="/contacto/" class="nav-link btn btn-primary" aria-current={isCurrent("/contacto/") ? "page" : undefined}>
+                Contáctame
+              </a>
+            </li>
           </ul>
 
           <details class="nav-disclosure">
@@ -205,19 +213,28 @@ const structuredDataGraph = {
             </summary>
 
             <ul class="nav-menu nav-menu-mobile">
+              <li><a href="/" class="nav-link" aria-current={isCurrent("/") ? "page" : undefined}>Inicio</a></li>
+              <li class="nav-mobile-label" aria-hidden="true">Áreas</li>
               {
-                navItems.map((item) => (
+                areas.map((area) => (
                   <li>
                     <a
-                      href={item.href}
-                      class={`nav-link${item.featured ? " btn btn-primary" : ""}`}
-                      aria-current={isCurrent(item.href) ? "page" : undefined}
+                      href={area.path}
+                      class="nav-link nav-link-area"
+                      style={`--area-accent:${area.accent}`}
+                      aria-current={isInArea(area.path) ? "page" : undefined}
                     >
-                      {item.label}
+                      {area.name}
                     </a>
                   </li>
                 ))
               }
+              <li><a href="/sobre-mi/" class="nav-link" aria-current={isCurrent("/sobre-mi/") ? "page" : undefined}>Sobre mí</a></li>
+              <li>
+                <a href="/contacto/" class="nav-link btn btn-primary" aria-current={isCurrent("/contacto/") ? "page" : undefined}>
+                  Contáctame
+                </a>
+              </li>
             </ul>
           </details>
         </div>
@@ -237,19 +254,16 @@ const structuredDataGraph = {
                 <img class="brand-mark" src={siteConfig.logo} alt="" width="40" height="40" loading="lazy" />
                 <span class="footer-title">{siteConfig.name}</span>
               </a>
-              <p>Estrategia migratoria internacional para personas, familias y equipos que necesitan avanzar con claridad</p>
+              <p>Personas, ideas, negocios, derecho y cultura: estrategia y conexiones para avanzar con claridad</p>
               <a class="footer-social" href={siteConfig.instagram} target="_blank" rel="noopener noreferrer">
                 @tumultiversolegal <span aria-hidden="true">↗</span>
               </a>
             </div>
 
             <div class="footer-section">
-              <h2 class="footer-subtitle">Navegación</h2>
+              <h2 class="footer-subtitle">Áreas</h2>
               <ul class="footer-menu">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/servicios/">Servicios</a></li>
-                <li><a href="/enfoque/">Enfoque</a></li>
-                <li><a href="/contacto/">Contacto</a></li>
+                {areas.map((area) => <li><a href={area.path}>{area.name}</a></li>)}
               </ul>
             </div>
 
@@ -259,6 +273,7 @@ const structuredDataGraph = {
                 <li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
                 <li><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
                 <li>{siteConfig.locationLabel}</li>
+                <li><a href="/sobre-mi/">Sobre mí</a></li>
               </ul>
             </div>
 

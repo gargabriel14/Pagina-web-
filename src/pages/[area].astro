@@ -1,0 +1,142 @@
+---
+import Icon from "../components/Icon.astro";
+import Layout from "../layouts/Layout.astro";
+import { siteConfig } from "../data/site";
+import { areas, umbrellaSteps, type Area } from "../data/areas";
+
+export function getStaticPaths() {
+  return areas
+    .filter((area) => area.slug !== "legal")
+    .map((area) => ({ params: { area: area.slug }, props: { area } }));
+}
+
+const { area } = Astro.props as { area: Area };
+const otherAreas = areas.filter((item) => item.slug !== area.slug);
+const contactHref = `/contacto/?area=${area.slug}`;
+
+const siteUrl = Astro.site ?? new URL(siteConfig.url);
+const serviceSchema = {
+  "@type": "Service",
+  "@id": new URL(`${area.path}#service`, siteUrl).toString(),
+  name: area.name,
+  description: area.lede,
+  areaServed: "Worldwide",
+  provider: {
+    "@id": new URL("/#person", siteUrl).toString(),
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: area.name,
+    itemListElement: area.services.map((service) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: service.title,
+        description: service.description,
+      },
+    })),
+  },
+};
+---
+
+<Layout
+  title={`${area.name} | ${siteConfig.name}`}
+  description={`${area.name}: ${area.lede}`}
+  structuredData={serviceSchema}
+>
+  <div class="page-shell area-page" style={`--area-accent:${area.accent}`}>
+    <header class="hero area-hero">
+      <div class="hero-copy" data-reveal>
+        <span class="eyebrow">{siteConfig.name} · {area.name}</span>
+        <h1>{area.headline} <span class="serif-italic">{area.headlineAccent}</span></h1>
+        <p class="hero-lede">{area.lede}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={contactHref}>Proponer un proyecto <span aria-hidden="true">→</span></a>
+          <a class="btn btn-secondary" href="/#areas">Ver todas las áreas</a>
+        </div>
+      </div>
+
+      <div class="area-emblem" data-reveal style="--d:.12s">
+        <div class="area-emblem-head">
+          <span>Área de trabajo</span>
+          <strong>CG · {area.slug.slice(0, 3).toUpperCase()}</strong>
+        </div>
+        <span class="area-emblem-icon"><Icon name={area.icon} /></span>
+        <p class="area-emblem-name">{area.nameLead}<br /><em>{area.nameTail}</em></p>
+        <ul class="area-emblem-tags">
+          {area.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Qué incluye</p>
+        <h2>Líneas de trabajo dentro de {area.name}</h2>
+      </div>
+      <div class="cards-grid services-grid">
+        {area.services.map((service, i) => (
+          <article class="service-card area-service-card" data-reveal style={`--d:${i * 0.08}s`}>
+            <div class="service-card-head">
+              <span class="service-number">0{i + 1}</span>
+              <span class="area-icon"><Icon name={area.icon} /></span>
+            </div>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section process-section">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2>Un proceso claro desde la primera conversación</h2>
+      </div>
+      <div class="process-grid">
+        {umbrellaSteps.map((step, i) => (
+          <article class="process-card" data-reveal style={`--d:${i * 0.08}s`}>
+            <span class="step-number">{step.number}</span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+            <span class="process-status">Fase {i + 1} de 3</span>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Otras áreas</p>
+        <h2>El mismo criterio aplicado a otros frentes</h2>
+      </div>
+      <div class="areas-grid areas-grid-compact">
+        {otherAreas.map((item, i) => (
+          <a class="area-card" href={item.path} style={`--area-accent:${item.accent}; --d:${i * 0.08}s`} data-reveal>
+            <div class="area-card-head">
+              <span class="area-icon"><Icon name={item.icon} /></span>
+            </div>
+            <h3>{item.nameLead}<br />{item.nameTail}</h3>
+            <p>{item.summary}</p>
+            <span class="area-link">Explorar <span aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section-contact">
+      <div class="contact-card contact-card-wide" data-reveal>
+        <span class="contact-reference">Solicitud · {area.slug.toUpperCase()}</span>
+        <div>
+          <span class="eyebrow">Siguiente paso</span>
+          <h2>Cuéntame tu idea y veamos cómo hacerla avanzar</h2>
+          <p>Comparte el contexto, los objetivos y en qué punto está el proyecto</p>
+        </div>
+        <div class="contact-card-actions">
+          <a class="btn btn-primary" href={contactHref}>Escribirme <span aria-hidden="true">→</span></a>
+          <a class="contact-email" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

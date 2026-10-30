@@ -1,0 +1,100 @@
+---
+import Icon from "../components/Icon.astro";
+import Layout from "../layouts/Layout.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
+import { siteConfig, siteImages } from "../data/site";
+import { areas } from "../data/areas";
+---
+
+<Layout
+  title={`Sobre mí | ${siteConfig.name}`}
+  description="Conoce a Cristian Gutiérrez y su enfoque de gestión estratégica de oportunidades y proyectos: análisis personalizado, conexiones y próximos pasos claros"
+  image={siteImages.about}
+  imageAlt="Cristian Gutiérrez preparando el análisis de un proyecto"
+  preloadImage={{
+    src: siteImages.about,
+    sizes: "(min-width: 1024px) 480px, calc(100vw - 32px)",
+  }}
+>
+  <div class="page-shell">
+    <section class="section section-split">
+      <div class="about-copy" data-reveal>
+        <span class="eyebrow">Sobre mí</span>
+        <h1>Decisiones y proyectos tomados con más <span class="serif-italic">claridad</span></h1>
+        <p>
+          Soy Cristian Gutiérrez. Mi trabajo combina análisis personalizado, visión práctica y comunicación clara
+          para ayudar a personas, artistas, marcas y empresas a convertir ideas y necesidades en planes concretos
+        </p>
+        <p>
+          Ese mismo criterio se aplica en cuatro frentes: la orientación migratoria y jurídica de Tu Multiverso
+          Legal, el entretenimiento y la cultura, los negocios y proyectos, y las experiencias turísticas
+        </p>
+      </div>
+      <div class="about-image portrait-frame" data-reveal style="--d:.12s">
+        <span class="portrait-back" aria-hidden="true"></span>
+        <ResponsiveImage
+          src={siteImages.about}
+          alt="Cristian Gutiérrez preparando el análisis de un proyecto"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          width="720"
+          height="540"
+          sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
+        />
+        <span class="portrait-stamp" aria-hidden="true">Enfoque<br />profesional</span>
+      </div>
+    </section>
+
+    <section class="section section-light">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Principios</p>
+        <h2>Lo que se mantiene igual en cada área</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card" data-reveal>
+          <span class="feature-icon"><Icon name="check" /></span>
+          <h3>Transparencia</h3>
+          <p>Cada opción se explica con sus requisitos, límites y riesgos relevantes</p>
+        </div>
+        <div class="feature-card" data-reveal style="--d:.08s">
+          <span class="feature-icon"><Icon name="network" /></span>
+          <h3>Conexiones con sentido</h3>
+          <p>Se suman personas y aliados solo cuando aportan valor real al objetivo</p>
+        </div>
+        <div class="feature-card" data-reveal style="--d:.16s">
+          <span class="feature-icon"><Icon name="briefcase" /></span>
+          <h3>Criterio responsable</h3>
+          <p>No se prometen resultados, se prepara una estrategia basada en la situación real</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header" data-reveal>
+        <p class="eyebrow">Áreas</p>
+        <h2>Dónde aplico este enfoque</h2>
+      </div>
+      <div class="areas-grid">
+        {areas.map((area, i) => (
+          <a class="area-card" href={area.path} style={`--area-accent:${area.accent}; --d:${i * 0.08}s`} data-reveal>
+            <div class="area-card-head">
+              <span class="area-icon"><Icon name={area.icon} /></span>
+            </div>
+            <h3>{area.nameLead}<br />{area.nameTail}</h3>
+            <p>{area.summary}</p>
+            <span class="area-link">Explorar <span aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="section conversion-band" data-reveal>
+      <div>
+        <p>Si tienes un caso, una idea o un proyecto todavía lleno de dudas, la primera conversación sirve para ordenarlo</p>
+        <strong>Primero claridad, después acción</strong>
+      </div>
+      <a class="btn btn-primary" href="/contacto/">Hablar con Cristian</a>
+    </section>
+  </div>
+</Layout>
