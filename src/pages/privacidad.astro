@@ -17,16 +17,16 @@ import { siteConfig, siteImages } from "../data/site";
 >
   <div class="page-shell">
     <section class="section section-split">
-      <div class="about-copy" data-reveal>
+      <div class="about-copy">
         <span class="eyebrow">Privacidad</span>
-        <h1>Protegemos tu información con cuidado y <span class="serif-italic">confidencialidad</span></h1>
+        <h1>Política de <span class="serif-italic">privacidad</span></h1>
         <p>
           Tratamos los datos personales con reserva y los usamos solo para responder consultas, preparar
           diagnósticos y acompañar los servicios de Tu Multiverso Legal, Entertainment &amp; Culture, Business &amp;
           Projects y Experiences &amp; Tourism
         </p>
       </div>
-      <div class="about-image" data-reveal style="--d:.12s">
+      <div class="about-image">
         <ResponsiveImage
           src={siteImages.privacy}
           alt="Documentos organizados para proteger la información de una consulta"
@@ -41,30 +41,34 @@ import { siteConfig, siteImages } from "../data/site";
     </section>
 
     <section class="section section-light">
-      <div class="section-header" data-reveal>
+      <div class="section-header">
         <p class="eyebrow">Compromiso</p>
         <h2>Recopilación, uso y conservación de datos</h2>
       </div>
       <div class="feature-grid">
-        <div class="feature-card" data-reveal>
+        <div class="feature-card">
           <span class="feature-icon"><Icon name="document" /></span>
           <h3>Datos personales</h3>
           <p>Recopilamos únicamente la información necesaria para gestionar consultas y servicios</p>
         </div>
-        <div class="feature-card" data-reveal style="--d:.08s">
+        <div class="feature-card">
           <span class="feature-icon"><Icon name="check" /></span>
           <h3>Uso responsable</h3>
           <p>Los datos se utilizan para seguimiento de solicitudes, comunicación y mejora de la atención</p>
         </div>
-        <div class="feature-card" data-reveal style="--d:.16s">
+        <div class="feature-card">
           <span class="feature-icon"><Icon name="briefcase" /></span>
           <h3>Seguridad</h3>
           <p>Mantenemos criterios de confidencialidad para preservar la información compartida</p>
         </div>
       </div>
+      {siteConfig.email && <p class="legal-note">
+        El formulario envía tu consulta a través de FormSubmit, que procesa los datos necesarios para entregarla
+        por correo electrónico, consulta su <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">política de privacidad</a>
+      </p>}
       <p class="legal-note">
         Puedes solicitar acceso, corrección o eliminación de tus datos escribiendo a
-        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        <a href={siteConfig.contactUrl}>{siteConfig.contactLabel}</a>
       </p>
     </section>
   </div>

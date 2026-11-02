@@ -47,15 +47,12 @@ const serviceTags = [
 >
   <div class="page-shell home-shell">
     <header class="hero hero-dossier" id="inicio">
-      <div class="hero-copy" data-reveal>
+      <div class="hero-copy">
         <span class="eyebrow">Tu Multiverso Legal · Movilidad internacional</span>
-        <h1>
-          Tu proceso migratorio necesita una
-          <span class="serif-italic">ruta clara</span>
-        </h1>
+        <h1>Asesoría <span class="serif-italic">migratoria internacional</span></h1>
         <p class="hero-lede">
-          Tu Multiverso Legal transforma requisitos, alternativas y riesgos en un plan que puedas entender antes
-          de invertir tiempo y dinero
+          Revisamos tus opciones de visa o residencia, los documentos necesarios y los pasos que corresponden
+          a tu país de origen, destino y situación familiar o profesional
         </p>
 
         <div class="hero-actions">
@@ -73,12 +70,11 @@ const serviceTags = [
         </div>
       </div>
 
-      <div class="dossier-stage" data-reveal style="--d:.12s">
+      <div class="dossier-stage">
         <span class="dossier-shadow" aria-hidden="true"></span>
         <article class="dossier-card">
           <div class="dossier-head">
             <span>Expediente de movilidad</span>
-            <strong>CG · 001</strong>
           </div>
           <div class="dossier-photo">
             <ResponsiveImage
@@ -117,13 +113,13 @@ const serviceTags = [
     </div>
 
     <section class="section services-section" id="servicios">
-      <div class="section-header" data-reveal>
+      <div class="section-header">
         <p class="eyebrow">Cómo puedo ayudarte</p>
         <h2>Una estrategia adaptada a tu objetivo migratorio</h2>
       </div>
       <div class="cards-grid services-grid">
         {services.map((service, i) => (
-          <article class={`service-card service-card-${i + 1}`} data-reveal style={`--d:${i * 0.08}s`}>
+          <article class={`service-card service-card-${i + 1}`}>
             <div class="service-card-head">
               <span class="service-number">0{i + 1}</span>
               <span class="service-icon"><Icon name={service.icon} /></span>
@@ -138,9 +134,9 @@ const serviceTags = [
 
     <section class="section decision-section">
       <div class="decision-layout">
-        <div class="decision-panel" data-reveal>
+        <div class="decision-panel">
           <p class="eyebrow">Decisiones críticas</p>
-          <h2>Resolvemos lo que realmente cambia tu estrategia</h2>
+          <h2>Qué revisamos antes de iniciar un trámite</h2>
           <p>
             Cada respuesta se trabaja sobre tu perfil, tu origen y tu destino, no sobre ejemplos genéricos
           </p>
@@ -153,7 +149,7 @@ const serviceTags = [
         </div>
         <div class="decision-list">
           {decisionPoints.map((point, i) => (
-            <article class="decision-item" data-reveal style={`--d:${i * 0.07}s`}>
+            <article class="decision-item">
               <span class="decision-index">Pregunta 0{i + 1}</span>
               <div class="decision-check"><Icon name="check" /></div>
               <p>{point}</p>
@@ -164,16 +160,15 @@ const serviceTags = [
     </section>
 
     <section class="section deliverables-section">
-      <div class="section-header" data-reveal>
+      <div class="section-header">
         <p class="eyebrow">Qué recibes</p>
-        <h2>Sales con una ruta accionable, no con dudas nuevas</h2>
+        <h2>Requisitos, documentos y próximos pasos</h2>
       </div>
       <div class="document-grid">
         {consultationDeliverables.map((item, i) => (
-          <article class={`document-card document-card-${i + 1}`} data-reveal style={`--d:${i * 0.08}s`}>
+          <article class={`document-card document-card-${i + 1}`}>
             <div class="document-head">
               <strong>Entregable 0{i + 1}</strong>
-              <span>CG / DOSSIER</span>
             </div>
             <span class="document-icon"><Icon name={item.icon} /></span>
             <h3>{item.title}</h3>
@@ -184,7 +179,7 @@ const serviceTags = [
       </div>
     </section>
 
-    <figure class="image-band" data-reveal>
+    <figure class="image-band">
       <ResponsiveImage
         src={siteImages.services}
         alt="Asesor migratorio explicando una estrategia migratoria a una pareja"
@@ -202,11 +197,11 @@ const serviceTags = [
     </figure>
 
     <section class="section section-split advisor-section">
-      <div class="about-image portrait-frame" data-reveal>
+      <div class="about-image portrait-frame">
         <span class="portrait-back" aria-hidden="true"></span>
         <ResponsiveImage
           src={siteImages.advisor}
-          alt="Retrato profesional del equipo de Tu Multiverso Legal"
+          alt="Retrato de Cristian Gutiérrez"
           loading="lazy"
           decoding="async"
           width="1024"
@@ -215,9 +210,9 @@ const serviceTags = [
         />
         <span class="portrait-stamp">Enfoque<br />profesional</span>
       </div>
-      <div class="about-copy" data-reveal style="--d:.1s">
+      <div class="about-copy">
         <p class="eyebrow">Tu Multiverso Legal</p>
-        <h2>Orientación directa, sin promesas vacías ni pasos innecesarios</h2>
+        <h2>Cada consulta parte de tu situación</h2>
         <p>
           Cada caso parte de tu situación real, el país de origen, el destino y el momento del proceso para
           entender qué conviene revisar primero
@@ -239,13 +234,13 @@ const serviceTags = [
     </section>
 
     <section class="section process-section">
-      <div class="section-header" data-reveal>
+      <div class="section-header">
         <p class="eyebrow">Método de trabajo</p>
         <h2>Un proceso diseñado para que sepas qué hacer después de cada conversación</h2>
       </div>
       <div class="process-grid">
         {processSteps.map((step, i) => (
-          <article class="process-card" data-reveal style={`--d:${i * 0.08}s`}>
+          <article class="process-card">
             <span class="step-number">{step.number}</span>
             <h3>{step.title}</h3>
             <p>{step.description}</p>
@@ -256,13 +251,13 @@ const serviceTags = [
     </section>
 
     <section class="section faq-section" id="faq">
-      <div class="section-header section-header-center" data-reveal>
+      <div class="section-header section-header-center">
         <p class="eyebrow">Preguntas frecuentes</p>
         <h2>Respuestas rápidas antes de agendar</h2>
       </div>
       <div class="faq-list">
         {faqItems.map((item, i) => (
-          <details class="faq-item" data-reveal style={`--d:${i * 0.05}s`}>
+          <details class="faq-item">
             <summary><span>0{i + 1}</span>{item.question}</summary>
             <p>{item.answer}</p>
           </details>
@@ -271,8 +266,7 @@ const serviceTags = [
     </section>
 
     <section class="section section-contact" id="contacto">
-      <div class="contact-card contact-card-wide" data-reveal>
-        <span class="contact-reference">Solicitud · CG-01</span>
+      <div class="contact-card contact-card-wide">
         <div>
           <span class="eyebrow">Siguiente paso</span>
           <h2>Cuéntame qué quieres lograr y revisemos por dónde empezar</h2>
@@ -280,7 +274,7 @@ const serviceTags = [
         </div>
         <div class="contact-card-actions">
           <a class="btn btn-primary" href="/contacto/?area=legal">Evaluar mi caso <span aria-hidden="true">→</span></a>
-          <a class="contact-email" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          <a class="contact-email" href={siteConfig.contactUrl}>{siteConfig.contactLabel}</a>
         </div>
       </div>
     </section>

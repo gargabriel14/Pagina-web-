@@ -25,6 +25,8 @@ export interface Area {
   slug: AreaSlug;
   path: string;
   name: string;
+  label: string;
+  seoTitle: string;
   /** Name split in two lines for cards and emblems */
   nameLead: string;
   nameTail: string;
@@ -41,6 +43,8 @@ export const areas: Area[] = [
     slug: "legal",
     path: "/legal/",
     name: "Tu Multiverso Legal",
+    label: "Derecho y migración",
+    seoTitle: "Asesoría legal y migratoria internacional",
     nameLead: "Tu Multiverso",
     nameTail: "Legal",
     icon: "scale",
@@ -52,6 +56,8 @@ export const areas: Area[] = [
     slug: "entertainment",
     path: "/entertainment/",
     name: "Entertainment & Culture",
+    label: "Cultura y entretenimiento",
+    seoTitle: "Gestión de proyectos culturales, artistas y eventos",
     nameLead: "Entertainment",
     nameTail: "& Culture",
     icon: "music",
@@ -59,48 +65,55 @@ export const areas: Area[] = [
     summary: "Artistas, música, marcas, eventos y proyectos creativos",
     tags: ["Artistas", "Música", "Marcas", "Eventos", "Proyectos creativos"],
     page: {
-      headline: "Ideas creativas convertidas en",
-      headlineAccent: "proyectos reales",
-      lede: "Acompañamiento estratégico para artistas, marcas y proyectos culturales que necesitan orden, conexiones y una hoja de ruta clara",
-      introTitle: "El talento necesita estructura para llegar más lejos",
+      headline: "Gestión de proyectos",
+      headlineAccent: "culturales y artísticos",
+      lede: "Organización de proyectos para artistas, marcas y productores: colaboraciones, contactos, planificación de eventos y seguimiento",
+      introTitle: "Un lanzamiento, una colaboración o un evento",
       intro:
-        "La cultura y el entretenimiento se mueven rápido y dependen de las personas correctas. Esta área ayuda a transformar talento e ideas en proyectos ordenados, con objetivos claros, aliados adecuados y una ruta para avanzar sin perder la esencia creativa",
+        "Revisamos qué quieres producir, a quién va dirigido y con qué recursos cuentas, para definir las tareas, las personas que hacen falta y un calendario de trabajo",
       audiences: [
         {
           icon: "music",
           title: "Artistas y músicos",
-          description: "Perfiles que quieren ordenar su proyecto, abrir oportunidades y tomar decisiones con más claridad",
+          description:
+            "Perfiles que quieren ordenar su proyecto, abrir oportunidades y tomar decisiones con más claridad",
         },
         {
           icon: "briefcase",
           title: "Marcas",
-          description: "Empresas que buscan colaborar con talento, cultura o eventos de forma coherente con su identidad",
+          description:
+            "Empresas que buscan colaborar con talento, cultura o eventos de forma coherente con su identidad",
         },
         {
           icon: "calendar",
           title: "Organizadores y productores",
-          description: "Equipos que preparan eventos o proyectos culturales y necesitan coordinar ideas, aliados y tiempos",
+          description:
+            "Equipos que preparan eventos o proyectos culturales y necesitan coordinar ideas, aliados y tiempos",
         },
       ],
       services: [
         {
           title: "Artistas y música",
-          description: "Orientación para ordenar oportunidades, contactos y próximos pasos de proyectos artísticos y musicales",
+          description:
+            "Orientación para ordenar oportunidades, contactos y próximos pasos de proyectos artísticos y musicales",
           tag: "Talento · Carrera · Oportunidades",
         },
         {
           title: "Marcas y colaboraciones",
-          description: "Conexión entre marcas, talentos y proyectos culturales con objetivos claros para cada parte",
+          description:
+            "Conexión entre marcas, talentos y proyectos culturales con objetivos claros para cada parte",
           tag: "Marcas · Talento · Alianzas",
         },
         {
           title: "Eventos",
-          description: "Coordinación de ideas, aliados y planificación inicial para eventos y experiencias culturales",
+          description:
+            "Coordinación de ideas, aliados y planificación inicial para eventos y experiencias culturales",
           tag: "Concepto · Aliados · Planificación",
         },
         {
           title: "Proyectos creativos",
-          description: "Estructura y hoja de ruta para llevar una idea creativa de concepto a proyecto viable",
+          description:
+            "Estructura y hoja de ruta para llevar una idea creativa de concepto a proyecto viable",
           tag: "Idea · Estructura · Lanzamiento",
         },
       ],
@@ -108,17 +121,20 @@ export const areas: Area[] = [
         {
           icon: "document",
           title: "Lectura del proyecto",
-          description: "Una visión clara de dónde está el proyecto, qué lo hace valioso y qué necesita para avanzar",
+          description:
+            "Una visión clara de dónde está el proyecto, qué lo hace valioso y qué necesita para avanzar",
         },
         {
           icon: "network",
           title: "Mapa de aliados",
-          description: "Qué perfiles, marcas o colaboradores pueden sumar y en qué orden conviene acercarse",
+          description:
+            "Qué perfiles, marcas o colaboradores pueden sumar y en qué orden conviene acercarse",
         },
         {
           icon: "calendar",
           title: "Hoja de ruta",
-          description: "Próximos pasos concretos, prioridades y tiempos para pasar de la idea a la acción",
+          description:
+            "Próximos pasos concretos, prioridades y tiempos para pasar de la idea a la acción",
         },
       ],
       faq: [
@@ -144,6 +160,8 @@ export const areas: Area[] = [
     slug: "business",
     path: "/business/",
     name: "Business & Projects",
+    label: "Negocios y alianzas",
+    seoTitle: "Alianzas comerciales y coordinación de proyectos",
     nameLead: "Business",
     nameTail: "& Projects",
     icon: "network",
@@ -151,48 +169,55 @@ export const areas: Area[] = [
     summary: "Conexiones, alianzas, coordinación y desarrollo de oportunidades",
     tags: ["Conexiones", "Alianzas", "Coordinación", "Oportunidades"],
     page: {
-      headline: "Las oportunidades crecen con las",
-      headlineAccent: "conexiones correctas",
-      lede: "Gestión estratégica para identificar, conectar y coordinar a las personas y piezas que un proyecto necesita para avanzar",
-      introTitle: "Una buena idea avanza cuando las piezas están conectadas",
+      headline: "Alianzas comerciales y",
+      headlineAccent: "coordinación de proyectos",
+      lede: "Búsqueda de colaboradores, preparación de alianzas y seguimiento de tareas para emprendedores y empresas",
+      introTitle: "Cuando tu proyecto necesita sumar a otras personas",
       intro:
-        "Muchos proyectos se detienen por falta de contactos, de coordinación o de una dirección clara. Esta área se centra en identificar oportunidades, acercar a las partes adecuadas y mantener un seguimiento ordenado para que las ideas se conviertan en resultados concretos",
+        "Definimos qué necesitas de un socio o colaborador, qué puedes ofrecer y cómo plantear la colaboración, con responsabilidades y siguientes pasos por escrito",
       audiences: [
         {
           icon: "spark",
           title: "Emprendedores",
-          description: "Personas con una idea o proyecto en marcha que necesitan dirección, contactos y orden para crecer",
+          description:
+            "Personas con una idea o proyecto en marcha que necesitan dirección, contactos y orden para crecer",
         },
         {
           icon: "briefcase",
           title: "Empresas",
-          description: "Organizaciones que buscan nuevas alianzas, mercados o proyectos y necesitan coordinar a varias partes",
+          description:
+            "Organizaciones que buscan nuevas alianzas, mercados o proyectos y necesitan coordinar a varias partes",
         },
         {
           icon: "handshake",
           title: "Socios y colaboradores",
-          description: "Perfiles que quieren sumarse a proyectos con roles claros y expectativas bien definidas",
+          description:
+            "Perfiles que quieren sumarse a proyectos con roles claros y expectativas bien definidas",
         },
       ],
       services: [
         {
           title: "Conexiones estratégicas",
-          description: "Puentes entre personas, empresas e ideas que pueden sumar valor a un mismo objetivo",
+          description:
+            "Puentes entre personas, empresas e ideas que pueden sumar valor a un mismo objetivo",
           tag: "Personas · Empresas · Ideas",
         },
         {
           title: "Alianzas",
-          description: "Exploración y estructura de colaboraciones con roles, expectativas y próximos pasos definidos",
+          description:
+            "Exploración y estructura de colaboraciones con roles, expectativas y próximos pasos definidos",
           tag: "Roles · Acuerdos · Confianza",
         },
         {
           title: "Coordinación de proyectos",
-          description: "Seguimiento ordenado de tareas, actores y tiempos para que el proyecto no pierda impulso",
+          description:
+            "Seguimiento ordenado de tareas, actores y tiempos para que el proyecto no pierda impulso",
           tag: "Tareas · Actores · Tiempos",
         },
         {
           title: "Desarrollo de oportunidades",
-          description: "Evaluación de ideas de negocio y oportunidades para decidir con criterio por dónde empezar",
+          description:
+            "Evaluación de ideas de negocio y oportunidades para decidir con criterio por dónde empezar",
           tag: "Evaluación · Prioridades · Ruta",
         },
       ],
@@ -200,17 +225,20 @@ export const areas: Area[] = [
         {
           icon: "document",
           title: "Diagnóstico de la oportunidad",
-          description: "Qué tiene potencial, qué riesgos conviene revisar y qué hace falta para avanzar",
+          description:
+            "Qué tiene potencial, qué riesgos conviene revisar y qué hace falta para avanzar",
         },
         {
           icon: "network",
           title: "Mapa de actores",
-          description: "Quiénes deberían estar en la conversación, qué aporta cada uno y cómo acercarse",
+          description:
+            "Quiénes deberían estar en la conversación, qué aporta cada uno y cómo acercarse",
         },
         {
           icon: "calendar",
           title: "Plan de coordinación",
-          description: "Responsables, tiempos y próximos pasos para que el proyecto mantenga el ritmo",
+          description:
+            "Responsables, tiempos y próximos pasos para que el proyecto mantenga el ritmo",
         },
       ],
       faq: [
@@ -236,6 +264,8 @@ export const areas: Area[] = [
     slug: "experiences",
     path: "/experiences/",
     name: "Experiences & Tourism",
+    label: "Turismo y experiencias",
+    seoTitle: "Coordinación de experiencias turísticas y operadores",
     nameLead: "Experiences",
     nameTail: "& Tourism",
     icon: "globe",
@@ -243,48 +273,55 @@ export const areas: Area[] = [
     summary: "Conexión de destinos, operadores, experiencias y colaboradores",
     tags: ["Destinos", "Operadores", "Experiencias", "Colaboradores"],
     page: {
-      headline: "Destinos y experiencias",
-      headlineAccent: "bien conectados",
-      lede: "Conexión entre destinos, operadores y colaboradores para diseñar experiencias con propósito y coordinación clara",
-      introTitle: "Las mejores experiencias empiezan con buena coordinación",
+      headline: "Coordinación de viajes y",
+      headlineAccent: "experiencias en grupo",
+      lede: "Planificación de propuestas culturales, de grupo y de empresa, en coordinación con destinos y operadores turísticos",
+      introTitle: "Del tipo de experiencia a las personas que la hacen posible",
       intro:
-        "Una experiencia memorable depende de que destinos, operadores y colaboradores trabajen en sintonía. Esta área conecta esas piezas para diseñar propuestas con propósito, bien organizadas y pensadas para las personas que las viven",
+        "Partimos del destino, las fechas y el perfil del grupo para preparar una propuesta y coordinar a los prestadores, las reservas y los servicios se contratan con los operadores correspondientes",
       audiences: [
         {
           icon: "family",
           title: "Viajeros y grupos",
-          description: "Personas y grupos que buscan experiencias pensadas a su medida, con contactos de confianza",
+          description:
+            "Personas y grupos que buscan experiencias pensadas a su medida, con contactos de confianza",
         },
         {
           icon: "map",
           title: "Operadores y destinos",
-          description: "Prestadores y destinos que quieren nuevos aliados, propuestas o canales de colaboración",
+          description:
+            "Prestadores y destinos que quieren nuevos aliados, propuestas o canales de colaboración",
         },
         {
           icon: "briefcase",
           title: "Marcas y empresas",
-          description: "Organizaciones que necesitan experiencias para equipos, clientes o activaciones de marca",
+          description:
+            "Organizaciones que necesitan experiencias para equipos, clientes o activaciones de marca",
         },
       ],
       services: [
         {
           title: "Destinos",
-          description: "Vinculación con destinos y propuestas locales que encajan con cada tipo de proyecto o visitante",
+          description:
+            "Vinculación con destinos y propuestas locales que encajan con cada tipo de proyecto o visitante",
           tag: "Lugares · Cultura · Propuestas",
         },
         {
           title: "Operadores",
-          description: "Conexión con operadores y prestadores para coordinar servicios de forma ordenada",
+          description:
+            "Conexión con operadores y prestadores para coordinar servicios de forma ordenada",
           tag: "Prestadores · Servicios · Logística",
         },
         {
           title: "Experiencias",
-          description: "Diseño y articulación de experiencias pensadas para personas, grupos y marcas",
+          description:
+            "Diseño y articulación de experiencias pensadas para personas, grupos y marcas",
           tag: "Grupos · Marcas · A medida",
         },
         {
           title: "Red de colaboradores",
-          description: "Coordinación de aliados y colaboradores para que cada experiencia funcione de principio a fin",
+          description:
+            "Coordinación de aliados y colaboradores para que cada experiencia funcione de principio a fin",
           tag: "Aliados · Coordinación · Seguimiento",
         },
       ],
@@ -292,17 +329,20 @@ export const areas: Area[] = [
         {
           icon: "document",
           title: "Propuesta de experiencia",
-          description: "La idea, el público y los objetivos de la experiencia, aterrizados en una propuesta clara",
+          description:
+            "La idea, el público y los objetivos de la experiencia, aterrizados en una propuesta clara",
         },
         {
           icon: "network",
           title: "Mapa de colaboradores",
-          description: "Destinos, operadores y aliados que encajan con la propuesta y el rol de cada uno",
+          description:
+            "Destinos, operadores y aliados que encajan con la propuesta y el rol de cada uno",
         },
         {
           icon: "calendar",
           title: "Calendario de coordinación",
-          description: "Etapas, responsables y tiempos para que todo esté listo cuando tiene que estarlo",
+          description:
+            "Etapas, responsables y tiempos para que todo esté listo cuando tiene que estarlo",
         },
       ],
       faq: [
@@ -326,41 +366,23 @@ export const areas: Area[] = [
   },
 ];
 
-export const umbrellaPillars = ["Personas", "Ideas", "Negocios", "Derecho", "Cultura"];
-
 export const umbrellaValues: IconItem[] = [
   {
     icon: "globe",
-    title: "Visión integral",
+    title: "Revisamos tu situación",
     description:
-      "Un mismo proyecto puede tocar temas legales, culturales, de negocio y de viaje. Verlos juntos evita decisiones aisladas",
+      "Me cuentas qué necesitas, qué has hecho hasta ahora y qué fechas o condiciones debemos tener en cuenta",
   },
   {
     icon: "check",
-    title: "Un solo interlocutor",
-    description: "Una persona que entiende el contexto completo y coordina los próximos pasos contigo",
+    title: "Acordamos el alcance",
+    description:
+      "Definimos las tareas, los entregables y las condiciones del servicio antes de comenzar",
   },
   {
     icon: "network",
-    title: "Conexiones con criterio",
-    description: "Cada contacto o alianza se propone porque suma al objetivo, no por cantidad",
-  },
-];
-
-export const umbrellaSteps = [
-  {
-    number: "01",
-    title: "Escuchar",
-    description: "Entender a la persona, la idea o el negocio, su objetivo real y el momento en que se encuentra",
-  },
-  {
-    number: "02",
-    title: "Conectar",
-    description: "Ordenar opciones, identificar aliados y definir la ruta más viable para avanzar",
-  },
-  {
-    number: "03",
-    title: "Acompañar",
-    description: "Seguimiento cercano de los próximos pasos, ajustes y coordinación entre las partes",
+    title: "Coordinamos el trabajo",
+    description:
+      "Cuando hacen falta otros perfiles, revisamos quién debe participar y cómo se reparte el trabajo",
   },
 ];

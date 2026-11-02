@@ -59,6 +59,14 @@ const pageTransition = slide({ duration: "280ms" });
 const websiteId = new URL("#website", homeUrl).toString();
 const personId = new URL("#person", homeUrl).toString();
 const webpageId = new URL("#webpage", pageUrl).toString();
+const currentArea = areas.find((area) => isInArea(area.path));
+const breadcrumbItems = [
+  { name: "Inicio", url: homeUrl },
+  ...(currentArea && currentPath !== currentArea.path.replace(/\/$/, "")
+    ? [{ name: currentArea.label, url: new URL(currentArea.path, siteUrl).toString() }]
+    : []),
+  { name: title.split(" | ")[0], url: pageUrl },
+];
 const extraStructuredData = structuredData
   ? Array.isArray(structuredData)
     ? structuredData
@@ -83,8 +91,7 @@ const structuredDataGraph = {
       description: siteConfig.description,
       jobTitle: siteConfig.tagline,
       image: businessImageUrl,
-      email: siteConfig.email,
-      telephone: siteConfig.phoneHref,
+      email: siteConfig.email || undefined,
       sameAs: [siteConfig.instagram],
       knowsAbout: areas.map((area) => area.name),
     },
@@ -96,10 +103,21 @@ const structuredDataGraph = {
       description,
       inLanguage: siteConfig.language,
       primaryImageOfPage: imageUrl,
+      ...(currentPath !== "/" ? { breadcrumb: { "@id": `${pageUrl}#breadcrumbs` } } : {}),
       isPartOf: {
         "@id": websiteId,
       },
     },
+    ...(currentPath !== "/" ? [{
+      "@type": "BreadcrumbList",
+      "@id": `${pageUrl}#breadcrumbs`,
+      itemListElement: breadcrumbItems.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        item: item.url,
+      })),
+    }] : []),
     ...extraStructuredData,
   ],
 };
@@ -161,7 +179,7 @@ const structuredDataGraph = {
           {siteConfig.tagline}
         </span>
         <span class="topbar-contact">
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          <a href={siteConfig.contactUrl}>{siteConfig.contactLabel}</a>
         </span>
       </div>
     </div>
@@ -175,10 +193,11 @@ const structuredDataGraph = {
 
           <ul class="nav-menu nav-menu-desktop">
             <li><a href="/" class="nav-link" aria-current={isCurrent("/") ? "page" : undefined}>Inicio</a></li>
-            <li class="nav-dropdown">
-              <a href="/#areas" class={`nav-link nav-dropdown-trigger${inAnyArea ? " is-active" : ""}`}>
+            <li>
+            <details class="nav-dropdown">
+              <summary class={`nav-link nav-dropdown-trigger${inAnyArea ? " is-active" : ""}`}>
                 Áreas <span aria-hidden="true">▾</span>
-              </a>
+              </summary>
               <ul class="nav-submenu">
                 {
                   areas.map((area) => (
@@ -196,6 +215,7 @@ const structuredDataGraph = {
                   ))
                 }
               </ul>
+            </details>
             </li>
             <li><a href="/sobre-mi/" class="nav-link" aria-current={isCurrent("/sobre-mi/") ? "page" : undefined}>Sobre mí</a></li>
             <li>
@@ -254,7 +274,7 @@ const structuredDataGraph = {
                 <img class="brand-mark" src={siteConfig.logo} alt="" width="40" height="40" loading="lazy" />
                 <span class="footer-title">{siteConfig.name}</span>
               </a>
-              <p>Personas, ideas, negocios, derecho y cultura: estrategia y conexiones para avanzar con claridad</p>
+              <p>Asesoría legal, proyectos culturales, alianzas y experiencias, con atención online</p>
               <a class="footer-social" href={siteConfig.instagram} target="_blank" rel="noopener noreferrer">
                 @tumultiversolegal <span aria-hidden="true">↗</span>
               </a>
@@ -270,8 +290,7 @@ const structuredDataGraph = {
             <div class="footer-section">
               <h2 class="footer-subtitle">Contacto</h2>
               <ul class="footer-contact">
-                <li><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></li>
-                <li><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></li>
+                {siteConfig.email && <li><a href={siteConfig.contactUrl}>{siteConfig.email}</a></li>}
                 <li>{siteConfig.locationLabel}</li>
                 <li><a href="/sobre-mi/">Sobre mí</a></li>
               </ul>

@@ -6,6 +6,7 @@ export default defineConfig({
   redirects: {
     '/servicios/': '/legal/servicios/',
     '/enfoque/': '/sobre-mi/',
+    '/sobre-nosotros/': '/sobre-mi/',
   },
   build: {
     inlineStylesheets: 'always',

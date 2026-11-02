@@ -2,8 +2,8 @@
 import Icon from "../components/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
-import { advisorStatement, siteConfig, siteImages } from "../data/site";
-import { areas, umbrellaPillars, umbrellaSteps, umbrellaValues } from "../data/areas";
+import { siteConfig, siteImages } from "../data/site";
+import { areas, umbrellaValues } from "../data/areas";
 ---
 
 <Layout
@@ -14,14 +14,14 @@ import { areas, umbrellaPillars, umbrellaSteps, umbrellaValues } from "../data/a
 >
   <div class="page-shell home-shell">
     <header class="hero hub-hero" id="inicio">
-      <div class="hero-copy" data-reveal>
+      <div class="hero-copy">
         <span class="eyebrow">{siteConfig.name}</span>
         <h1>
-          Gestión estratégica de <span class="serif-italic">oportunidades</span> y proyectos
+          Asesoría legal y <span class="serif-italic">gestión de proyectos</span>
         </h1>
         <p class="hero-lede">
-          Un punto de encuentro entre personas, ideas, negocios, derecho y cultura. Cada área parte del mismo
-          criterio: entender bien el objetivo, conectar a las personas correctas y avanzar con claridad
+          Soy Cristian Gutiérrez y acompaño consultas migratorias, proyectos culturales, alianzas de negocio
+          y experiencias turísticas, desde la primera conversación hasta la coordinación de los próximos pasos
         </p>
 
         <div class="hero-actions">
@@ -29,12 +29,12 @@ import { areas, umbrellaPillars, umbrellaSteps, umbrellaValues } from "../data/a
           <a class="btn btn-secondary" href="/contacto/">Hablar con Cristian</a>
         </div>
 
-        <ul class="hub-pillars" aria-label="Ejes de trabajo">
-          {umbrellaPillars.map((pillar) => <li>{pillar}</li>)}
-        </ul>
+        <nav class="hub-shortcuts" aria-label="Elige el servicio que necesitas">
+          {areas.map((area) => <a href={area.path}>{area.label}<span aria-hidden="true">↗</span></a>)}
+        </nav>
       </div>
 
-      <div class="about-image portrait-frame" data-reveal style="--d:.12s">
+      <div class="about-image portrait-frame">
         <span class="portrait-back" aria-hidden="true"></span>
         <ResponsiveImage
           src={siteImages.advisor}
@@ -46,43 +46,40 @@ import { areas, umbrellaPillars, umbrellaSteps, umbrellaValues } from "../data/a
           height="1536"
           sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
-        <span class="portrait-stamp" aria-hidden="true">Cuatro<br />áreas</span>
       </div>
     </header>
 
     <section class="section areas-section" id="areas">
-      <div class="section-header" data-reveal>
+      <div class="section-header">
         <p class="eyebrow">Áreas de trabajo</p>
-        <h2>Cuatro áreas, un mismo criterio para hacer que las cosas avancen</h2>
+        <h2>¿Qué necesitas resolver?</h2>
       </div>
       <div class="areas-grid">
-        {areas.map((area, i) => (
-          <a class="area-card" href={area.path} style={`--area-accent:${area.accent}; --d:${i * 0.08}s`} data-reveal>
+        {areas.map((area) => (
+          <a class="area-card" href={area.path} style={`--area-accent:${area.accent}`}>
             <div class="area-card-head">
               <span class="area-icon"><Icon name={area.icon} /></span>
-              <span class="service-number">0{i + 1}</span>
             </div>
             <h3>{area.nameLead}<br />{area.nameTail}</h3>
             <p>{area.summary}</p>
-            <span class="area-tags">{area.tags.join(" · ")}</span>
-            <span class="area-link">Explorar <span aria-hidden="true">→</span></span>
+            <span class="area-link">Ver {area.label.toLowerCase()} <span aria-hidden="true">→</span></span>
           </a>
         ))}
       </div>
     </section>
 
     <section class="section section-light">
-      <div class="section-header" data-reveal>
-        <p class="eyebrow">Por qué un mismo punto de contacto</p>
-        <h2>Personas, ideas y negocios rara vez encajan en una sola casilla</h2>
+      <div class="section-header">
+        <p class="eyebrow">Cómo puedo ayudarte</p>
+        <h2>Hablamos, definimos el trabajo y acordamos los siguientes pasos</h2>
         <p>
-          Un artista puede necesitar resolver su situación migratoria, una empresa puede buscar alianzas y
-          experiencias para su equipo. Tener una mirada que conecte esos frentes ahorra tiempo y decisiones aisladas
+          Antes de empezar, revisamos qué necesitas y si puedo ayudarte, qué incluye el servicio y qué parte
+          requiere la intervención de otros profesionales
         </p>
       </div>
       <div class="feature-grid">
-        {umbrellaValues.map((item, i) => (
-          <article class="feature-card" data-reveal style={`--d:${i * 0.08}s`}>
+        {umbrellaValues.map((item) => (
+          <article class="feature-card">
             <span class="feature-icon"><Icon name={item.icon} /></span>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
@@ -91,51 +88,16 @@ import { areas, umbrellaPillars, umbrellaSteps, umbrellaValues } from "../data/a
       </div>
     </section>
 
-    <figure class="image-band" data-reveal>
-      <ResponsiveImage
-        src={siteImages.services}
-        alt="Cristian Gutiérrez explicando una estrategia en una reunión de trabajo"
-        loading="lazy"
-        decoding="async"
-        width="1536"
-        height="960"
-        sizes="(min-width: 1240px) 1180px, calc(100vw - 32px)"
-      />
-      <blockquote>
-        <span>Principio de trabajo</span>
-        <p>“{advisorStatement.quote}”</p>
-        <figcaption>{siteConfig.name} · {siteConfig.tagline}</figcaption>
-      </blockquote>
-    </figure>
-
-    <section class="section process-section">
-      <div class="section-header" data-reveal>
-        <p class="eyebrow">Cómo trabajo</p>
-        <h2>Sea un trámite, un artista o una alianza, el método es el mismo</h2>
-      </div>
-      <div class="process-grid">
-        {umbrellaSteps.map((step, i) => (
-          <article class="process-card" data-reveal style={`--d:${i * 0.08}s`}>
-            <span class="step-number">{step.number}</span>
-            <h3>{step.title}</h3>
-            <p>{step.description}</p>
-            <span class="process-status">Fase {i + 1} de 3</span>
-          </article>
-        ))}
-      </div>
-    </section>
-
     <section class="section section-contact" id="contacto">
-      <div class="contact-card contact-card-wide" data-reveal>
-        <span class="contact-reference">Solicitud · CG-01</span>
+      <div class="contact-card contact-card-wide">
         <div>
           <span class="eyebrow">Siguiente paso</span>
-          <h2>Cuéntame qué tienes en mente y veamos por dónde empezar</h2>
-          <p>Un caso legal, un proyecto creativo, una alianza o una experiencia: comparte el contexto y lo revisamos</p>
+          <h2>Cuéntame qué necesitas</h2>
+          <p>Elige un área y explícame tu situación, aunque todavía no sepas por dónde empezar</p>
         </div>
         <div class="contact-card-actions">
           <a class="btn btn-primary" href="/contacto/">Escribirme <span aria-hidden="true">→</span></a>
-          <a class="contact-email" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          <a class="contact-email" href={siteConfig.contactUrl}>{siteConfig.contactLabel}</a>
         </div>
       </div>
     </section>

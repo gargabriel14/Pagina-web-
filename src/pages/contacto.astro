@@ -21,28 +21,26 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
 >
   <div class="page-shell">
     <section class="section section-split">
-      <div class="about-copy" data-reveal>
+      <div class="about-copy">
         <span class="eyebrow">Contacto</span>
-        <h1>Comparte tu caso o proyecto y recibe una primera lectura <span class="serif-italic">estratégica</span></h1>
+        <h1>Hablemos de tu <span class="serif-italic">caso o proyecto</span></h1>
         <p>
-          Elige el área que mejor encaja, cuéntame tu objetivo y en qué punto estás, y preparo una primera respuesta
+          Cuéntame qué necesitas, en qué país estás y si tienes alguna fecha importante
         </p>
 
         <h2 class="sr-only">Datos de contacto</h2>
-        <div class="feature-grid feature-grid-2">
-          <div class="feature-card">
-            <span class="feature-icon"><Icon name="document" /></span>
-            <h3>Correo</h3>
-            <p><a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a></p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon"><Icon name="calendar" /></span>
-            <h3>Teléfono</h3>
-            <p><a href={`tel:${siteConfig.phoneHref}`}>{siteConfig.phone}</a></p>
-          </div>
-        </div>
+        <address class="contact-details">
+          {siteConfig.email && <a href={siteConfig.contactUrl}>
+            <Icon name="mail" />
+            <span><small>Correo</small>{siteConfig.email}</span>
+          </a>}
+          <a href={siteConfig.instagram} target="_blank" rel="noopener noreferrer">
+            <Icon name="instagram" />
+            <span><small>Instagram</small>@tumultiversolegal</span>
+          </a>
+        </address>
       </div>
-      <div class="about-image portrait-frame" data-reveal style="--d:.12s">
+      <div class="about-image portrait-frame">
         <span class="portrait-back" aria-hidden="true"></span>
         <ResponsiveImage
           src={siteImages.contact}
@@ -50,33 +48,33 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
           loading="eager"
           fetchpriority="high"
           decoding="async"
-          width="720"
-          height="540"
+          width="1024"
+          height="1536"
           sizes="(min-width: 1024px) 480px, calc(100vw - 32px)"
         />
         <span class="portrait-stamp" aria-hidden="true">Consulta<br />internacional</span>
       </div>
     </section>
 
-    <section class="section section-dark">
-      <div class="section-header" data-reveal>
+    {siteConfig.email ? <section class="section section-dark">
+      <div class="section-header">
         <p class="eyebrow">Formulario</p>
-        <h2>Mientras más claro sea el contexto, mejor será la primera respuesta</h2>
+        <h2>¿En qué puedo ayudarte?</h2>
       </div>
-      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form" data-reveal>
+      <form action={`https://formsubmit.co/${siteConfig.email}`} method="POST" accept-charset="UTF-8" class="contact-form">
         <input type="hidden" name="_subject" value="Nueva consulta desde la web de Cristian Gutiérrez" />
-        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <input type="hidden" name="_next" value={thankYouUrl} />
 
         <div class="form-grid">
           <label>
             <span>Nombre completo</span>
-            <input type="text" name="name" autocomplete="name" required placeholder="Tu nombre completo" />
+            <input type="text" name="name" autocomplete="name" required maxlength="120" placeholder="Tu nombre completo" />
           </label>
 
           <label>
             <span>Correo electrónico</span>
-            <input type="email" name="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com" />
+            <input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="tucorreo@ejemplo.com" />
           </label>
 
           <label>
@@ -96,7 +94,7 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
 
         <label>
           <span>Mensaje</span>
-          <textarea name="message" rows="6" required placeholder="Explica tu objetivo, en qué punto estás y cualquier fecha, documento o duda importante"></textarea>
+          <textarea name="message" rows="6" required minlength="20" maxlength="5000" placeholder="Cuéntame qué necesitas, en qué punto estás y si tienes alguna fecha importante"></textarea>
         </label>
 
         <div class="privacy-consent">
@@ -105,20 +103,27 @@ const thankYouUrl = new URL("/gracias/", siteUrl).toString();
         </div>
 
         <div class="form-submit-row">
-          <button type="submit" class="btn btn-primary" aria-describedby="privacy-note">Enviar mi caso</button>
+          <button type="submit" class="btn btn-primary" aria-describedby="privacy-note">Enviar consulta</button>
           <p id="privacy-note">Tu información se usa únicamente para revisar y responder tu consulta</p>
         </div>
       </form>
-    </section>
+    </section> : <section class="section conversion-band">
+      <div>
+        <p class="eyebrow">Primera conversación</p>
+        <h2>Escríbeme por Instagram</h2>
+        <p>Indica si tu consulta es sobre migración, cultura, negocios o turismo y cuéntame qué necesitas resolver</p>
+      </div>
+      <a class="btn btn-primary" href={siteConfig.instagram} target="_blank" rel="noopener noreferrer">Enviar un mensaje <span aria-hidden="true">↗</span></a>
+    </section>}
   </div>
 </Layout>
 
-<script is:inline>
-  // Preselect the area when arriving from an area page (/contacto/?area=slug)
-  (() => {
+<script>
+  document.addEventListener("astro:page-load", () => {
     const slug = new URLSearchParams(location.search).get("area");
-    const select = document.getElementById("contact-area");
-    const option = slug && select && select.querySelector(`option[data-slug="${CSS.escape(slug)}"]`);
-    if (option) option.selected = true;
-  })();
+    const select = document.querySelector<HTMLSelectElement>("#contact-area");
+    if (!select || !slug) return;
+    const option = Array.from(select.options).find((item) => item.dataset.slug === slug);
+    if (option) select.value = option.value;
+  });
 </script>

@@ -1,4 +1,6 @@
 export type IconName =
+  | "mail"
+  | "instagram"
   | "passport"
   | "family"
   | "study"
@@ -14,17 +16,20 @@ export type IconName =
   | "map"
   | "handshake";
 
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL?.trim() ?? "";
+const instagram = "https://www.instagram.com/tumultiversolegal/";
+
 export const siteConfig = {
   name: "Cristian Gutiérrez",
-  tagline: "Gestión estratégica de oportunidades y proyectos",
-  title: "Cristian Gutiérrez | Gestión estratégica de oportunidades y proyectos",
+  tagline: "Asesoría legal y gestión de proyectos",
+  title: "Cristian Gutiérrez | Asesoría legal y gestión de proyectos",
   description:
-    "Gestión estratégica de oportunidades y proyectos en derecho y migración, entretenimiento y cultura, negocios y experiencias turísticas",
+    "Cristian Gutiérrez: asesoría legal y migratoria, gestión de proyectos culturales, alianzas comerciales y coordinación de experiencias turísticas online",
   url: "https://pagina-web-orcin.vercel.app",
-  email: "hola@tumultiversolegal.com",
-  phone: "+54 9 11 2345 6789",
-  phoneHref: "+5491123456789",
-  instagram: "https://www.instagram.com/tumultiversolegal/",
+  email: contactEmail,
+  instagram,
+  contactUrl: contactEmail ? `mailto:${contactEmail}` : instagram,
+  contactLabel: contactEmail || "@tumultiversolegal",
   locationLabel: "Atención online internacional",
   language: "es",
   locale: "es_ES",
@@ -94,8 +99,8 @@ export const trustSignals = [
     label: "Estrategia personalizada por perfil",
   },
   {
-    value: "24–48 h",
-    label: "Primera lectura de tu caso",
+    value: "Por etapas",
+    label: "Documentos y próximos pasos",
   },
 ];
 

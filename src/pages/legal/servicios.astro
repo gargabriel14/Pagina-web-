@@ -42,7 +42,7 @@ const serviceSchema = {
 >
   <div class="page-shell">
     <header class="hero" id="servicios">
-      <div class="hero-copy" data-reveal>
+      <div class="hero-copy">
         <span class="eyebrow">Tu Multiverso Legal · Servicios</span>
         <h1>Servicios para decidir, preparar y avanzar con <span class="serif-italic">criterio</span></h1>
         <p>
@@ -54,7 +54,7 @@ const serviceSchema = {
           <a class="btn btn-secondary" href="/sobre-mi/">Conocer a Cristian</a>
         </div>
       </div>
-      <div class="hero-visual" data-reveal style="--d:.12s">
+      <div class="hero-visual">
         <ResponsiveImage
           src={siteImages.services}
           alt="Asesor migratorio planificando una ruta internacional con sus clientes"
@@ -69,13 +69,13 @@ const serviceSchema = {
     </header>
 
     <section class="section section-dark">
-      <div class="section-header" data-reveal>
+      <div class="section-header">
         <p class="eyebrow">Categorías de servicios</p>
         <h2>Elige el tipo de apoyo que más se parece a tu situación actual</h2>
       </div>
       <div class="cards-grid">
         {services.map((service, i) => (
-          <article class="service-card" data-reveal style={`--d:${i * 0.08}s`}>
+          <article class="service-card">
             <span class="service-icon"><Icon name={service.icon} /></span>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
@@ -85,13 +85,13 @@ const serviceSchema = {
     </section>
 
     <section class="section section-light">
-      <div class="section-header" data-reveal>
+      <div class="section-header">
         <p class="eyebrow">A quién acompaña</p>
         <h2>Personas, familias y empresas necesitan respuestas distintas</h2>
       </div>
       <div class="audience-grid">
         {audiencePaths.map((path, i) => (
-          <article class="audience-card" data-reveal style={`--d:${i * 0.08}s`}>
+          <article class="audience-card">
             <span class="feature-icon"><Icon name={path.icon} /></span>
             <h3>{path.title}</h3>
             <p>{path.description}</p>
@@ -101,13 +101,13 @@ const serviceSchema = {
     </section>
 
     <section class="section section-dark">
-      <div class="section-header" data-reveal>
+      <div class="section-header">
         <p class="eyebrow">Entregables</p>
         <h2>Lo importante es salir con claridad para actuar</h2>
       </div>
       <div class="feature-grid">
         {consultationDeliverables.map((item, i) => (
-          <article class="feature-card" data-reveal style={`--d:${i * 0.08}s`}>
+          <article class="feature-card">
             <span class="feature-icon"><Icon name={item.icon} /></span>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
@@ -117,7 +117,7 @@ const serviceSchema = {
     </section>
 
     <section class="section section-light section-split">
-      <div class="about-copy" data-reveal>
+      <div class="about-copy">
         <p class="eyebrow">Por qué este enfoque</p>
         <h2>La diferencia está en decidir bien antes de moverte</h2>
         <p>
@@ -137,7 +137,7 @@ const serviceSchema = {
           </div>
         </div>
       </div>
-      <div class="about-image" data-reveal style="--d:.12s">
+      <div class="about-image">
         <ResponsiveImage
           src={siteImages.value}
           alt="Asesor migratorio revisando documentos durante una consulta"
@@ -151,7 +151,7 @@ const serviceSchema = {
     </section>
 
     <section class="section section-contact">
-      <div class="contact-card" data-reveal>
+      <div class="contact-card">
         <span class="eyebrow">Comencemos</span>
         <h2>Agenda una consulta y transforma dudas en próximos pasos</h2>
         <p>Comparte tu origen, destino, objetivo y momento actual para revisar qué ruta conviene mirar primero</p>
